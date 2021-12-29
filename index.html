@@ -5,42 +5,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/styles.css">
     <title>Les petits plats</title>
 </head>
 
 <body>
-    <header>
-        <img src="./assets/icones/logo.png" alt="">
-        <h1>Les petits plats</h1>
-        <form role="search">
-            <div>
-                <input type="search" id="searchField" name="searchWindow"
-                    placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
-                    aria-label="Rechercher parmi le contenu du site">
-                <button>Rechercher</button>
+    <div class="page-wrapper">
+        <header>
+            <img src="./assets/icones/logo.png" alt="">
+            <h1>Les petits plats</h1>
+            <form role="search" class="search-bar">
+                <div>
+                    <input type="search" class="search-bar__Field" id="search-bar-Field" name="searchWindow"
+                        placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
+                        aria-label="Rechercher parmi le contenu du site">
+                    <button class="search-bar__btn">Rechercher</button>
+                </div>
+            </form>
+            <div class="select-contenair">
+                <ul>
+                    <li>COCO</li>
+                    <li>appareil</li>
+                    <li>Ustensiles</li>
+                </ul>
             </div>
-        </form>
-        <div class="select-contenair">
-            <ul>
-                <li>COCO</li>
-                <li></li>
-                <li></li>
+        </header>
+        <main>
+            <ul class="thumbnails">
+                <li class="thumbnails__card">
+                    <img class="thumbnails__card--img" src="" alt="">
+                    <h2>Limonade de Coco <span class="timeToCook"> <img src="./assets/icones/clock.png" alt="Temps de préparation"> 10 min</span></h2>
+                    <div class="recipe">
+                        <ul class="recipe__ingredients-list">
+                            <li class="recipe-list__item">Lorem ipsum <span class="recipe-list__item--quantity">400G</span></li>
+                            <li class="recipe-list__item">sit amet consectetur <span class="recipe-list__item--quantity">400G</span></li>
+                            <li class="recipe-list__item">adipisicing elit. Ullam,?<span class="recipe-list__item--quantity">400G</span></li>
+                            <li class="recipe-list__item"> omnis commodi sunt maxime<span class="recipe-list__item--quantity">400G</span></li>
+                            <li class="recipe-list__item"> provident aspernatur<span class="recipe-list__item--quantity">400G</span></li>
+                        </ul>
+                        <p class="recipe__instructions">Lorem ipsum dolor sit amet consectetur adipisicing elit. At pariatur molestias sapiente cupiditate consequatur consequuntur, temporibus quidem corporis inventore nulla. Asperiores, eos voluptatem? Praesentium numquam recusandae voluptates cupiditate placeat quidem! </p>
+                    </div>
+                </li>
             </ul>
-        </div>
-    </header>
-    <main>
-        <ul>
-            <li>Recette</li>
-            <li>Recette</li>
-            <li>Recette</li>
-            <li>Recette</li>
-            <li>Recette</li>
-            <li>Recette</li>
-            <li>Recette</li>
-            <li>Recette</li>
-        </ul>
-    </main>
-
+        </main>
+    </div>
 </body>
 
 </html>

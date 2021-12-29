@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "devscript": "npm-run-all --parallel devscript:sass devscript:prefix",
-    "devscript:sass": "sass ./sass/main.scss:./public/css/styles.css -w --style expanded",
-    "devscript:prefix": "postcss ./public/css/styles.css -w --use autoprefixer -d ./public/css/prefixed/"
+    "devscript:sass": "sass ./sass/main.scss:./styles/styles.css -w --style expanded",
+    "devscript:prefix": "postcss ./styles/styles.css -w --use autoprefixer -d ./styles/prefixed/"
   },
   "repository": {
     "type": "git",
@@ -20,12 +20,11 @@
   },
   "homepage": "https://github.com/RpRun/RemyPaquier_7_29122021#readme",
   "dependencies": {
-    "autoprefixer": "^10.3.1",
+    "autoprefixer": "^10.4.0",
     "postcss": "^8.3.6",
     "postcss-cli": "^8.3.1"
- },
- "devDependencies": {
+  },
+  "devDependencies": {
     "npm-run-all": "*"
- }
-
+  }
 }

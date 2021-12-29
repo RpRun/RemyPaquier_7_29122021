@@ -1,0 +1,141 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+h1 {
+  font-family: DM Sans;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 47px;
+  color: #D04F4F;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: stretch;
+  margin: auto;
+  width: 96vw;
+  max-width: 1280px;
+  max-height: 100vh;
+  text-align: center;
+}
+
+.thumbnails__card {
+  height: 364px;
+  width: 380px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.thumbnails__card--img {
+  height: 178px;
+  width: 380px;
+  left: 0px;
+  top: 0px;
+  border-radius: 5px 5px 0px 0px;
+  background: #C7BEBE;
+}
+
+.recipe {
+  display: flex;
+}
+.recipe__ingredients-list {
+  height: 105px;
+  width: 171px;
+  position: absolute;
+  left: 20px;
+  top: 240px;
+}
+.recipe__instructions {
+  height: 109px;
+  width: 171px;
+  position: absolute;
+  left: 191px;
+  top: 240px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.search-bar {
+  margin-top: 1rem;
+  position: relative;
+}
+.search-bar__Field {
+  width: 100%;
+  position: relative;
+  background-color: #E7E7E7;
+  border-radius: 5px;
+  height: 69px;
+  padding: 2rem;
+}
+.search-bar__btn {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  cursor: pointer;
+}
+
+header {
+  text-align: center;
+  width: 100%;
+  padding: 1rem;
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,23 @@
+.search-bar {
+    margin-top: 1rem;
+    position: relative;
+
+    &__Field {
+        width: 100%;
+        position: relative;
+        background-color:#E7E7E7;
+        border-radius: 5px;
+        height: 69px;
+        padding:2rem;
+    }
+
+    &__btn {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        cursor: pointer;
+    }
+}
+
+
