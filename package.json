@@ -1,0 +1,31 @@
+{
+  "name": "remypaquier_7_29122021",
+  "version": "0.0.1",
+  "description": "réaliser un site de recettes de cuisine",
+  "main": "index.js",
+  "scripts": {
+    "devscript": "npm-run-all --parallel devscript:sass devscript:prefix",
+    "devscript:sass": "sass ./sass/main.scss:./public/css/styles.css -w --style expanded",
+    "devscript:prefix": "postcss ./public/css/styles.css -w --use autoprefixer -d ./public/css/prefixed/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RpRun/RemyPaquier_7_29122021.git"
+  },
+  "author": "Rémy Paquier",
+  "license": "ISC",
+  "browserslist": "last 50 versions",
+  "bugs": {
+    "url": "https://github.com/RpRun/RemyPaquier_7_29122021/issues"
+  },
+  "homepage": "https://github.com/RpRun/RemyPaquier_7_29122021#readme",
+  "dependencies": {
+    "autoprefixer": "^10.3.1",
+    "postcss": "^8.3.6",
+    "postcss-cli": "^8.3.1"
+ },
+ "devDependencies": {
+    "npm-run-all": "*"
+ }
+
+}
