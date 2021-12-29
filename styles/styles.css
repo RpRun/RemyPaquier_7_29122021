@@ -64,6 +64,47 @@ h1 {
   color: #D04F4F;
 }
 
+.thumbnails__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.thumbnails__heading--timeToCook {
+  display: flex;
+}
+
+.thumbnails__heading--timeToCook img {
+  margin-right: 0.5rem;
+}
+
+header {
+  text-align: center;
+  width: 100%;
+  padding: 1rem;
+}
+
+.search-bar {
+  margin-top: 1rem;
+  position: relative;
+}
+.search-bar__Field {
+  width: 100%;
+  position: relative;
+  background-color: #E7E7E7;
+  border-radius: 5px;
+  height: 69px;
+  padding: 2rem;
+}
+.search-bar__btn {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  cursor: pointer;
+}
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
@@ -76,13 +117,20 @@ h1 {
   text-align: center;
 }
 
+.thumbnails {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: left;
+  display: flex;
+}
 .thumbnails__card {
+  background: #E7E7E7;
   height: 364px;
   width: 380px;
   border-radius: 5px;
   position: relative;
+  margin: 1rem;
 }
-
 .thumbnails__card--img {
   height: 178px;
   width: 380px;
@@ -108,34 +156,6 @@ h1 {
   position: absolute;
   left: 191px;
   top: 240px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.search-bar {
-  margin-top: 1rem;
-  position: relative;
-}
-.search-bar__Field {
-  width: 100%;
-  position: relative;
-  background-color: #E7E7E7;
-  border-radius: 5px;
-  height: 69px;
-  padding: 2rem;
-}
-.search-bar__btn {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  cursor: pointer;
-}
-
-header {
-  text-align: center;
-  width: 100%;
-  padding: 1rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

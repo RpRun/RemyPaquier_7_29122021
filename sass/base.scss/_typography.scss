@@ -10,3 +10,14 @@ h1 {
     color: #D04F4F;
     
 }
+
+.thumbnails__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.thumbnails__heading--timeToCook {
+    display: flex;
+}
