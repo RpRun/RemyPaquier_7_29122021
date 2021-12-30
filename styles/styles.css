@@ -92,6 +92,32 @@ h1 {
   margin-right: 0.5rem;
 }
 
+.dropDown {
+  text-align: left;
+  margin-right: 2rem;
+}
+.dropDown__form {
+  position: relative;
+}
+
+.dropDown__form--searchBar {
+  width: 500px;
+  background-color: #E7E7E7;
+  border-radius: 5px;
+  height: 2rem;
+  border: none;
+}
+
+.dropDown__btn--up {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  cursor: pointer;
+  border: none;
+  background-color: #E7E7E7;
+}
+
 header {
   text-align: center;
   width: 100%;
@@ -131,6 +157,12 @@ header {
   max-width: 1280px;
   max-height: 100vh;
   text-align: center;
+}
+
+.dropDownList-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3rem;
 }
 
 .dropDownList-wrapper ul {

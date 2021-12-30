@@ -9,7 +9,11 @@
     max-height: 100vh;
     text-align: center;
 }
-
+.dropDownList-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+}
 .dropDownList-wrapper ul  {
     display: flex;
 }

@@ -1,0 +1,28 @@
+.dropDown {
+    text-align: left;
+    margin-right: 2rem;
+
+    &__form {
+        position: relative;
+
+    }
+}
+
+
+.dropDown__form--searchBar {
+    width: 500px;
+    background-color: #E7E7E7;
+    border-radius: 5px;
+    height: 2rem;
+    border: none;
+}
+
+.dropDown__btn--up {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    cursor: pointer;
+    border: none;
+    background-color: #E7E7E7;
+}
