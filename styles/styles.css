@@ -147,15 +147,15 @@ h1 {
   position: relative;
 }
 
-.dropDown1 .dropDown__form--searchBar {
+.dropDown1 .dropDown__form--searchBar, .dropDown1__btn--up {
   background: #3282F7;
 }
 
-.dropDown2 .dropDown__form--searchBar {
+.dropDown2 .dropDown__form--searchBar, .dropDown2__btn--up {
   background: #68D9A4;
 }
 
-.dropDown3 .dropDown__form--searchBar {
+.dropDown3 .dropDown__form--searchBar, .dropDown3__btn--up {
   background: #ED6454;
 }
 
@@ -173,7 +173,6 @@ h1 {
   bottom: 0px;
   cursor: pointer;
   border: none;
-  background-color: #3282F7;
 }
 
 header {
