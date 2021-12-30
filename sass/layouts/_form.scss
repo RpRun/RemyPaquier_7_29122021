@@ -1,6 +1,7 @@
 .search-bar {
     margin-top: 1rem;
     position: relative;
+    
 
     &__Field {
         width: 100%;
@@ -13,10 +14,13 @@
 
     &__btn {
         position: absolute;
-        right: 0px;
+        right: 10px;
         top: 0px;
         bottom: 0px;
         cursor: pointer;
+        margin: 1rem;
+        border: none;
+        background-color:#E7E7E7; 
     }
 }
 

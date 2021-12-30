@@ -1,9 +1,6 @@
 .thumbnails {
-    
-    text-overflow: ellipsis;
-    overflow: hidden;
-    text-align: left;
     display: flex;
+    flex-wrap: wrap;
 
     &__card {
         background: #E7E7E7;
@@ -12,6 +9,9 @@
         border-radius: 5px;
         position: relative;
         margin: 1rem;
+        text-align: left;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     &__card--img {
@@ -28,7 +28,7 @@
 
 .recipe {
     display: flex;
-    
+
     &__ingredients-list {
         height: 105px;
         width: 171px;
@@ -43,7 +43,7 @@
         position: absolute;
         left: 191px;
         top: 240px;
-        
+
     }
 
 }
