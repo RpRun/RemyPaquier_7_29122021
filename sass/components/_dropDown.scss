@@ -8,9 +8,19 @@
     }
 }
 
+.dropDown1 .dropDown__form--searchBar {
+    background: #3282F7;
+}
+.dropDown2 .dropDown__form--searchBar {   
+    background: #68D9A4;
+}
+.dropDown3 .dropDown__form--searchBar {
+    background: #ED6454;
+    
+}
 .dropDown__form--searchBar {
-    width: 500px;
-    background-color: #E7E7E7;
+    width: 24rem;
+
     border-radius: 5px;
     height: 2rem;
     border: none;
