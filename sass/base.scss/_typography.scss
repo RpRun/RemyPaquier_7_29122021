@@ -1,6 +1,7 @@
-body {
-    font-family: 'Lato', sans-serif;
-}
+// body {
+//     font-family: 'Lato', sans-serif;
+// }
+//doesnt work on body??
 
 h1 {
     font-family: 'DM Sans', sans-serif;
@@ -10,11 +11,48 @@ h1 {
     color: #D04F4F;
 }
 
+.search-bar ::placeholder {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height */
+    color: #000000;
+    opacity: 0.25;
+}
+
+.dropDown__form ::placeholder {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height */
+    color: #FFFFFF;
+    opacity: 0.5;
+}
+
+.dropDown__btn {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #FFFFFF;
+
+}
+
 .thumbnails__heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    font-family: Lato;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -23,8 +61,18 @@ h1 {
 
 .thumbnails__heading--timeToCook {
     display: flex;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+
 }
 
 .recipe__instructions {
     font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 100%;
 }

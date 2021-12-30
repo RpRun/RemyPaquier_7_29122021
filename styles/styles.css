@@ -52,10 +52,6 @@ img {
   max-width: 100%;
 }
 
-body {
-  font-family: "Lato", sans-serif;
-}
-
 h1 {
   font-family: "DM Sans", sans-serif;
   font-weight: bold;
@@ -64,11 +60,45 @@ h1 {
   color: #D04F4F;
 }
 
+.search-bar ::placeholder {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+  color: #000000;
+  opacity: 0.25;
+}
+
+.dropDown__form ::placeholder {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+  color: #FFFFFF;
+  opacity: 0.5;
+}
+
+.dropDown__btn {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+  text-align: center;
+  color: #FFFFFF;
+}
+
 .thumbnails__heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  font-family: Lato;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -77,10 +107,19 @@ h1 {
 
 .thumbnails__heading--timeToCook {
   display: flex;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
 }
 
 .recipe__instructions {
   font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 100%;
 }
 
 .sr-only {
@@ -141,6 +180,7 @@ header {
   position: relative;
   background-color: #E7E7E7;
   border-radius: 5px;
+  border: none;
   height: 69px;
   padding: 2rem;
 }
@@ -190,9 +230,14 @@ header {
   background: #ED6454;
 }
 
+main {
+  width: 100%;
+}
+
 .thumbnails {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 .thumbnails__card {
   background: #E7E7E7;
@@ -200,7 +245,6 @@ header {
   width: 380px;
   border-radius: 5px;
   position: relative;
-  margin: 1rem;
   text-align: left;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -218,6 +262,11 @@ header {
   display: flex;
 }
 .recipe__ingredients-list {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
   height: 105px;
   width: 171px;
   position: absolute;
