@@ -1,14 +1,13 @@
 body {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Lato', sans-serif;
 }
 
 h1 {
-    font-family: DM Sans;
+    font-family: 'DM Sans', sans-serif;
     font-weight: bold;
     font-size: 36px;
     line-height: 47px;
     color: #D04F4F;
-    
 }
 
 .thumbnails__heading {
@@ -16,8 +15,16 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
 }
 
 .thumbnails__heading--timeToCook {
     display: flex;
+}
+
+.recipe__instructions {
+    font-family: 'Roboto', sans-serif;
 }

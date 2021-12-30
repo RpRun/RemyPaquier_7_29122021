@@ -53,11 +53,11 @@ img {
 }
 
 body {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Lato", sans-serif;
 }
 
 h1 {
-  font-family: DM Sans;
+  font-family: "DM Sans", sans-serif;
   font-weight: bold;
   font-size: 36px;
   line-height: 47px;
@@ -69,10 +69,18 @@ h1 {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
 }
 
 .thumbnails__heading--timeToCook {
   display: flex;
+}
+
+.recipe__instructions {
+  font-family: "Roboto", sans-serif;
 }
 
 .sr-only {
@@ -115,7 +123,7 @@ h1 {
   bottom: 0px;
   cursor: pointer;
   border: none;
-  background-color: #E7E7E7;
+  background-color: #3282F7;
 }
 
 header {
@@ -167,6 +175,19 @@ header {
 
 .dropDownList-wrapper ul {
   display: flex;
+  color: #FFFFFF;
+}
+
+.dropDownList-wrapper ul :nth-child(1) {
+  background: #3282F7;
+}
+
+.dropDownList-wrapper ul :nth-child(2) {
+  background: #68D9A4;
+}
+
+.dropDownList-wrapper ul :nth-child(3) {
+  background: #ED6454;
 }
 
 .thumbnails {
