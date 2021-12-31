@@ -4,7 +4,7 @@ const dropdownBlocks = document.querySelectorAll('.dropdown-container')
 dropdowns.forEach(dropdown => {
 
     const arrow = dropdown.querySelector('.arrow')
-    const list = dropdown.querySelector('.list')
+    const list = dropdown.querySelector('.dropdown__list')
     const btnPlaceholder = dropdown.querySelector('.btn-placeholder')
    
 

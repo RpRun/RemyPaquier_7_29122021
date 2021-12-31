@@ -175,19 +175,19 @@ main {
   color: #fff;
   font-size: 20px;
   position: relative;
-  width: 200px;
+  width: 250px;
 }
 .dropdown__ingredient {
-  background-color: blue;
+  background: #3282F7;
 }
 .dropdown__appliance {
-  background-color: #00ff62;
+  background: #68D9A4;
 }
 .dropdown__ustencil {
-  background-color: red;
+  background: #ED6454;
 }
 .dropdown input {
-  background: rgba(0, 0, 0, 0);
+  background: rgba(212, 63, 63, 0);
   border: none;
   color: #fff;
 }
@@ -196,14 +196,14 @@ main {
 }
 .dropdown .arrow {
   position: absolute;
-  right: 5px;
+  right: 10px;
   transition: 0.3s;
 }
 .dropdown .arrow.reverse {
   transform: rotateX(180deg);
 }
-.dropdown .list {
-  background-color: blueviolet;
+.dropdown__list {
+  background-color: #3282F7;
   position: absolute;
   width: 100%;
   z-index: 10;

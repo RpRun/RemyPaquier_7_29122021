@@ -5,20 +5,20 @@
     color: #fff;
     font-size: 20px;
     position: relative;
-    width: 200px;
+    width: 250px;
 
     &__ingredient {
-        background-color: blue;
+        background: #3282F7;
     }
     &__appliance {
-        background-color: rgb(0, 255, 98);
+        background: #68D9A4;
     }
     &__ustencil {
-        background-color: rgb(255, 0, 0);
+        background: #ED6454;
     }
 
     input {
-        background: rgba(0, 0, 0, 0);
+        background: rgba(212, 63, 63, 0);
         border: none;
         color: #fff;
 
@@ -29,7 +29,7 @@
 
     .arrow {
         position: absolute;
-        right: 5px;
+        right: 10px;
         transition: 0.3s;
 
         &.reverse {
@@ -37,8 +37,8 @@
         }
     }
 
-    .list {
-        background-color: blueviolet;
+    &__list {
+        background-color: #3282F7;;
         position: absolute;
         width: 100%;
         z-index: 10;
@@ -50,3 +50,4 @@
 .popIn {
     display: block; /* !important à enlever ^^ */
 }
+
