@@ -140,6 +140,34 @@ h1 {
   margin-right: 0.5rem;
 }
 
+header {
+  text-align: center;
+  width: 100%;
+  padding: 1rem;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: stretch;
+  margin: auto;
+  width: 96vw;
+  max-width: 1280px;
+  text-align: center;
+}
+
+.dropdown-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+main {
+  width: 100%;
+}
+
 .dropdown {
   border-radius: 5px;
   height: 50px;
@@ -184,14 +212,8 @@ h1 {
 }
 
 .popIn {
-  display: block !important;
+  display: block;
   /* !important à enlever ^^ */
-}
-
-header {
-  text-align: center;
-  width: 100%;
-  padding: 1rem;
 }
 
 .search-bar {
@@ -216,34 +238,6 @@ header {
   margin: 1rem;
   border: none;
   background-color: #E7E7E7;
-}
-
-.page-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: stretch;
-  margin: auto;
-  width: 96vw;
-  max-width: 1280px;
-  max-height: 100vh;
-  text-align: center;
-}
-
-.dropDownList-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 3rem;
-}
-
-.dropDownList-wrapper ul {
-  display: flex;
-  flex-wrap: wrap;
-  color: #FFFFFF;
-}
-
-main {
-  width: 100%;
 }
 
 .thumbnails {
