@@ -1,62 +1,50 @@
 const dropdowns = document.querySelectorAll('.dropdown')
-const dropdownBlocks = document.querySelectorAll('.dropdown-container')
 
 dropdowns.forEach(dropdown => {
 
-    const arrow = dropdown.querySelector('.arrow')
+
     const list = dropdown.querySelector('.dropdown__list')
     const btnPlaceholder = dropdown.querySelector('.btn-placeholder')
-   
+    const searchBar = document.querySelector('.dropdown input')
+    const reverseArrow = dropdown.querySelector('.arrow__reverse')
+    const arrow = dropdown.querySelector('.arrow')
 
-    dropdown.addEventListener('click', () => {
 
-        btnPlaceholder.style.display = 'none'
-        arrow.classList.add('reverse')
-        list.classList.add('popIn')
+    dropdown.addEventListener('click', (e) => {
 
-        console.log('coucou');
+        const dropdownPopIn = () => {
+            btnPlaceholder.classList.add('popOut')
+            arrow.classList.add('arrow__reverse')
+            list.classList.add('popIn')
+        }
+
+        const dropdownPopOut = () => {
+            btnPlaceholder.classList.remove('popOut')
+            list.classList.remove('popIn')
+            arrow.classList.remove('arrow__reverse')
+        }
+
+
+        if (arrow.classList.contains('arrow__reverse') && e.target === arrow)
+         {
+            dropdownPopOut()
+            console.log('dropdownPopOut')
+           
+        } else if(e.target !== reverseArrow) {
+            dropdownPopIn()
+            console.log('dropdownPopIn')
+            searchBar.focus
+            console.log('give focus')
+        }
+
+        // } else if (e.target === btnPlaceholder) {
+        //    focus(searchBar)
+        //     console.log('give focus', e.target)
+        //     console.log('dhumhum')
+        // }
 
     })
 
-// dropdownBlocks.forEach(dropdownBlock => {
 
-//     const arrow = dropdownBlock.querySelector('.arrow')
-//     const list = dropdownBlock.querySelector('.list')
-//     const btnPlaceholder = dropdownBlock.querySelector('.btn-placeholder')
-
-//     dropdownBlock.addEventListener('click', (event) => {
-//         if(event.target !== dropdownBlocks ) {
-
-//             btnPlaceholder.style.display = 'block'
-//             arrow.classList.remove('reverse')
-//             list.classList.remove('popIn')
-//             console.log('fuuuuck', event);
-//         }
-
-//     })
-// })
-
-
-  
 })
 
-
-
-
-
-
-
-// const dropdownBlocks = document.querySelectorAll('.dropdown-container')
-
-// dropdownBlocks.forEach(dropdownBlock => {
-//     dropdownBlock.addEventListener('click', (event) => {
-//         if(event.target !== dropdownBlocks) {
-
-//             btnPlaceholder.style.display = 'block'
-//             arrow.classList.remove('reverse')
-//             list.classList.remove('popIn')
-//             console.log('fuuuuck', event);
-//         }
-
-//     })
-// })

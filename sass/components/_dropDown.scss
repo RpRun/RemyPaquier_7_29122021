@@ -10,7 +10,7 @@
     &__ingredient {
         background: #3282F7;
     }
-    &__appliance {
+    &__appliance, &__appliance &__list {
         background: #68D9A4;
     }
     &__ustencil {
@@ -27,27 +27,44 @@
         }
     }
 
-    .arrow {
-        position: absolute;
-        right: 10px;
-        transition: 0.3s;
-
-        &.reverse {
-            transform: rotateX(180deg);
-        }
-    }
+   
 
     &__list {
         background-color: #3282F7;;
         position: absolute;
         width: 100%;
         z-index: 10;
-        top: 50px;
+        top: 47px;
         display: none;
+        & li {
+            cursor: pointer;
+        }
+        
+    }
+}
+
+.dropdown__list li:hover {
+    background: chartreuse;
+}
+
+.arrow {
+    position: absolute;
+    right: 5px;
+    transition: 0.3s;
+    cursor: pointer;
+    height: 100%;
+    padding: 0px 10px;
+
+    &__reverse {
+        transform: rotateX(180deg);
     }
 }
 
 .popIn {
-    display: block; /* !important à enlever ^^ */
+    display: block;
+}
+
+.popOut {
+    display: none;
 }
 
