@@ -8,6 +8,7 @@ dropdowns.forEach(dropdown => {
     const searchBar = document.querySelector('.dropdown input')
     const reverseArrow = dropdown.querySelector('.arrow__reverse')
     const arrow = dropdown.querySelector('.arrow')
+    // const listItem = dropdown.querySelector('.dropdown__list li')
 
 
     dropdown.addEventListener('click', (e) => {
@@ -25,26 +26,44 @@ dropdowns.forEach(dropdown => {
         }
 
 
-        if (arrow.classList.contains('arrow__reverse') && e.target === arrow)
-         {
+        if (arrow.classList.contains('arrow__reverse') && e.target === arrow) {
             dropdownPopOut()
             console.log('dropdownPopOut')
-           
-        } else if(e.target !== reverseArrow) {
+
+        } else if (e.target !== reverseArrow) {
             dropdownPopIn()
             console.log('dropdownPopIn')
-            searchBar.focus
-            console.log('give focus')
+
         }
 
-        // } else if (e.target === btnPlaceholder) {
-        //    focus(searchBar)
-        //     console.log('give focus', e.target)
-        //     console.log('dhumhum')
+        //  else if (e.target === listItem) {
+
+        //     console.log('item de la liste', e.target)
+
         // }
 
     })
 
 
 })
+import {
+    recipes
+} from '../data/recipes.js'
+const createList = recipes => {
 
+    let ingredientsList = ''
+    recipes.ingredients.forEach(ingredient => {
+        ingredientsList += `<li>${ingredient}</li>`
+    });
+
+    const list = `<ul>${ingredientsList}</ul>`
+
+    return list
+
+}
+
+const blocList = document.querySelector('.dropdown__list ul')
+for (let i = 0; i < recipes.ingredients.length; i++) {
+    const list = createList(recipes.ingredients[i])
+    blocList.innerHTML += list
+}
