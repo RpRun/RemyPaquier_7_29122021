@@ -1,5 +1,15 @@
 const dropdowns = document.querySelectorAll('.dropdown')
 
+
+// window.addEventListener('click', (e)=> {
+//     dropdowns.forEach(dropdown) => {
+//         if (e.target !== dropdown) {
+//             console.log('hello')
+//         }
+//     }
+    
+// })
+
 dropdowns.forEach(dropdown => {
 
 

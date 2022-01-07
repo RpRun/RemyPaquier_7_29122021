@@ -2,20 +2,20 @@ import {
     recipes
 } from '../data/recipes.js'
 
-
-
 console.log('all recipes', recipes)
 
 const myIngredients = []
 
 recipes.map((recipe) => {
-    console.log('One recipe', recipe)
-    // recipe.ingredients.map((ingredient) => myIngredients.push(ingredient.ingredient))
-    // console.log(myIngredients)
-    recipe.ingredients.map((ingredient) => myIngredients.push(ingredient.ingredient) )
-        
+    console.log('recipe one by one', recipe)
 
-    
-    console.log('All ingredients',myIngredients)
-    
+    recipe.ingredients.map((ingredientName) => myIngredients.push(ingredientName.ingredient))
+   
 })
+console.log('All ingredients with duplicates', myIngredients)
+
+// Conserve une seule apparition de l'ingredient:
+const filteredIngredients = myIngredients.filter((item, index) => {
+    return myIngredients.indexOf(item) == index
+})
+console.log('All ingredients without duplicates', filteredIngredients)
