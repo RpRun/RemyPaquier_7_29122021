@@ -1,17 +1,14 @@
 const dropdowns = document.querySelectorAll('.dropdown')
 
 
-// window.addEventListener('click', (e)=> {
-//     dropdowns.forEach(dropdown) => {
-//         if (e.target !== dropdown) {
-//             console.log('hello')
-//         }
-//     }
+window.addEventListener('click', (e)=> {
     
-// })
-
+            console.log('hello')
+        
+    })
+    
 dropdowns.forEach(dropdown => {
-
+    
 
     const list = dropdown.querySelector('.dropdown__list')
     const btnPlaceholder = dropdown.querySelector('.btn-placeholder')
@@ -22,7 +19,7 @@ dropdowns.forEach(dropdown => {
 
 
     dropdown.addEventListener('click', (e) => {
-
+        e.stopPropagation();
         const dropdownPopIn = () => {
             btnPlaceholder.classList.add('popOut')
             arrow.classList.add('arrow__reverse')
@@ -40,12 +37,18 @@ dropdowns.forEach(dropdown => {
             dropdownPopOut()
             console.log('dropdownPopOut')
 
+
+            // ******************************************************************
+
+//A modifier en priorité
         } else if (e.target !== reverseArrow) {
             dropdownPopIn()
             console.log('dropdownPopIn')
 
         }
+// A modifier
 
+               
         //  else if (e.target === listItem) {
 
         //     console.log('item de la liste', e.target)
@@ -54,7 +57,7 @@ dropdowns.forEach(dropdown => {
 
     })
 
-
+         // ******************************************************************
 })
 
 
