@@ -1,5 +1,5 @@
-const dropdowns = document.querySelectorAll('.dropdown')
-
+export const onclickIngredientDropDown = () => {
+    const dropdowns = document.querySelectorAll('.dropdown')
 
 window.addEventListener('click', (e)=> {
     
@@ -19,7 +19,7 @@ dropdowns.forEach(dropdown => {
 
 
     dropdown.addEventListener('click', (e) => {
-        e.stopPropagation();
+        // e.stopPropagation();
         const dropdownPopIn = () => {
             btnPlaceholder.classList.add('popOut')
             arrow.classList.add('arrow__reverse')
@@ -46,16 +46,35 @@ dropdowns.forEach(dropdown => {
             console.log('dropdownPopIn')
 
         }
-// A modifier
 
-               
-        //  else if (e.target === listItem) {
-
-        //     console.log('item de la liste', e.target)
-
-        // }
 
     })
 
          // ******************************************************************
 })
+}
+
+
+
+export const ingredientListHandler = (DATA) => {
+    const lis = document.querySelectorAll(".dropdown__ingredient li")
+    lis.forEach(li => {
+        li.addEventListener("click",() => {
+            const clickedIngredient = li.innerHTML.toLowerCase()
+            // console.log(clickedIngredient)
+            DATA.forEach(recipe => {
+                //Rechercher dans le tableau des ingredients
+                recipe.ingredients.forEach(ingredient => {
+                    // console.log(ingredient.ingredient)
+                    if(ingredient.ingredient.toLowerCase() == clickedIngredient) {
+                        
+                        console.log(recipe)
+                    }
+                });
+            })
+        }
+        )
+    })
+}
+
+
