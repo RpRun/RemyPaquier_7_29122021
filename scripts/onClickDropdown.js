@@ -59,39 +59,3 @@ dropdowns.forEach(dropdown => {
 
          // ******************************************************************
 })
-
-
-
-
-
-
-
-
-
-
-
-
-// const createList = (recipe) => {
-
-//     let ingredientsList = ''
-//     recipe.ingredients.forEach(ingredient => {
-//         ingredientsList += `<li>${ingredient}</li>`
-//     });
-   
-//     const list = `<ul>${ingredientsList}</ul>`
-//     console.log(recipes.ingredients)
-//     return list
-// }
-
-
-
-//         const recipes = reponse.recipes
-//         const blocList = document.querySelector('.dropdown__list ul')
-//         for (let i = 0; i < recipes.ingredients.length; i++) {
-//             const list = createList(recipes.ingredients[i])
-//             blocList.innerHTML += list
-//         }
-
-
-
-     

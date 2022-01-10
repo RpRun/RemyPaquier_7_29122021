@@ -18,4 +18,8 @@ recipes.map((recipe) => {
 const filteredIngredients = myIngredients.filter((item, index) => {
     return myIngredients.indexOf(item) == index
 })
-// console.log('All ingredients without duplicates', filteredIngredients)
+console.log('All ingredients without duplicates', filteredIngredients)
+
+const list = `<ul>${filteredIngredients}</ul>`
+const blocList = document.querySelector('.dropdown__list ul')
+const createList = blocList.innerHTML += list
