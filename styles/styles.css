@@ -206,7 +206,7 @@ main {
 }
 
 .dropdown__list li:hover {
-  background: chartreuse;
+  background: #00ff2a;
 }
 
 .arrow {

@@ -20,6 +20,10 @@ const filteredIngredients = myIngredients.filter((item, index) => {
 })
 console.log('All ingredients without duplicates', filteredIngredients)
 
+
+
 const list = `<ul>${filteredIngredients}</ul>`
-const blocList = document.querySelector('.dropdown__list ul')
+const blocList = document.querySelector('.dropdown__list')
+
+
 const createList = blocList.innerHTML += list
