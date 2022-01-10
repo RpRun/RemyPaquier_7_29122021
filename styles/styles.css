@@ -176,14 +176,26 @@ main {
   position: relative;
   width: 250px;
 }
-.dropdown__ingredient {
+.dropdown__ingredient, .dropdown__ingredient .dropdown__list {
   background: #3282F7;
+}
+.dropdown__ingredient .dropdown__list li:hover {
+  background: #63a0f9;
 }
 .dropdown__appliance, .dropdown__appliance .dropdown__list {
   background: #68D9A4;
 }
+.dropdown__appliance .dropdown__list li:hover, .dropdown__appliance .dropdown__list li:focus {
+  background: #91e3bd;
+}
 .dropdown__ustencil {
   background: #ED6454;
+}
+.dropdown__ustencil, .dropdown__ustencil .dropdown__list {
+  background: #ED6454;
+}
+.dropdown__ustencil .dropdown__list li:hover, .dropdown__ustencil .dropdown__list li:focus {
+  background: #f28e82;
 }
 .dropdown input {
   background: rgba(212, 63, 63, 0);
@@ -194,7 +206,6 @@ main {
   color: #fff;
 }
 .dropdown__list {
-  background-color: #3282F7;
   position: absolute;
   width: 100%;
   z-index: 10;
@@ -203,10 +214,6 @@ main {
 }
 .dropdown__list li {
   cursor: pointer;
-}
-
-.dropdown__list li:hover {
-  background: #00ff2a;
 }
 
 .arrow {

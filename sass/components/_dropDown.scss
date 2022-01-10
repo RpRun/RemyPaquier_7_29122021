@@ -7,14 +7,29 @@
     position: relative;
     width: 250px;
 
-    &__ingredient {
-        background: #3282F7;
+    &__ingredient, &__ingredient &__list {
+        background: #3282F7; 
+    }
+    &__ingredient &__list li:hover {
+        background: lighten($color: #3282F7, $amount: 10);
     }
     &__appliance, &__appliance &__list {
         background: #68D9A4;
     }
+    &__appliance &__list li:hover,
+    &__appliance &__list li:focus {
+        background: lighten($color: #68D9A4, $amount: 10);
+    }
+
     &__ustencil {
         background: #ED6454;
+    }
+    &__ustencil, &__ustencil &__list {
+        background: #ED6454;
+    }
+    &__ustencil &__list li:hover,
+    &__ustencil &__list li:focus {
+        background: lighten($color: #ED6454, $amount: 10);
     }
 
     input {
@@ -30,7 +45,7 @@
    
 
     &__list {
-        background-color: #3282F7;;
+        
         position: absolute;
         width: 100%;
         z-index: 10;
@@ -41,10 +56,6 @@
         }
         
     }
-}
-
-.dropdown__list li:hover {
-    background: rgb(0, 255, 42);     
 }
 
 .arrow {
