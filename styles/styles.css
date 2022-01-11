@@ -52,6 +52,10 @@ img {
   max-width: 100%;
 }
 
+body {
+  font-family: "Lato", sans-serif;
+}
+
 h1 {
   font-family: "DM Sans", sans-serif;
   font-weight: bold;
@@ -107,6 +111,7 @@ h1 {
 
 .thumbnails__heading--timeToCook {
   display: flex;
+  align-items: center;
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -119,7 +124,6 @@ h1 {
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  line-height: 100%;
 }
 
 .sr-only {
@@ -318,37 +322,6 @@ main {
   .thumbnails-list {
     justify-content: center;
   }
-}
-html {
-  --lh: 1.4rem;
-  line-height: var(--lh);
-}
-
-.truncate-overflow {
-  --max-lines: 3;
-  position: relative;
-  max-height: calc(var(--lh) * var(--max-lines));
-  overflow: hidden;
-  padding-right: 1rem;
-  /* space for ellipsis */
-}
-
-.truncate-overflow::before {
-  position: absolute;
-  content: "...";
-  inset-block-end: 0;
-  /* "bottom" */
-  inset-inline-end: 0;
-  /* "right" */
-}
-
-.truncate-overflow::after {
-  content: "";
-  position: absolute;
-  inset-inline-end: 0;
-  /* "right" */
-  width: 1rem;
-  height: 1rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

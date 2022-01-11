@@ -1,7 +1,6 @@
-// body {
-//     font-family: 'Lato', sans-serif;
-// }
-//doesnt work on body??
+body {
+    font-family: 'Lato', sans-serif;
+}
 
 h1 {
     font-family: 'DM Sans', sans-serif;
@@ -40,9 +39,7 @@ h1 {
     font-size: 18px;
     line-height: 22px;
     /* identical to box height */
-
     text-align: center;
-
     color: #FFFFFF;
 
 }
@@ -61,12 +58,12 @@ h1 {
 
 .thumbnails__heading--timeToCook {
     display: flex;
+    align-items: center;
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
     line-height: 22px;
-
 }
 
 .recipe__instructions {
@@ -74,5 +71,4 @@ h1 {
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
-    line-height: 100%;
 }

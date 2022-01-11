@@ -35,27 +35,25 @@ const createList = blocList.append(list)
 // Creation des cartes pour chaque recette
 const createRecipeCard = (DATA) => {
 
-   
-        
     const cardsList = document.querySelector(".thumbnails-list")
     for (let i = 0; i < DATA.length; i++) {
         
         const recipeCard = DATA[i];
         
         console.log(recipeCard)
-
-
-  
-
-       
+    
         let ingredientsList = ' '
-        recipeCard.ingredients.forEach(ingredient => {
-            ingredientsList += `<li class="recipe-list__item">${recipeCard.ingredients}<span
-            class="recipe-list__item--quantity">400G</span></li>`
-        })
+        
         console.log(recipeCard.ingredients)
+        for (let i = 0; i < recipeCard.ingredients.length; i ++) {
+            const recipeIngredient = recipeCard.ingredients[i];
+            console.log(recipeIngredient)
+           
+            ingredientsList += `<li class="recipe-list__item">${recipeIngredient.ingredient}<span
+            class="recipe-list__item--quantity"> ${recipeIngredient.quantity} ${recipeIngredient.unit}</span></li>`      
+        }
 
-        const card = ` <li class="thumbnails__card">
+        const card = `<li class="thumbnails__card">
     <img class="thumbnails__card--img" src="" alt="">
     <h2 class="thumbnails__heading">${recipeCard.name} <span class="thumbnails__heading--timeToCook"> <img
                 src="./assets/icones/clock.png" alt="Temps de préparation">${recipeCard.time}min</span></h2>
