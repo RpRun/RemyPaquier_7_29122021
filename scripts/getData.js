@@ -63,10 +63,7 @@ const createRecipeCard = (DATA) => {
         <ul class="recipe__ingredients-list">
             ${ingredientsList}
         </ul>
-        <p class="recipe__instructions">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-            pariatur molestias sapiente cupiditate consequatur consequuntur, temporibus quidem corporis
-            inventore nulla. Asperiores, eos voluptatem? Praesentium numquam recusandae voluptates
-            cupiditate placeat quidem! </p>
+        <p class="recipe__instructions truncate-overflow">${recipeCard.description}</p>
     </div>
     </li>`
 
