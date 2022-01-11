@@ -5,14 +5,14 @@
     align-content: stretch;
     margin: auto;
     width: 96vw;
-    max-width: 1280px;
+    max-width: 1690px;
     // max-height: 100vh;
     text-align: center;
 }
 
 .dropdown-container  {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     margin-top: 3rem;
     
@@ -20,4 +20,10 @@
 
 main {
     width: 100%;
+}
+
+.thumbnails-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }

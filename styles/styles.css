@@ -152,19 +152,25 @@ header {
   align-content: stretch;
   margin: auto;
   width: 96vw;
-  max-width: 1280px;
+  max-width: 1690px;
   text-align: center;
 }
 
 .dropdown-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
   margin-top: 3rem;
 }
 
 main {
   width: 100%;
+}
+
+.thumbnails-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .dropdown {
@@ -175,6 +181,7 @@ main {
   font-size: 20px;
   position: relative;
   width: 250px;
+  margin-right: 3rem;
 }
 .dropdown__ingredient, .dropdown__ingredient .dropdown__list {
   background: #3282F7;
