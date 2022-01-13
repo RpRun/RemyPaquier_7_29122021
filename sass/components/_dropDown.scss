@@ -81,7 +81,11 @@
             padding: 0.4rem;
             height: 4rem;
             line-height: 1.5rem;
+            &.selected-ingredient {
+                background: lighten($color: #3282F7, $amount: 10);
+            }
         }
+
 
     }
 }

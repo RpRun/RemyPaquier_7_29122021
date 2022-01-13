@@ -243,6 +243,9 @@ main {
   height: 4rem;
   line-height: 1.5rem;
 }
+.dropdown__list li.selected-ingredient {
+  background: #63a0f9;
+}
 
 .arrow {
   position: absolute;
@@ -269,6 +272,7 @@ main {
   color: #ffff;
   margin: 1rem;
   border-radius: 5px;
+  cursor: pointer;
 }
 .clicked-filter--ingredients {
   background: #3282F7;
