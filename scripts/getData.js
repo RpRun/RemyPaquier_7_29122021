@@ -40,16 +40,16 @@ const createRecipeCard = (DATA) => {
         
         const recipeCard = DATA[i];
         
-        console.log(recipeCard)
+        // console.log('1 recette',recipeCard)
     
         let ingredientsList = ' '
         
-        console.log(recipeCard.ingredients)
+        // console.log('ingredients de la recette',recipeCard.ingredients)
         for (let i = 0; i < recipeCard.ingredients.length; i ++) {
-            const recipeIngredient = recipeCard.ingredients[i];
-            console.log(recipeIngredient)
            
-            ingredientsList += `<li class="recipe-list__item">${recipeIngredient.ingredient}<span
+            const recipeIngredient = recipeCard.ingredients[i];
+           
+            ingredientsList += `<li class="recipe-list__item">${recipeIngredient.ingredient}:<span
             class="recipe-list__item--quantity"> ${recipeIngredient.quantity} ${recipeIngredient.unit}</span></li>`      
         }
 

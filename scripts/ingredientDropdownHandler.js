@@ -51,21 +51,41 @@ export const onclickIngredientDropDown = () => {
 
 export const ingredientListHandler = (DATA) => {
     const lis = document.querySelectorAll(".dropdown__ingredient li")
+    const allRecipesCards = document.querySelectorAll('.thumbnails__card')
+    
     lis.forEach(li => {
         li.addEventListener("click", () => {
-            const clickedIngredient = li.innerHTML.toLowerCase()
-            // console.log(clickedIngredient)
+            const clickedIngredient = li.innerHTML.toLowerCase()          
+            
+            // on rajoute la classe selected dans le bloc list des ingredients
+            li.classList.add('selected-ingredient')
+      
             DATA.forEach(recipe => {
-                //Rechercher dans le tableau des ingredients
+                //Rechercher dans le tableau des ingredients pour chaque recette
+                
+
                 recipe.ingredients.forEach(ingredient => {
-                    // console.log(ingredient.ingredient)
+                                    
                     if (ingredient.ingredient.toLowerCase() == clickedIngredient) {
+                        
+                        for (let i = 0; i < allRecipesCards.length; i += 1) {
+                            // On efface toutes les recettes du DOM
+                            allRecipesCards[i].style.display = "none";
+                            const filteredCard = allRecipesCards[i];
+                            if(filteredCard.innerHTML.toLowerCase().includes(clickedIngredient))
+                            filteredCard.style.display = "block"                           
+                        }
                        
-                        console.log(recipe)
-                    }
-                });
+                        // console.log(recipe)
+                        
+                        }   
+                        
+                 })
+                
             })
         })
     })
 }
+
+
 
