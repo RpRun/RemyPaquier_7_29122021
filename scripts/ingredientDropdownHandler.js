@@ -59,7 +59,18 @@ export const ingredientListHandler = (DATA) => {
             
             // on rajoute la classe selected dans le bloc list des ingredients
             li.classList.add('selected-ingredient')
+            const dropdownSection = document.querySelector('.dropdown-container')
+            const selectedIngredient = document.querySelector('.selected-ingredient')
+            if (selectedIngredient) {
+                let searchFilter = document.createElement("div");
+                searchFilter.className = 'clicked-filter'
+                searchFilter.textContent = clickedIngredient;
+
+                dropdownSection.appendChild(searchFilter);
+            }
       
+
+            
             DATA.forEach(recipe => {
                 //Rechercher dans le tableau des ingredients pour chaque recette
                 
@@ -73,7 +84,8 @@ export const ingredientListHandler = (DATA) => {
                             allRecipesCards[i].style.display = "none";
                             const filteredCard = allRecipesCards[i];
                             if(filteredCard.innerHTML.toLowerCase().includes(clickedIngredient))
-                            filteredCard.style.display = "block"                           
+                            filteredCard.style.display = "block"
+
                         }
                        
                         // console.log(recipe)
@@ -81,7 +93,7 @@ export const ingredientListHandler = (DATA) => {
                         }   
                         
                  })
-                
+             
             })
         })
     })

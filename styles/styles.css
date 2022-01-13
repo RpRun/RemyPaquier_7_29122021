@@ -222,9 +222,26 @@ main {
   z-index: 10;
   top: 47px;
   display: none;
+  border-radius: 0 5px 5px 5px;
+}
+.dropdown__list ul {
+  width: 36rem;
+  max-width: 60vw;
+  text-align: left;
+  background: #3282F7;
+  border-radius: 0 5px 5px 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 .dropdown__list li {
+  display: flex;
+  align-items: center;
   cursor: pointer;
+  width: 11rem;
+  padding: 0.4rem;
+  height: 4rem;
+  line-height: 1.5rem;
 }
 
 .arrow {
