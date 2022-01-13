@@ -264,9 +264,26 @@ main {
   display: none;
 }
 
+.clicked-filter {
+  padding: 1rem;
+  color: #ffff;
+  margin: 1rem;
+  border-radius: 5px;
+}
+.clicked-filter--ingredients {
+  background: #3282F7;
+}
+
+.search {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .search-bar {
   margin-top: 1rem;
   position: relative;
+  display: flex;
+  width: 100%;
 }
 .search-bar__Field {
   width: 100%;

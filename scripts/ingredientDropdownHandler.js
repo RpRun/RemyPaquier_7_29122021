@@ -59,14 +59,14 @@ export const ingredientListHandler = (DATA) => {
             
             // on rajoute la classe selected dans le bloc list des ingredients
             li.classList.add('selected-ingredient')
-            const dropdownSection = document.querySelector('.dropdown-container')
+            const dropdownFilterSection = document.querySelector('.search')
             const selectedIngredient = document.querySelector('.selected-ingredient')
             if (selectedIngredient) {
                 let searchFilter = document.createElement("div");
-                searchFilter.className = 'clicked-filter'
+                searchFilter.className = 'clicked-filter clicked-filter--ingredients'
                 searchFilter.textContent = clickedIngredient;
 
-                dropdownSection.appendChild(searchFilter);
+                dropdownFilterSection.appendChild(searchFilter);
             }
       
 

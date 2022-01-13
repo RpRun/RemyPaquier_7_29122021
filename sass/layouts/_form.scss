@@ -1,6 +1,12 @@
+.search {
+    display: flex;
+    flex-wrap: wrap;
+}
 .search-bar {
     margin-top: 1rem;
     position: relative;
+    display: flex;
+    width: 100%;
     
 
     &__Field {
