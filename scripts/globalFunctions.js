@@ -7,12 +7,17 @@ export const createTag = (content, type) => {
         case 'ingredient':
             div.classList.add('tag--ingredients')
             break;
-        case 'ustencil':
+        case 'appliance':
             div.classList.add('tag--appliance')
             break
+        case 'ustensils':
+            div.classList.add('tag--ustensils')
+            break
+            //A eclaircir
         default:
             div.classList.add('tag--ustensils')
             break;
+            //A eclaircir
     }
     div.innerHTML = content
     tagsList.append(div)
