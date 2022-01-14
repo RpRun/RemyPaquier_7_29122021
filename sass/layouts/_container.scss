@@ -10,12 +10,16 @@
     text-align: center;
 }
 
+.tagsList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .dropdown-container  {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
     margin-top: 3rem;
-    
 }
 
 main {

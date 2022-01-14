@@ -27,17 +27,17 @@
         background: lighten($color: #68D9A4, $amount: 10);
     }
 
-    &__ustencil {
+    &__ustensils {
         background: #ED6454;
     }
 
-    &__ustencil,
-    &__ustencil &__list {
+    &__ustensils,
+    &__ustensils &__list {
         background: #ED6454;
     }
 
-    &__ustencil &__list li:hover,
-    &__ustencil &__list li:focus {
+    &__ustensils &__list li:hover,
+    &__ustensils &__list li:focus {
         background: lighten($color: #ED6454, $amount: 10);
     }
 

@@ -3,9 +3,16 @@
     color: #ffff;
     margin: 1rem;
     border-radius: 5px;
+    width: 8rem;
     cursor: pointer;
     &--ingredients {
         background: #3282F7;
+    }
+    &--appliance {
+        background: #68D9A4;
+    }
+    &--ustensils {
+        background: #ED6454;
     }
 }
 

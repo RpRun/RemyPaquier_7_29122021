@@ -8,10 +8,10 @@ export const createTag = (content, type) => {
             div.classList.add('tag--ingredients')
             break;
         case 'ustencil':
-            div.classList.add('tag--ustencil')
+            div.classList.add('tag--appliance')
             break
         default:
-            div.classList.add('tag--appareil')
+            div.classList.add('tag--ustensils')
             break;
     }
     div.innerHTML = content
