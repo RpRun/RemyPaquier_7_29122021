@@ -1,4 +1,6 @@
 .dropdown {
+    display: flex;
+    align-items: center;
     border-radius: 5px;
     height: 50px;
     line-height: 50px;
@@ -13,7 +15,9 @@
         background: #3282F7;
     }
 
-    &__ingredient &__list li:hover {
+    &__ingredient &__list li:hover,
+    &__ingredient &__list li:focus
+     {
         background: lighten($color: #3282F7, $amount: 10);
     }
 
@@ -46,17 +50,19 @@
         border: none;
         color: #fff;
         font-size: 20px;
+        width: 83%;
+        text-align: left;
+        margin-left: 1rem;
+        margin-right: 3rem;
+
 
         &::placeholder {
             color: #fff;
         }
     }
 
-
-
     &__list {
         position: absolute;
-        width: 100%;
         z-index: 10;
         top: 47px;
         display: none;
@@ -66,7 +72,6 @@
             width: 36rem;
             max-width: 60vw;
             text-align: left;
-            background: #3282F7;
             border-radius: 0 5px 5px 5px;
             display: flex;
             flex-wrap: wrap;

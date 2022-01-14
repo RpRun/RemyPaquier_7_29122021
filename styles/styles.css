@@ -183,6 +183,8 @@ main {
 }
 
 .dropdown {
+  display: flex;
+  align-items: center;
   border-radius: 5px;
   height: 50px;
   line-height: 50px;
@@ -195,7 +197,7 @@ main {
 .dropdown__ingredient, .dropdown__ingredient .dropdown__list {
   background: #3282F7;
 }
-.dropdown__ingredient .dropdown__list li:hover {
+.dropdown__ingredient .dropdown__list li:hover, .dropdown__ingredient .dropdown__list li:focus {
   background: #63a0f9;
 }
 .dropdown__appliance, .dropdown__appliance .dropdown__list {
@@ -218,13 +220,16 @@ main {
   border: none;
   color: #fff;
   font-size: 20px;
+  width: 83%;
+  text-align: left;
+  margin-left: 1rem;
+  margin-right: 3rem;
 }
 .dropdown input::placeholder {
   color: #fff;
 }
 .dropdown__list {
   position: absolute;
-  width: 100%;
   z-index: 10;
   top: 47px;
   display: none;
@@ -234,7 +239,6 @@ main {
   width: 36rem;
   max-width: 60vw;
   text-align: left;
-  background: #3282F7;
   border-radius: 0 5px 5px 5px;
   display: flex;
   flex-wrap: wrap;
