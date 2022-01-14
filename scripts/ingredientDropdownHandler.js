@@ -1,115 +1,113 @@
-export const onclickIngredientDropDown = () => {
-    const dropdowns = document.querySelectorAll('.dropdown')
+import { displayRecipes, createTag } from "./globalFunctions.js"
 
-    window.addEventListener('click', (e) => {
+const dropdownIngredient = document.querySelector('.dropdown__ingredient')
+const arrow = dropdownIngredient.querySelector('.arrow')
+const input = dropdownIngredient.querySelector('input')
 
-        // console.log('hello')
-
-    })
-
-    dropdowns.forEach(dropdown => {
-
-        const list = dropdown.querySelector('.dropdown__list')
-        const btnPlaceholder = dropdown.querySelector('.btn-placeholder')
-        const searchBar = document.querySelector('.dropdown input')
-        const reverseArrow = dropdown.querySelector('.arrow__reverse')
-        const arrow = dropdown.querySelector('.arrow')
-        // const listItem = dropdown.querySelector('.dropdown__list li')
-
-
-        dropdown.addEventListener('click', (e) => {
-            // e.stopPropagation();
-            const dropdownPopIn = () => {
-                btnPlaceholder.classList.add('popOut')
-                arrow.classList.add('arrow__reverse')
-                list.classList.add('popIn')
-            }
-
-            const dropdownPopOut = () => {
-                btnPlaceholder.classList.remove('popOut')
-                list.classList.remove('popIn')
-                arrow.classList.remove('arrow__reverse')
-            }
-
-
-            if (arrow.classList.contains('arrow__reverse') && e.target === arrow) {
-                dropdownPopOut()
-                console.log('dropdownPopOut')
-
-                //A modifier en priorité
-            } else if (e.target !== reverseArrow) {
-                dropdownPopIn()
-                // console.log('dropdownPopIn')
-
-            }
-
-        })
-
+export const onclickIngredientDropDown = (DATA) => {
+    dropdownIngredient.addEventListener('click', () => {
+        if (arrow.classList.contains('arrow__reverse')) {
+            hideList()
+        } else {
+            displayList()
+            onClickIngredientsLi(DATA)
+            
+        }
     })
 }
 
+const displayList = () => {
+    dropdownIngredient.classList.add('display')
+    arrow.classList.add('arrow__reverse')
+    input.focus()
+}
 
-export const ingredientListHandler = (DATA) => {
+const hideList = () => {
+    dropdownIngredient.classList.remove('display')
+    arrow.classList.remove('arrow__reverse')
+}
+
+const filteringData = (DATA, ingredients) => {
+    // const fakeDATA = [
+    //     {
+    //         ingredients: ['toto', 'tata'],
+    //         ustencil: 'saladier'
+    //     },
+    //     {
+    //         ingredients: ['toto', 'tata'],
+    //         ustencil: 'saladier'
+    //     },
+    //     {
+    //         ingredients: ['toto', 'tata'],
+    //         ustencil: 'saladier',
+    //         display: true
+    //     }
+    // ]
+
+    DATA.forEach(recipe => {
+        if (recipe.display) {
+
+            const goodRecipe = recipe.ingredients.find((ingredient) => ingredient.ingredient.toLowerCase() == ingredients)
+
+            if (!goodRecipe) {
+                recipe.display = false
+            }
+            
+        }
+    });
+    return DATA
+}
+
+export const onClickIngredientsLi = (DATA) => {
     const lis = document.querySelectorAll(".dropdown__ingredient li")
-    const allRecipesCards = document.querySelectorAll('.thumbnails__card')
     
     lis.forEach(li => {
         li.addEventListener("click", () => {
-            const clickedIngredientText = li.innerHTML.toLowerCase()   
-            const dropdownFilterSection = document.querySelector('.search')
-            const selectedIngredient = document.querySelector('.selected-ingredient')
-            
-            
-            // si un ingredient a bien été selectionné on crée une div dans la section au dessus du dropdown
-            
-            // on rajoute la classe selected dans le bloc list des ingredients
-            li.classList.toggle('selected-ingredient')
-            
-            if (selectedIngredient !== null) {
 
-                
-                let searchFilter = document.createElement("div");
-                searchFilter.className = 'clicked-filter clicked-filter--ingredients'
-                searchFilter.textContent = clickedIngredientText;
-                // for (let i = 0; i < searchFilter.length; i++) {
-                //     const ingredientTag = searchFilter[i];
-                //     if (ingredientTag !== null) {
-                        dropdownFilterSection.appendChild(searchFilter);
-                //     }
-                // }
-            }
-            
-                
-                
-      
-    
-            DATA.forEach(recipe => {
-                //Rechercher dans le tableau des ingredients pour chaque recette
-                
+            const content = li.innerHTML.toLowerCase()
+            createTag(content, 'ingredient')
 
-                recipe.ingredients.forEach(ingredient => {
-                                    
-                    if (ingredient.ingredient.toLowerCase() == clickedIngredientText) {
-                        
-                        for (let i = 0; i < allRecipesCards.length; i += 1) {
-                            // On efface toutes les recettes du DOM
-                            allRecipesCards[i].style.display = "none";
-                            const filteredCard = allRecipesCards[i];
-                            if(filteredCard.innerHTML.toLowerCase().includes(clickedIngredientText))
-                            filteredCard.style.display = "block"
+            // ON FILTRE LES DATA
+            const newData = filteringData(DATA, content)
 
-                        }
-                       
-                        // console.log(recipe)
-                        
-                        }   
-                        
-                 })
-             
-            })
+            // ON RÉUTILISE LES DATA FILTRÉES
+            displayRecipes(newData)
+            displayFilteredDropdownIngredient(DATA)
         })
     })
 }
 
 
+const displayFilteredDropdownIngredient = (DATA) => {
+    // on va récupérer tous les ingredients qui sont dans les recettes en display == true
+    const myIngredients = []
+    
+    DATA.forEach((recipe) => {
+        if (recipe.display) {
+            recipe.ingredients.map((ingredientName) => myIngredients.push(ingredientName.ingredient))
+        }
+
+    })
+    // Conserve une seule apparition de l'ingredient:
+    const filteredIngredients = myIngredients.filter((item, index) => {
+        return myIngredients.indexOf(item) == index
+    })
+
+    // Creation de la liste du dropdown
+    const list = document.createElement(`ul`)
+    for (let i = 0; i < filteredIngredients.length; i++) {
+        const ingredient = filteredIngredients[i];
+        const li = document.createElement("li")
+        li.innerHTML = ingredient
+        list.append(li)
+        list.setAttribute(`tab-index`, 0)
+        li.setAttribute(`tab-index`, 0)
+    }
+
+    // Insertion du "bloc liste" au niveau de la liste
+    const blocList = document.querySelector('.ingredient-list')
+    blocList.innerHTML = ''
+    blocList.append(list)
+    
+}
 

@@ -212,6 +212,7 @@ main {
   background: rgba(212, 63, 63, 0);
   border: none;
   color: #fff;
+  font-size: 20px;
 }
 .dropdown input::placeholder {
   color: #fff;
@@ -246,6 +247,9 @@ main {
 .dropdown__list li.selected-ingredient {
   background: #63a0f9;
 }
+.dropdown.display .dropdown__list {
+  display: block;
+}
 
 .arrow {
   position: absolute;
@@ -259,22 +263,14 @@ main {
   transform: rotateX(180deg);
 }
 
-.popIn {
-  display: block;
-}
-
-.popOut {
-  display: none;
-}
-
-.clicked-filter {
+.tag {
   padding: 1rem;
   color: #ffff;
   margin: 1rem;
   border-radius: 5px;
   cursor: pointer;
 }
-.clicked-filter--ingredients {
+.tag--ingredients {
   background: #3282F7;
 }
 

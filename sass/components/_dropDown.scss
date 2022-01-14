@@ -45,6 +45,7 @@
         background: rgba(212, 63, 63, 0);
         border: none;
         color: #fff;
+        font-size: 20px;
 
         &::placeholder {
             color: #fff;
@@ -54,7 +55,6 @@
 
 
     &__list {
-
         position: absolute;
         width: 100%;
         z-index: 10;
@@ -85,8 +85,13 @@
                 background: lighten($color: #3282F7, $amount: 10);
             }
         }
+    }
 
-
+    // devrait fonctionner pour les autres dropdowns
+    &.display {
+        .dropdown__list {
+            display: block;
+        }
     }
 }
 
@@ -101,12 +106,4 @@
     &__reverse {
         transform: rotateX(180deg);
     }
-}
-
-.popIn {
-    display: block;
-}
-
-.popOut {
-    display: none;
 }
