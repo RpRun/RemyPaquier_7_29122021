@@ -10,6 +10,7 @@ export const onclickIngredientDropDown = (DATA) => {
             hideList()
         } else {
             displayList()
+            displayFilteredDropdownIngredient(DATA)
             onClickIngredientsLi(DATA)
             
         }
@@ -81,7 +82,7 @@ export const onClickIngredientsLi = (DATA) => {
 const displayFilteredDropdownIngredient = (DATA) => {
     // on va récupérer tous les ingredients qui sont dans les recettes en display == true
     const myIngredients = []
-    
+
     DATA.forEach((recipe) => {
         if (recipe.display) {
             recipe.ingredients.map((ingredientName) => myIngredients.push(ingredientName.ingredient))
@@ -91,8 +92,9 @@ const displayFilteredDropdownIngredient = (DATA) => {
     // Conserve une seule apparition de l'ingredient:
     const filteredIngredients = myIngredients.filter((item, index) => {
         return myIngredients.indexOf(item) == index
+        
     })
-
+    
     // Creation de la liste du dropdown
     const list = document.createElement(`ul`)
     for (let i = 0; i < filteredIngredients.length; i++) {
@@ -108,6 +110,6 @@ const displayFilteredDropdownIngredient = (DATA) => {
     const blocList = document.querySelector('.ingredient-list')
     blocList.innerHTML = ''
     blocList.append(list)
-    
+    console.log(list)
 }
 

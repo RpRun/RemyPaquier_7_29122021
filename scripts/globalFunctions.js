@@ -60,7 +60,6 @@ export const displayRecipes = (DATA) => {
                 </li>`
     
             ul.innerHTML += card
-            
         }
     }
 }
