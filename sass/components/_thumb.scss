@@ -13,6 +13,9 @@
         text-align: left;
         text-overflow: ellipsis;
         overflow: hidden;
+        &--hidden {
+            display: none;
+        }
     }
 
     &__card--img {
@@ -39,6 +42,7 @@
         position: absolute;
         left: 20px;
         top: 240px;
+        
     }
 
     &__instructions {
@@ -46,7 +50,8 @@
         width: 171px;
         position: absolute;
         left: 191px;
-        // top: 240px;
+        overflow: scroll;
+        // truncate overflow
     }
 
 }

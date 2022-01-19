@@ -1,34 +1,34 @@
-import { displayRecipes, createTag } from "./globalFunctions.js"
+import { displayRecipes, createTag, orderList } from "./globalFunctions.js"
 
-const ustensilsIngredient = document.querySelector('.dropdown__ustensils')
-const arrow = ustensilsIngredient.querySelector('.arrow')
-const input = ustensilsIngredient.querySelector('input')
+const dropdownUstensils = document.querySelector('.dropdown__ustensils')
+const arrow = dropdownUstensils.querySelector('.arrow')
+const input = dropdownUstensils.querySelector('input')
 
 export const onclickUstensilsDropDown = (DATA) => {
-    ustensilsIngredient.addEventListener('click', () => {
+    dropdownUstensils.addEventListener('click', () => {
         if (arrow.classList.contains('arrow__reverse')) {
             hideList()
         } else {
             displayList()
             displayFilteredDropdownUstensils(DATA)
-            onClickIngredientsLi(DATA)
+            onClickUstensilsLi(DATA)
             
         }
     })
 }
 
 const displayList = () => {
-    ustensilsIngredient.classList.add('display')
+    dropdownUstensils.classList.add('display')
     arrow.classList.add('arrow__reverse')
     input.focus()
 }
 
 const hideList = () => {
-    ustensilsIngredient.classList.remove('display')
+    dropdownUstensils.classList.remove('display')
     arrow.classList.remove('arrow__reverse')
 }
 
-const filteringData = (DATA, ingredients) => {
+const filteringData = (DATA, ustensils) => {
     // const fakeDATA = [
     //     {
     //         ingredients: ['toto', 'tata'],
@@ -59,7 +59,7 @@ const filteringData = (DATA, ingredients) => {
     return DATA
 }
 
-export const onClickIngredientsLi = (DATA) => {
+export const onClickUstensilsLi = (DATA) => {
     const lis = document.querySelectorAll(".dropdown__ustensils li")
     
     lis.forEach(li => {
@@ -97,6 +97,9 @@ const displayFilteredDropdownUstensils = (DATA) => {
     
     // Creation de la liste du dropdown
     const list = document.createElement(`ul`)
+
+    // Classement des elements par ordre alphabetique, reste le probleme des accents
+    orderList(filteredUstensils)
     for (let i = 0; i < filteredUstensils.length; i++) {
         const ustensils = filteredUstensils[i];
         const li = document.createElement("li")
@@ -104,7 +107,7 @@ const displayFilteredDropdownUstensils = (DATA) => {
         list.append(li)
         list.setAttribute(`tab-index`, 0)
         li.setAttribute(`tab-index`, 0)
-        console.log(ustensils)
+        console.log(li)
     }
 
     // Insertion du "bloc liste" au niveau de la liste

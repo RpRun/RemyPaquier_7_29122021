@@ -1,4 +1,4 @@
-import { displayRecipes, createTag } from "./globalFunctions.js"
+import { displayRecipes, createTag, orderList } from "./globalFunctions.js"
 
 const dropdownAppliance = document.querySelector('.dropdown__appliance')
 const arrow = dropdownAppliance.querySelector('.arrow')
@@ -98,6 +98,10 @@ const displayFilteredDropdownAppliance = (DATA) => {
     
     // Creation de la liste du dropdown
     const list = document.createElement(`ul`)
+    
+     // Classement des elements par ordre alphabetique, reste le probleme des accents
+    orderList(filteredAppliance)
+
     for (let i = 0; i < filteredAppliance.length; i++) {
         const appliance = filteredAppliance[i];
         const li = document.createElement("li")

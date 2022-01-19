@@ -145,7 +145,7 @@ h1 {
 
 header {
   text-align: center;
-  width: 100%;
+  width: 99%;
   padding: 1rem;
 }
 
@@ -290,11 +290,6 @@ main {
   background: #ED6454;
 }
 
-.search {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .search-bar {
   margin-top: 1rem;
   position: relative;
@@ -337,6 +332,9 @@ main {
   text-overflow: ellipsis;
   overflow: hidden;
 }
+.thumbnails__card--hidden {
+  display: none;
+}
 .thumbnails__card--img {
   height: 178px;
   width: 380px;
@@ -366,6 +364,7 @@ main {
   width: 171px;
   position: absolute;
   left: 191px;
+  overflow: scroll;
 }
 
 @media (max-width: 790px) {

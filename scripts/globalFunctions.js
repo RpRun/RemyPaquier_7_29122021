@@ -1,5 +1,6 @@
+const tagsList = document.querySelector('.tagsList')
 export const createTag = (content, type) => {
-    const tagsList = document.querySelector('.tagsList')
+    
     const div = document.createElement('div')
     div.classList.add('tag')
 
@@ -22,12 +23,12 @@ export const createTag = (content, type) => {
     div.innerHTML = content
     tagsList.append(div)
 }
-
+const recipesList = document.querySelector('.thumbnails-list')
 
 export const displayRecipes = (DATA) => {
-    const ul = document.querySelector('.thumbnails-list')
+   
     // on enlève toutes les recettes
-    ul.innerHTML = ''
+    recipesList.innerHTML = ''
 
     for (let i = 0; i < DATA.length; i++) {
         const recipe = DATA[i];
@@ -64,7 +65,56 @@ export const displayRecipes = (DATA) => {
                     </div>
                 </li>`
     
-            ul.innerHTML += card
+           
+                recipesList.innerHTML += card
+           
         }
+        
     }
 }
+
+export const orderList = (element) => {
+
+    const orderedList = element.sort((a,b) => {
+        if(a.toLowerCase() < b.toLowerCase()) {
+            return -1;
+        }
+        if(a.toLowerCase() > b.toLowerCase()) {
+            return 1;
+        }
+        return 0;
+        })
+        
+        return orderedList;
+    }
+
+const searchInput = document.querySelector("#search-bar-Field")
+
+
+searchInput.addEventListener ('input', (e) => {
+    const searchedString = e.target.value.toLowerCase();
+
+   
+if (searchedString.length > 2 && recipesList.innerHTML.includes(searchedString)) {
+
+    console.log('on est ds les conditions')
+    
+    const searchResult = document.querySelectorAll(".thumbnails__card")
+
+    for (let i = 0; i < searchResult.length; i++) {   
+    const searchResultItem = searchResult[i];
+    
+    searchResultItem.classList.add("thumbnails__card--hidden")
+   
+    if(searchResultItem.innerHTML.toLowerCase().includes(searchedString)){
+        searchResultItem.classList.remove("thumbnails__card--hidden")
+    }
+    console.log("on boucle")
+    
+}
+
+   
+    
+}
+
+})

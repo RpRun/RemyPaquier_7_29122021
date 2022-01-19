@@ -1,4 +1,4 @@
-import { displayRecipes, createTag } from "./globalFunctions.js"
+import { displayRecipes, createTag, orderList } from "./globalFunctions.js"
 
 const dropdownIngredient = document.querySelector('.dropdown__ingredient')
 const arrow = dropdownIngredient.querySelector('.arrow')
@@ -46,6 +46,7 @@ const filteringData = (DATA, ingredients) => {
     // ]
 
     DATA.forEach(recipe => {
+        console.log(recipe)
         if (recipe.display) {
 
             const goodRecipe = recipe.ingredients.find((ingredient) => ingredient.ingredient.toLowerCase() == ingredients)
@@ -57,6 +58,7 @@ const filteringData = (DATA, ingredients) => {
         }
     });
     return DATA
+    
 }
 
 export const onClickIngredientsLi = (DATA) => {
@@ -87,23 +89,31 @@ const displayFilteredDropdownIngredient = (DATA) => {
         if (recipe.display) {
             recipe.ingredients.map((ingredientName) => myIngredients.push(ingredientName.ingredient))
         }
+        console.log(recipe.display)
 
     })
+
     // Conserve une seule apparition de l'ingredient:
     const filteredIngredients = myIngredients.filter((item, index) => {
         return myIngredients.indexOf(item) == index
         
     })
-    
+ 
+ 
     // Creation de la liste du dropdown
     const list = document.createElement(`ul`)
+     // Classement des elements par ordre alphabetique, reste le probleme des accents
+    // filteredIngredients.sort();
+    orderList(filteredIngredients)
     for (let i = 0; i < filteredIngredients.length; i++) {
         const ingredient = filteredIngredients[i];
         const li = document.createElement("li")
         li.innerHTML = ingredient
+       
         list.append(li)
         list.setAttribute(`tab-index`, 0)
         li.setAttribute(`tab-index`, 0)
+
     }
 
     // Insertion du "bloc liste" au niveau de la liste
@@ -111,5 +121,8 @@ const displayFilteredDropdownIngredient = (DATA) => {
     blocList.innerHTML = ''
     blocList.append(list)
     console.log(list)
+
+
 }
+
 
