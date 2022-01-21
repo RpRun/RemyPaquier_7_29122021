@@ -367,7 +367,11 @@ main {
   overflow: scroll;
 }
 
-.error-message--hidden {
+.error-message--displayed {
+  display: block;
+}
+
+.error-message {
   display: none;
 }
 

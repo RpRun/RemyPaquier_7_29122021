@@ -122,25 +122,29 @@ searchInput.addEventListener('input', (e) => {
             }
         }       
     }  
-    if(searchedString.length < 3/*en dessous de 3 caracteres*/) {
-        console.log("on affiche tout en dessous de 3 caracteres")
+    if(searchedString.length > 3 && visibleRecipes.length < 1 ) {
+        
+        errorSearchMessage.classList.add('error-message--displayed')
+        console.log(" des cartes  sont  cachees on cache le message d erreur")
         // réafficher toute la liste
-        searchResultList.classList.remove("thumbnails__card--hidden")
+        // searchResultList.classList.remove("thumbnails__card--hidden")
+        // console.log("on reaffiche la liste")
     }
+
+    
     
     
 
-    if(visibleRecipes.length > 0) {
-        // des recettes sont visibles, cacher le messsage d'erreur
-        errorSearchMessage.classList.add('error-message--hidden')
-        console.log(" des cartes ne sont pas cachees on cache le message d erreur")
-    } else {
-        // aucune recette visible, afficher le message d'erreur
+    // if(visibleRecipes.length > 0) {
+    //     // des recettes sont visibles, cacher le messsage d'erreur
+       
+    // } else {
+    //     // aucune recette visible, afficher le message d'erreur
 
-        errorSearchMessage.classList.remove('error-message--hidden')
-        console.log(errorSearchMessage)
-        console.log("on affiche le message car toutes les cartes sont cachees")
-    }
+    //     errorSearchMessage.classList.remove('error-message--hidden')
+    //     console.log(errorSearchMessage)
+    //     console.log("on affiche le message car toutes les cartes sont cachees")
+    // }
 })
 
 
