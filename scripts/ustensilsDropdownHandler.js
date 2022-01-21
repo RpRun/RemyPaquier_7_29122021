@@ -12,7 +12,6 @@ export const onclickUstensilsDropDown = (DATA) => {
             displayList()
             displayFilteredDropdownUstensils(DATA)
             onClickUstensilsLi(DATA)
-            
         }
     })
 }
@@ -28,32 +27,15 @@ const hideList = () => {
     arrow.classList.remove('arrow__reverse')
 }
 
-const filteringData = (DATA, ustensils) => {
-    // const fakeDATA = [
-    //     {
-    //         ingredients: ['toto', 'tata'],
-    //         ustencil: 'saladier'
-    //     },
-    //     {
-    //         ingredients: ['toto', 'tata'],
-    //         ustencil: 'saladier'
-    //     },
-    //     {
-    //         ingredients: ['toto', 'tata'],
-    //         ustencil: 'saladier',
-    //         display: true
-    //     }
-    // ]
-
+const filteringData = (DATA, ustensils) => {    
     DATA.forEach(recipe => {
         if (recipe.display) {
 
-            const goodRecipe = recipe.ustensils.find((ustensils) => ustensils.toLowerCase() == ustensils)
-
+            const goodRecipe = recipe.ustensils.find((el) => el.toLowerCase() == ustensils)
+            
             if (!goodRecipe) {
                 recipe.display = false
             }
-            
         }
     });
     return DATA
@@ -107,7 +89,6 @@ const displayFilteredDropdownUstensils = (DATA) => {
         list.append(li)
         list.setAttribute(`tab-index`, 0)
         li.setAttribute(`tab-index`, 0)
-        console.log(li)
     }
 
     // Insertion du "bloc liste" au niveau de la liste

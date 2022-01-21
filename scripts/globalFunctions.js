@@ -23,10 +23,10 @@ export const createTag = (content, type) => {
     div.innerHTML = content
     tagsList.append(div)
 }
-const recipesList = document.querySelector('.thumbnails-list')
+
 
 export const displayRecipes = (DATA) => {
-
+    const recipesList = document.querySelector('.thumbnails-list')
     // on enlève toutes les recettes
     recipesList.innerHTML = ''
 
@@ -91,7 +91,7 @@ export const orderList = (element) => {
 
 
 
-const inputPrincipal = () => {
+export const inputPrincipal = () => {
 const searchInput = document.querySelector("#search-bar-Field")
 
 
@@ -104,7 +104,7 @@ searchInput.addEventListener('input', (e) => {
     const visibleRecipes = document.querySelectorAll(".thumbnails__card:not(.thumbnails__card--hidden)")
    
     // A partir de 3 lettres dans le champ de recherche, si la liste des recettes comporte les 3 lettres
-    if (searchedString.length >= 3 && recipesList.innerHTML.includes(searchedString)) {
+    if (searchedString.length >= 3 && searchResultList.innerHTML.includes(searchedString)) {
         console.log('on tape + de 3 lettres et il y a un resultat')
 
         // on cache tout le monde

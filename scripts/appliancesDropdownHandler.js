@@ -29,31 +29,11 @@ const hideList = () => {
 }
 
 const filteringData = (DATA, appliance) => {
-    // const fakeDATA = [
-    //     {
-    //         ingredients: ['toto', 'tata'],
-    //         ustencil: 'saladier'
-    //     },
-    //     {
-    //         ingredients: ['toto', 'tata'],
-    //         ustencil: 'saladier'
-    //     },
-    //     {
-    //         ingredients: ['toto', 'tata'],
-    //         ustencil: 'saladier',
-    //         display: true
-    //     }
-    // ]
-
     DATA.forEach(recipe => {
         if (recipe.display) {
-
-            const goodRecipe = recipe.appliance.find((appliance) => appliance.toLowerCase() == appliance)
-
-            if (!goodRecipe) {
+            if (recipe.appliance.toLowerCase() !== appliance) {
                 recipe.display = false
             }
-            
         }
     });
     return DATA
@@ -85,10 +65,8 @@ const displayFilteredDropdownAppliance = (DATA) => {
 
     DATA.forEach((recipe) => {
         if (recipe.display) {
-            
             myAppliance.push(recipe.appliance)
         }
-        
     })
     // Conserve une seule apparition de l'ustensile:
     const filteredAppliance = myAppliance.filter((item, index) => {
@@ -115,6 +93,5 @@ const displayFilteredDropdownAppliance = (DATA) => {
     const blocList = document.querySelector('.appliance-list')
     blocList.innerHTML = ''
     blocList.append(list)
-    console.log(list)
 }
 
