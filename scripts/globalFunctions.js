@@ -88,6 +88,10 @@ export const orderList = (element) => {
     return orderedList;
 }
 
+
+
+
+const inputPrincipal = () => {
 const searchInput = document.querySelector("#search-bar-Field")
 
 
@@ -224,3 +228,4 @@ searchInput.addEventListener('input', (e) => {
     //         if (searchedString.length <= 3) {
     //             main.removeChild(errorSearchMessage)
     //         }
+}
