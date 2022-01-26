@@ -23,7 +23,32 @@ const onSearchIngredient = (DATA) => {
         searchIngredients(DATA, input.value)
     })
 }
+// CA PEUT ETRE UNE FONCTION
 
+const createFilterList = (elementToShow, DATA) => {
+    // Creation de la liste du dropdown
+    const list = document.createElement(`ul`)
+
+    // Classement des elements par ordre alphabetique
+    orderList(elementToShow)
+    for (let i = 0; i < elementToShow.length; i++) {
+        const element = elementToShow[i];
+        const li = document.createElement("li")
+        li.innerHTML = element
+    
+        list.append(li)
+        list.setAttribute(`tab-index`, 0)
+        li.setAttribute(`tab-index`, 0)
+
+    }
+    // Insertion du "bloc liste" au niveau de la liste
+    const blocList = document.querySelector('.ingredient-list')
+    blocList.innerHTML = ''
+    blocList.append(list)
+    onClickIngredientLi(DATA)
+    // ICI
+
+}
 const searchIngredients = (DATA, inputValue) => {
     // chercher dans tous les ingredients
     // on va récupérer tous les ingredients qui sont dans les recettes en display == true
@@ -50,28 +75,9 @@ const searchIngredients = (DATA, inputValue) => {
         ingredientToShow = filteredIngredients
     }
 
-    // CA PEUT ETRE UNE FONCTION
-    // Creation de la liste du dropdown
-    const list = document.createElement(`ul`)
-     // Classement des elements par ordre alphabetique, reste le probleme des accents
-    // filteredIngredients.sort();
-    orderList(ingredientToShow)
-    for (let i = 0; i < ingredientToShow.length; i++) {
-        const ingredient = ingredientToShow[i];
-        const li = document.createElement("li")
-        li.innerHTML = ingredient
-       
-        list.append(li)
-        list.setAttribute(`tab-index`, 0)
-        li.setAttribute(`tab-index`, 0)
-
-    }
-    // Insertion du "bloc liste" au niveau de la liste
-    const blocList = document.querySelector('.ingredient-list')
-    blocList.innerHTML = ''
-    blocList.append(list)
-    onClickIngredientLi(DATA)
-    // ICI
+    createFilterList(ingredientToShow)
+    
+    
 }
 
 const displayList = () => {
@@ -136,25 +142,25 @@ const displayFilteredDropdownIngredient = (DATA) => {
         return myIngredients.indexOf(item) == index
     })
 
-
-    // Creation de la liste du dropdown
-    const list = document.createElement(`ul`)
-     // Classement des elements par ordre alphabetique, reste le probleme des accents
-    // filteredIngredients.sort();
-    orderList(filteredIngredients)
-    for (let i = 0; i < filteredIngredients.length; i++) {
-        const ingredient = filteredIngredients[i];
-        const li = document.createElement("li")
-        li.innerHTML = ingredient
+    createFilterList(filteredIngredients)
+    // // Creation de la liste du dropdown
+    // const list = document.createElement(`ul`)
+    //  // Classement des elements par ordre alphabetique, reste le probleme des accents
+    // // filteredIngredients.sort();
+    // orderList(filteredIngredients)
+    // for (let i = 0; i < filteredIngredients.length; i++) {
+    //     const ingredient = filteredIngredients[i];
+    //     const li = document.createElement("li")
+    //     li.innerHTML = ingredient
        
-        list.append(li)
-        list.setAttribute(`tab-index`, 0)
-        li.setAttribute(`tab-index`, 0)
+    //     list.append(li)
+    //     list.setAttribute(`tab-index`, 0)
+    //     li.setAttribute(`tab-index`, 0)
 
-    }
+    // }
 
     // Insertion du "bloc liste" au niveau de la liste
-    const blocList = document.querySelector('.ingredient-list')
-    blocList.innerHTML = ''
-    blocList.append(list)
+    // const blocList = document.querySelector('.ingredient-list')
+    // blocList.innerHTML = ''
+    // blocList.append(list)
 }
