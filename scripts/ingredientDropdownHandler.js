@@ -1,8 +1,10 @@
-import { displayRecipes, createTag, orderList } from "./globalFunctions.js"
+import { displayRecipes, createTag,  orderList } from "./globalFunctions.js"
 
 const dropdownIngredient = document.querySelector('.dropdown__ingredient')
-const arrow = dropdownIngredient.querySelector('.arrow')
-const input = dropdownIngredient.querySelector('input')
+// const dropdown = document.querySelector('.dropdown')
+const arrow = dropdownIngredient.querySelector('.dropdown__ingredient .arrow')
+const inputIngredient = document.querySelector('.dropdown__ingredient input')
+// const input = dropdownIngredient.querySelector('input')
 
 export const onclickIngredientDropDown = (DATA) => {
     dropdownIngredient.addEventListener('click', () => {
@@ -12,43 +14,30 @@ export const onclickIngredientDropDown = (DATA) => {
             displayList()
             displayFilteredDropdownIngredient(DATA)
             onClickIngredientLi(DATA)
-            onSearchIngredient(DATA)
+            onInputIngredient(DATA)
         }
     })
 }
 
-const onSearchIngredient = (DATA) => {
-    const input = document.querySelector('.dropdown__ingredient input')
-    input.addEventListener('input', () => {
-        searchIngredients(DATA, input.value)
+const displayList = () => {
+    dropdownIngredient.classList.add('display')
+    arrow.classList.add('arrow__reverse')
+    inputIngredient.focus()
+}
+
+const hideList = () => {
+    dropdownIngredient.classList.remove('display')
+    arrow.classList.remove('arrow__reverse')
+}
+
+const onInputIngredient = (DATA) => {
+   
+    inputIngredient.addEventListener('input', () => {
+        searchIngredients(DATA, inputIngredient.value)
+        onClickIngredientLi(DATA)
     })
 }
-// CA PEUT ETRE UNE FONCTION
 
-const createFilterList = (elementToShow, DATA) => {
-    // Creation de la liste du dropdown
-    const list = document.createElement(`ul`)
-
-    // Classement des elements par ordre alphabetique
-    orderList(elementToShow)
-    for (let i = 0; i < elementToShow.length; i++) {
-        const element = elementToShow[i];
-        const li = document.createElement("li")
-        li.innerHTML = element
-    
-        list.append(li)
-        list.setAttribute(`tab-index`, 0)
-        li.setAttribute(`tab-index`, 0)
-
-    }
-    // Insertion du "bloc liste" au niveau de la liste
-    const blocList = document.querySelector('.ingredient-list')
-    blocList.innerHTML = ''
-    blocList.append(list)
-    onClickIngredientLi(DATA)
-    // ICI
-
-}
 const searchIngredients = (DATA, inputValue) => {
     // chercher dans tous les ingredients
     // on va récupérer tous les ingredients qui sont dans les recettes en display == true
@@ -75,21 +64,33 @@ const searchIngredients = (DATA, inputValue) => {
         ingredientToShow = filteredIngredients
     }
 
-    createFilterList(ingredientToShow)
-    
-    
-}
+    // createFilterList(ingredientToShow)
+    // CA PEUT ETRE UNE FONCTION
+    // Creation de la liste du dropdown
+    const list = document.createElement(`ul`)
+     // Classement des elements par ordre alphabetique, reste le probleme des accents
+    // filteredIngredients.sort();
+    orderList(ingredientToShow)
+    for (let i = 0; i < ingredientToShow.length; i++) {
+        const ingredient = ingredientToShow[i];
+        const li = document.createElement("li")
+        li.innerHTML = ingredient
+       
+        list.append(li)
+        list.setAttribute(`tab-index`, 0)
+        li.setAttribute(`tab-index`, 0)
 
-const displayList = () => {
-    dropdownIngredient.classList.add('display')
-    arrow.classList.add('arrow__reverse')
-    input.focus()
+    }
+    // Insertion du "bloc liste" au niveau de la liste
+    const blocList = document.querySelector('.ingredient-list')
+    blocList.innerHTML = ''
+    blocList.append(list)
+    onClickIngredientLi(DATA)
+    // ICI
 }
+    
 
-const hideList = () => {
-    dropdownIngredient.classList.remove('display')
-    arrow.classList.remove('arrow__reverse')
-}
+
 
 const filteringData = (DATA, ingredients) => {
     DATA.forEach(recipe => {
@@ -106,12 +107,13 @@ const filteringData = (DATA, ingredients) => {
     return DATA
 }
 
+
 export const onClickIngredientLi = (DATA) => {
     const lis = document.querySelectorAll(".dropdown__ingredient li")
     lis.forEach(li => {
         li.addEventListener("click", () => {
 
-            console.log('coucou');
+            // console.log('coucou');
 
             const content = li.innerHTML.toLowerCase()
             createTag(content, 'ingredient')
@@ -142,25 +144,27 @@ const displayFilteredDropdownIngredient = (DATA) => {
         return myIngredients.indexOf(item) == index
     })
 
-    createFilterList(filteredIngredients)
-    // // Creation de la liste du dropdown
-    // const list = document.createElement(`ul`)
-    //  // Classement des elements par ordre alphabetique, reste le probleme des accents
-    // // filteredIngredients.sort();
-    // orderList(filteredIngredients)
-    // for (let i = 0; i < filteredIngredients.length; i++) {
-    //     const ingredient = filteredIngredients[i];
-    //     const li = document.createElement("li")
-    //     li.innerHTML = ingredient
-       
-    //     list.append(li)
-    //     list.setAttribute(`tab-index`, 0)
-    //     li.setAttribute(`tab-index`, 0)
+    // Creation de la liste du dropdown
+    // createFilterList(filteredIngredients)
+    // Creation de la liste du dropdown
+    // createFilterList(filteredAppliance)
+    const list = document.createElement(`ul`)
 
-    // }
+    // Classement des elements par ordre alphabetique, reste le probleme des accents
+    orderList(filteredIngredients )
+    for (let i = 0; i < filteredIngredients .length; i++) {
+        const ingredients = filteredIngredients[i];
+        const li = document.createElement("li")
+        li.innerHTML = ingredients 
+        list.append(li)
+        list.setAttribute(`tab-index`, 0)
+        li.setAttribute(`tab-index`, 0)
+    }
 
     // Insertion du "bloc liste" au niveau de la liste
-    // const blocList = document.querySelector('.ingredient-list')
-    // blocList.innerHTML = ''
-    // blocList.append(list)
+    const blocList = document.querySelector('.ingredient-list')
+    blocList.innerHTML = ''
+    blocList.append(list)
 }
+  
+

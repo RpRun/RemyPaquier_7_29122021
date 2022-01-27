@@ -2,7 +2,7 @@ import { displayRecipes, createTag, orderList } from "./globalFunctions.js"
 
 const dropdownUstensils = document.querySelector('.dropdown__ustensils')
 const arrow = dropdownUstensils.querySelector('.arrow')
-const input = dropdownUstensils.querySelector('input')
+const inputUstensils = dropdownUstensils.querySelector('input')
 
 export const onclickUstensilsDropDown = (DATA) => {
     dropdownUstensils.addEventListener('click', () => {
@@ -11,7 +11,8 @@ export const onclickUstensilsDropDown = (DATA) => {
         } else {
             displayList()
             displayFilteredDropdownUstensils(DATA)
-            onClickUstensilsLi(DATA)
+            onClickUstensilLi(DATA)
+            onInputUstensils(DATA)
         }
     })
 }
@@ -19,13 +20,52 @@ export const onclickUstensilsDropDown = (DATA) => {
 const displayList = () => {
     dropdownUstensils.classList.add('display')
     arrow.classList.add('arrow__reverse')
-    input.focus()
+    inputUstensils.focus()
 }
 
 const hideList = () => {
     dropdownUstensils.classList.remove('display')
     arrow.classList.remove('arrow__reverse')
 }
+
+const onInputUstensils = (DATA) => {
+   
+    inputUstensils.addEventListener('input', () => {
+        searchUstensils(DATA, inputUstensils.value)
+        onClickUstensilLi(DATA)
+    })
+}
+
+const searchUstensils = (DATA, inputValue) => {
+    // chercher dans tous les ingredients
+    // on va récupérer tous les ingredients qui sont dans les recettes en display == true
+    const myUstensils = []
+    DATA.forEach((recipe) => {
+        if (recipe.display) {
+            recipe.ustensils.map((ustensilsName) => myUstensils.push(ustensilsName))
+        }
+    })
+    // Conserve une seule apparition de l'ingredient:
+    const filteredUstensils = myUstensils.filter((item, index) => {
+        return myUstensils.indexOf(item) == index
+    })
+
+    let UstensilsToShow = []
+
+    if(inputValue.length >= 3) {
+        filteredUstensils.forEach(ust => {
+            if(ust.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0) {
+                UstensilsToShow.push(ust)
+            }
+        });
+    } else {
+        UstensilsToShow = filteredUstensils
+    }
+
+    createFilterList(UstensilsToShow)
+
+}
+
 
 const filteringData = (DATA, ustensils) => {    
     DATA.forEach(recipe => {
@@ -41,7 +81,8 @@ const filteringData = (DATA, ustensils) => {
     return DATA
 }
 
-export const onClickUstensilsLi = (DATA) => {
+
+export const onClickUstensilLi = (DATA) => {
     const lis = document.querySelectorAll(".dropdown__ustensils li")
     
     lis.forEach(li => {
@@ -60,9 +101,32 @@ export const onClickUstensilsLi = (DATA) => {
     })
 }
 
+const createFilterList = (elementToShow) => {
+    // Creation de la liste du dropdown
+    const list = document.createElement(`ul`)
+
+    // Classement des elements par ordre alphabetique
+    orderList(elementToShow)
+    for (let i = 0; i < elementToShow.length; i++) {
+        const element = elementToShow[i];
+        const li = document.createElement("li")
+        li.innerHTML = element
+    
+        list.append(li)
+        list.setAttribute(`tab-index`, 0)
+        li.setAttribute(`tab-index`, 0)
+
+    }
+    // Insertion du "bloc liste" au niveau de la liste ustensiles
+    const blocList = document.querySelector('.ustensils-list')
+    blocList.innerHTML = ''
+    blocList.append(list)
+
+}
+
 
 const displayFilteredDropdownUstensils = (DATA) => {
-    // on va récupérer tous les ustenciles qui sont dans les recettes en display == true
+    // on va récupérer tous les ustensiles qui sont dans les recettes en display == true
     const myUstensils = []
 
     DATA.forEach((recipe) => {
@@ -75,26 +139,10 @@ const displayFilteredDropdownUstensils = (DATA) => {
     const filteredUstensils = myUstensils.filter((item, index) => {
         return myUstensils.indexOf(item) == index
         
+        
     })
-    
+
     // Creation de la liste du dropdown
-    const list = document.createElement(`ul`)
+    createFilterList(filteredUstensils)
 
-    // Classement des elements par ordre alphabetique, reste le probleme des accents
-    orderList(filteredUstensils)
-    for (let i = 0; i < filteredUstensils.length; i++) {
-        const ustensils = filteredUstensils[i];
-        const li = document.createElement("li")
-        li.innerHTML = ustensils
-        list.append(li)
-        list.setAttribute(`tab-index`, 0)
-        li.setAttribute(`tab-index`, 0)
-    }
-
-    // Insertion du "bloc liste" au niveau de la liste
-    const blocList = document.querySelector('.ustensils-list')
-    blocList.innerHTML = ''
-    blocList.append(list)
-    
 }
-

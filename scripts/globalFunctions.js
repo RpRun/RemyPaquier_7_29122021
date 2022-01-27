@@ -24,6 +24,85 @@ export const createTag = (content, type) => {
     tagsList.append(div)
 }
 
+// CA PEUT ETRE UNE FONCTION
+
+export const createFilterList = (elementToShow) => {
+    // Creation de la liste du dropdown
+    const list = document.createElement(`ul`)
+
+    // Classement des elements par ordre alphabetique
+    orderList(elementToShow)
+    for (let i = 0; i < elementToShow.length; i++) {
+        const element = elementToShow[i];
+        const li = document.createElement("li")
+        li.innerHTML = element
+    
+        list.append(li)
+        list.setAttribute(`tab-index`, 0)
+        li.setAttribute(`tab-index`, 0)
+       
+
+    }
+    // Insertion du "bloc liste" au niveau de la liste
+    const blocList = document.querySelector('.dropdown__list')
+    blocList.innerHTML = ''
+    blocList.append(list)
+    // onClickIngredientLi(DATA)
+    // ICI
+
+}
+
+export const displayList = () => {
+    const dropdowns = document.querySelectorAll('.dropdown')
+    
+    for (let i = 0; i < dropdowns.length; i++) {
+        const dropdownList = dropdowns[i].querySelector('dropdown__list');
+         
+        const arrow = dropdowns[i].querySelector('.arrow')
+        const input = dropdowns[i].querySelector('input')
+        dropdownList.classList.add('display')
+        arrow.classList.add('arrow__reverse')
+        input.focus()
+    
+    }
+    
+    
+}
+
+export const hideList = () => {
+    // const dropdown = document.querySelector('.dropdown')
+    // const arrow = dropdown.querySelector('.arrow')
+    const dropdowns = document.querySelectorAll('.dropdown')
+    
+    for (let i = 0; i < dropdowns.length; i++) {
+        const dropdown = dropdowns[i];
+        const dropdownList = dropdown.querySelector('dropdown__list')
+        const arrow = dropdown.querySelector('.arrow')
+        // const input = dropdown.querySelector('input')
+        dropdownList.classList.add('display')
+        arrow.classList.add('arrow__reverse')
+        // input.focus()
+    
+    }
+    // dropdownList.classList.remove('display')
+    // arrow.classList.remove('arrow__reverse')
+}
+
+export const orderList = (element) => {
+
+    const orderedList = element.sort((a, b) => {
+        if (a.toLowerCase() < b.toLowerCase()) {
+            return -1;
+        }
+        if (a.toLowerCase() > b.toLowerCase()) {
+            return 1;
+        }
+        return 0;
+    })
+
+    return orderedList;
+}
+
 
 export const displayRecipes = (DATA) => {
     const recipesList = document.querySelector('.thumbnails-list')
@@ -72,22 +151,6 @@ export const displayRecipes = (DATA) => {
 
     }
 }
-
-export const orderList = (element) => {
-
-    const orderedList = element.sort((a, b) => {
-        if (a.toLowerCase() < b.toLowerCase()) {
-            return -1;
-        }
-        if (a.toLowerCase() > b.toLowerCase()) {
-            return 1;
-        }
-        return 0;
-    })
-
-    return orderedList;
-}
-
 
 
 
