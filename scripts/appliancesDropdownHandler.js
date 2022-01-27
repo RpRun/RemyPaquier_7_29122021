@@ -1,4 +1,8 @@
-import { displayRecipes, createTag, orderList} from "./globalFunctions.js"
+import {
+    displayRecipes,
+    createTag,
+    orderList
+} from "./globalFunctions.js"
 
 const dropdownAppliance = document.querySelector('.dropdown__appliance')
 // const dropdownApplianceItemsList = document.querySelector('.dropdown__appliance li')
@@ -16,7 +20,7 @@ export const onclickAppliancesDropDown = (DATA) => {
             displayList()
             displayFilteredDropdownAppliance(DATA)
             onClickApplianceLi(DATA)
-            onInputAppliance(DATA)    
+            onInputAppliance(DATA)
         }
     })
 }
@@ -25,7 +29,6 @@ const displayList = () => {
     dropdownAppliance.classList.add('display')
     arrow.classList.add('arrow__reverse')
     InputAppliance.focus()
-    
 }
 
 const hideList = () => {
@@ -34,6 +37,7 @@ const hideList = () => {
 }
 
 const onInputAppliance = (DATA) => {
+
     InputAppliance.addEventListener('input', () => {
         searchAppliance(DATA, InputAppliance.value)
         onClickApplianceLi(DATA)
@@ -50,48 +54,26 @@ const searchAppliance = (DATA, inputValue) => {
         }
     })
     // Conserve une seule apparition de l'ustensile:
-    // const filteredAppliances = myAppliance.filter((item, index) => {
-    //     return myAppliance.indexOf(item) == index
-    // })
+    const filteredAppliances = myAppliance.filter((item, index) => {
+        return myAppliance.indexOf(item) == index
+    })
 
     let applianceToShow = []
 
-    if(inputValue.length >= 3) {
+    if (inputValue.length >= 3) {
         filteredAppliances.forEach(appl => {
-            if(appl.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0) {
+            if (appl.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0) {
                 applianceToShow.push(appl)
             }
         });
     } else {
         applianceToShow = filteredAppliances
-        console.log(myAppliance)
     }
-    console.log('hello filterlist')
+
     // Creation de la liste du dropdown
-    // createFilterList(filteredAppliance)
-    const list = document.createElement(`ul`)
+    createFilterList(applianceToShow)
 
-    // Classement des elements par ordre alphabetique, reste le probleme des accents
-    orderList(filteredAppliance )
-    for (let i = 0; i < filteredAppliance .length; i++) {
-        const ustensils = filteredAppliance[i];
-        const li = document.createElement("li")
-        li.innerHTML = ustensils
-        list.append(li)
-        list.setAttribute(`tab-index`, 0)
-        li.setAttribute(`tab-index`, 0)
-    }
-
-    // Insertion du "bloc liste" au niveau de la liste
-    const blocList = document.querySelector('.ustensils-list')
-    blocList.innerHTML = ''
-    blocList.append(list)
-    console.log(applianceToShow)
-    
-    
 }
-
-
 
 
 const filteringData = (DATA, appliance) => {
@@ -101,13 +83,14 @@ const filteringData = (DATA, appliance) => {
                 recipe.display = false
             }
         }
+
     });
     return DATA
 }
 
 export const onClickApplianceLi = (DATA) => {
     const lis = document.querySelectorAll(".dropdown__appliance li")
-    
+
     lis.forEach(li => {
         li.addEventListener("click", () => {
 
@@ -125,6 +108,30 @@ export const onClickApplianceLi = (DATA) => {
 }
 
 
+const createFilterList = (elementToShow) => {
+    // Creation de la liste du dropdown
+    const list = document.createElement(`ul`)
+
+    // Classement des elements par ordre alphabetique
+    orderList(elementToShow)
+    for (let i = 0; i < elementToShow.length; i++) {
+        const element = elementToShow[i];
+        const li = document.createElement("li")
+        li.innerHTML = element
+
+        list.append(li)
+        list.setAttribute(`tab-index`, 0)
+        li.setAttribute(`tab-index`, 0)
+
+    }
+    // Insertion du "bloc liste" au niveau de la liste ustensiles
+    const blocList = document.querySelector('.appliance-list')
+    blocList.innerHTML = ''
+    blocList.append(list)
+
+}
+
+
 const displayFilteredDropdownAppliance = (DATA) => {
     // on va récupérer tous les ustensiles qui sont dans les recettes en display == true
     const myAppliance = []
@@ -137,27 +144,10 @@ const displayFilteredDropdownAppliance = (DATA) => {
     // Conserve une seule apparition de l'ustensile:
     const filteredAppliance = myAppliance.filter((item, index) => {
         return myAppliance.indexOf(item) == index
-        
+
     })
-    
+
     // Creation de la liste du dropdown
-    // createFilterList(filteredAppliance)
-    const list = document.createElement(`ul`)
-
-    // Classement des elements par ordre alphabetique, reste le probleme des accents
-    orderList(filteredAppliance )
-    for (let i = 0; i < filteredAppliance .length; i++) {
-        const ustensils = filteredAppliance[i];
-        const li = document.createElement("li")
-        li.innerHTML = ustensils
-        list.append(li)
-        list.setAttribute(`tab-index`, 0)
-        li.setAttribute(`tab-index`, 0)
-    }
-
-    // Insertion du "bloc liste" au niveau de la liste
-    const blocList = document.querySelector('.ustensils-list')
-    blocList.innerHTML = ''
-    blocList.append(list)
+    createFilterList(filteredAppliance)
+  
 }
-

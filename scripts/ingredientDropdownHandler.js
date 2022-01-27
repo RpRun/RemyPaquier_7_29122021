@@ -1,4 +1,8 @@
-import { displayRecipes, createTag,  orderList } from "./globalFunctions.js"
+import {
+    displayRecipes,
+    createTag,
+    orderList
+} from "./globalFunctions.js"
 
 const dropdownIngredient = document.querySelector('.dropdown__ingredient')
 // const dropdown = document.querySelector('.dropdown')
@@ -31,7 +35,7 @@ const hideList = () => {
 }
 
 const onInputIngredient = (DATA) => {
-   
+
     inputIngredient.addEventListener('input', () => {
         searchIngredients(DATA, inputIngredient.value)
         onClickIngredientLi(DATA)
@@ -54,9 +58,9 @@ const searchIngredients = (DATA, inputValue) => {
 
     let ingredientToShow = []
 
-    if(inputValue.length >= 3) {
+    if (inputValue.length >= 3) {
         filteredIngredients.forEach(ing => {
-            if(ing.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0) {
+            if (ing.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0) {
                 ingredientToShow.push(ing)
             }
         });
@@ -65,10 +69,8 @@ const searchIngredients = (DATA, inputValue) => {
     }
 
     createFilterList(ingredientToShow)
-    
-}
-    
 
+}
 
 
 const filteringData = (DATA, ingredients) => {
@@ -80,7 +82,7 @@ const filteringData = (DATA, ingredients) => {
             if (!goodRecipe) {
                 recipe.display = false
             }
-            
+
         }
     });
     return DATA
@@ -91,8 +93,6 @@ export const onClickIngredientLi = (DATA) => {
     const lis = document.querySelectorAll(".dropdown__ingredient li")
     lis.forEach(li => {
         li.addEventListener("click", () => {
-
-            // console.log('coucou');
 
             const content = li.innerHTML.toLowerCase()
             createTag(content, 'ingredient')
@@ -107,6 +107,7 @@ export const onClickIngredientLi = (DATA) => {
     })
 }
 
+
 const createFilterList = (elementToShow) => {
     // Creation de la liste du dropdown
     const list = document.createElement(`ul`)
@@ -117,7 +118,7 @@ const createFilterList = (elementToShow) => {
         const element = elementToShow[i];
         const li = document.createElement("li")
         li.innerHTML = element
-    
+
         list.append(li)
         list.setAttribute(`tab-index`, 0)
         li.setAttribute(`tab-index`, 0)
@@ -147,7 +148,5 @@ const displayFilteredDropdownIngredient = (DATA) => {
 
     // Creation de la liste du dropdown
     createFilterList(filteredIngredients)
-   
-}
-  
 
+}
