@@ -1,5 +1,6 @@
 import { recipes } from '../data/recipes.js';
-import { displayRecipes, inputPrincipal } from './globalFunctions.js';
+import { inputPrincipal } from './inputPrincipalHandler.js';
+import { displayRecipes} from './globalFunctions.js';
 import { onclickIngredientDropDown } from './ingredientDropdownHandler.js';
 import { onclickUstensilsDropDown } from './ustensilsDropdownHandler.js';
 import { onclickAppliancesDropDown } from './appliancesDropdownHandler.js';
