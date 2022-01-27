@@ -108,6 +108,10 @@ h1 {
   font-size: 18px;
   line-height: 22px;
 }
+.thumbnails__heading--recipeTitle {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 .thumbnails__heading--timeToCook {
   display: flex;
@@ -365,7 +369,6 @@ main {
   width: 171px;
   position: absolute;
   left: 191px;
-  overflow: scroll;
 }
 
 .error-message--displayed {
@@ -374,6 +377,13 @@ main {
 
 .error-message {
   display: none;
+}
+
+.truncate-overflow {
+  display: -webkit-box;
+  -webkit-line-clamp: 9;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 @media (max-width: 790px) {
