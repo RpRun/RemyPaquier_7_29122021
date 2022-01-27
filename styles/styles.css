@@ -365,7 +365,7 @@ main {
   top: 240px;
 }
 .recipe__instructions {
-  height: 109px;
+  height: 96px;
   width: 171px;
   position: absolute;
   left: 191px;
@@ -381,7 +381,7 @@ main {
 
 .truncate-overflow {
   display: -webkit-box;
-  -webkit-line-clamp: 9;
+  -webkit-line-clamp: 8;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

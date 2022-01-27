@@ -56,7 +56,8 @@ export const recipes = [
             },
             {
                 "ingredient" : "Citron Vert",
-                "quantity" : 5
+                "quantity" : 5,
+                "unit" : "cl"
             },
             {
                 "ingredient" : "Lait de Coco",
