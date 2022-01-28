@@ -4,7 +4,7 @@
   "description": "réaliser un site de recettes de cuisine",
   "main": "index.js",
   "scripts": {
-    "devscript": "npm-run-all --parallel devscript:sass devscript:prefix",
+    "start": "npm-run-all --parallel devscript:sass devscript:prefix",
     "devscript:sass": "sass ./sass/main.scss:./styles/styles.css -w --style expanded",
     "devscript:prefix": "postcss ./styles/styles.css -w --use autoprefixer -d ./styles/prefixed/"
   },
