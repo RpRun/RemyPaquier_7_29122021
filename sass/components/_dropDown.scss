@@ -8,7 +8,9 @@
     font-size: 20px;
     position: relative;
     width: 250px;
+    min-width: 11rem;
     margin-right: 3rem;
+    margin-top: 1rem;
 
     &__ingredient,
     &__ingredient &__list {
