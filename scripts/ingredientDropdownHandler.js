@@ -81,7 +81,7 @@ const searchIngredients = (DATA, inputValue) => {
 }
 
 
-const filteringData = (DATA, ingredients) => {
+export const filteringData = (DATA, ingredients) => {
     DATA.forEach(recipe => {
         if (recipe.display) {
 
