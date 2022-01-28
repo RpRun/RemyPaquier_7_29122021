@@ -1,6 +1,11 @@
 const tagsList = document.querySelector('.tagsList')
 export const createTag = (content, type) => {
 
+    const cross = document.createElement('div')
+    cross.classList.add('cross')
+    cross.onclick = () => { deleteTag(cross) }
+    cross.innerHTML = '<img src="./assets/icones/crossSVG.svg" alt="clicker pour supprimer le tag">'
+
     const div = document.createElement('div')
     div.classList.add('tag')
 
@@ -21,6 +26,7 @@ export const createTag = (content, type) => {
             //A eclaircir
     }
     div.innerHTML = content
+    div.append(cross)
     tagsList.append(div)
 }
 
@@ -87,4 +93,14 @@ export const displayRecipes = (DATA) => {
         }
 
     }
+}
+
+export const deleteTag = (cross) => {
+    // supprime le tag
+    const clickedTag = cross.parentElement
+    clickedTag.remove()
+
+
+
+
 }
