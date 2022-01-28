@@ -18,6 +18,14 @@ export const onclickUstensilsDropDown = (DATA) => {
 }
 
 const displayList = () => {
+    const dropdownOpened = document.querySelector('.display')
+    const reversedArrows = document.querySelectorAll('.arrow__reverse')
+    reversedArrows.forEach(el => el.classList.remove('arrow__reverse'))
+
+    if (dropdownOpened) {
+        dropdownOpened.classList.remove('display')
+    }
+
     dropdownUstensils.classList.add('display')
     arrow.classList.add('arrow__reverse')
     inputUstensils.focus()
