@@ -1,4 +1,8 @@
-import { filteringData } from "./ingredientDropdownHandler.js"
+import { filteringDataIngredients, displayFilteredDropdownIngredient } from "./ingredientDropdownHandler.js"
+
+import { filteringDataAppliance } from "./appliancesDropdownHandler.js"
+import { filteringDataUstensils } from "./ustensilsDropdownHandler.js"
+
 
 export const createTag = (content, type) => {
     
@@ -101,6 +105,7 @@ export const deleteTag = (el) => {
     // supprime le tag
     const clickedTag = el.parentElement
     console.log(clickedTag )
+    console.log(clickedTag.innerText )
     clickedTag.remove()
 
     // on recupere tous les tags restants
@@ -109,33 +114,54 @@ export const deleteTag = (el) => {
     const tagAppliance = document.querySelectorAll('.tag--appliance')
 
     // on remet à zéro la DATA
+    
     // on crée une nouvelle data (newData):
     let newData;
-    const allActivesTags = []
+
     // en bouclant sur chaque ingrédient
     tagIngredients.forEach(tag => {
-        const activesTags = tag.firstChild
-        allActivesTags.push(activesTags)
-        // console.log(activesTags)
-    })
 
-    // puis sur chaque appareil
-    tagUstensils.forEach(tag => {
-        const activesTags = tag.firstChild
-        allActivesTags.push(activesTags)
-        // console.log(activesTags)
+        const ingredients = tag.firstChild
+        const content = ingredients.innerHTML.toLowerCase()
+        // allActivesTags.push(activeTag)
+        const newData = filteringDataIngredients(DATA, content)
+    
+        
+        
     })
+    
+    displayRecipes(newData)
+    displayFilteredDropdownIngredient(DATA)
+    // puis sur chaque appareil
+    // tagUstensils.forEach(tag => {
+    //     const activeTag = tag.firstChild
+
+        // allActivesTags.push(activeTag)
+        // console.log(activesTags)
+
+    //     newData = filteringDataUstensils(DATA, activeTag)
+    // })
+    
 
     // puis sur chaque ustensile
-    tagAppliance.forEach(tag => {
-        const activesTags = tag.firstChild
-        allActivesTags.push(activesTags)
+    // tagAppliance.forEach(tag => {
+    //     const activeTag = tag.firstChild
+
+        // allActivesTags.push(activeTag)
         // console.log(activesTags)
-    })
+
+    //     newData = filteringDataAppliance(DATA, allActivesTags)
+    // console.log(DATA)
+    // })
     
-    // newData = filteringData(DATA, activesTags)
+
     
-    console.log(allActivesTags)
-    // displayRecipes(newData)
+    // allActivesTags.forEach(activeTag => {
+    //     console.log(activeTag)
+        
+    // })
+    // newData = filteringData(allActivesTags)
+    // console.log(newData)
+    
 
 }

@@ -239,12 +239,14 @@ main {
   position: absolute;
   z-index: 10;
   top: 47px;
+  margin-top: -3px;
   display: none;
   border-radius: 0 5px 5px 5px;
 }
 .dropdown__list ul {
   width: 36rem;
   max-width: 60vw;
+  min-width: 11rem;
   text-align: left;
   border-radius: 0 5px 5px 5px;
   display: flex;
@@ -376,11 +378,19 @@ main {
   left: 191px;
 }
 
+.error-message {
+  border: 2px solid #d04f4f;
+  box-shadow: #d04f4f -1px 0px 1px 0px;
+  padding: 1rem;
+  margin: auto;
+  border-radius: 5px;
+}
+
 .error-message--displayed {
   display: block;
 }
 
-.error-message {
+.error-message--hidden {
   display: none;
 }
 

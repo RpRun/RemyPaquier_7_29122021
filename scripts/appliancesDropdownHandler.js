@@ -5,10 +5,7 @@ import {
 } from "./globalFunctions.js"
 
 const dropdownAppliance = document.querySelector('.dropdown__appliance')
-// const dropdownApplianceItemsList = document.querySelector('.dropdown__appliance li')
-// const dropdown = document.querySelector('.dropdown__appliance')
 const arrow = dropdownAppliance.querySelector('.arrow')
-// const input = dropdownAppliance.querySelector('input')
 const InputAppliance = document.querySelector('.dropdown__appliance input')
 
 
@@ -84,7 +81,7 @@ const searchAppliance = (DATA, inputValue) => {
 }
 
 
-const filteringData = (DATA, appliance) => {
+export const filteringDataAppliance = (DATA, appliance) => {
     DATA.forEach(recipe => {
         if (recipe.display) {
             if (recipe.appliance.toLowerCase() !== appliance) {
@@ -106,7 +103,7 @@ export const onClickApplianceLi = (DATA) => {
             createTag(content, 'appliance')
 
             // ON FILTRE LES DATA
-            const newData = filteringData(DATA, content)
+            const newData = filteringDataAppliance(DATA, content)
 
             // ON RÉUTILISE LES DATA FILTRÉES
             displayRecipes(newData)

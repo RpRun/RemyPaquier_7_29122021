@@ -1,6 +1,17 @@
+.error-message {
+    
+    border: 2px solid #d04f4f;
+    box-shadow: #d04f4f -1px 0px 1px 0px;
+    padding: 1rem;
+    margin: auto;
+    border-radius: 5px;
+}
+
+
 .error-message--displayed {
     display: block;
 }
-.error-message {
+.error-message--hidden {
     display: none;
 }
+

@@ -75,7 +75,7 @@ const searchUstensils = (DATA, inputValue) => {
 }
 
 
-const filteringData = (DATA, ustensils) => {    
+export const filteringDataUstensils = (DATA, ustensils) => {    
     DATA.forEach(recipe => {
         if (recipe.display) {
 
@@ -100,7 +100,7 @@ export const onClickUstensilLi = (DATA) => {
             createTag(content, 'ustensils')
 
             // ON FILTRE LES DATA
-            const newData = filteringData(DATA, content)
+            const newData = filteringDataUstensils(DATA, content)
 
             // ON RÉUTILISE LES DATA FILTRÉES
             displayRecipes(newData)

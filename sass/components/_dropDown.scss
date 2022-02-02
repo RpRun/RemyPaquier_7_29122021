@@ -67,12 +67,14 @@
         position: absolute;
         z-index: 10;
         top: 47px;
+        margin-top: -3px;
         display: none;
         border-radius: 0 5px 5px 5px;
 
         & ul {
             width: 36rem;
             max-width: 60vw;
+            min-width: 11rem;
             text-align: left;
             border-radius: 0 5px 5px 5px;
             display: flex;

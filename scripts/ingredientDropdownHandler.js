@@ -5,10 +5,9 @@ import {
 } from "./globalFunctions.js"
 
 const dropdownIngredient = document.querySelector('.dropdown__ingredient')
-// const dropdown = document.querySelector('.dropdown')
 const arrow = dropdownIngredient.querySelector('.dropdown__ingredient .arrow')
 const inputIngredient = document.querySelector('.dropdown__ingredient input')
-// const input = dropdownIngredient.querySelector('input')
+
 
 export const onclickIngredientDropDown = (DATA) => {
     dropdownIngredient.addEventListener('click', () => {
@@ -81,7 +80,7 @@ const searchIngredients = (DATA, inputValue) => {
 }
 
 
-export const filteringData = (DATA, ingredients) => {
+export const filteringDataIngredients = (DATA, ingredients) => {
     DATA.forEach(recipe => {
         if (recipe.display) {
 
@@ -106,7 +105,7 @@ export const onClickIngredientLi = (DATA) => {
             createTag(content, 'ingredient')
 
             // ON FILTRE LES DATA
-            const newData = filteringData(DATA, content)
+            const newData = filteringDataIngredients(DATA, content)
 
             // ON RÉUTILISE LES DATA FILTRÉES
             displayRecipes(newData)
@@ -139,7 +138,7 @@ const createFilterList = (elementToShow) => {
 
 }
 
-const displayFilteredDropdownIngredient = (DATA) => {
+export const displayFilteredDropdownIngredient = (DATA) => {
     // on va récupérer tous les ingredients qui sont dans les recettes en display == true
     const myIngredients = []
 
