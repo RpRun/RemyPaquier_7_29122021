@@ -13,7 +13,7 @@ export const inputPrincipal = () => {
         // A partir de 3 lettres dans le champ de recherche, si la liste des recettes comporte les 3 lettres
         if (searchedString.length > 2 && recipesList.innerHTML.includes(searchedString)) {
             console.log('on tape + de 3 lettres et il y a un resultat')
-
+            errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden')
             // on cache tout le monde
             recipesList.classList.add("thumbnails__card--hidden")
             console.log('on cache la liste')
@@ -42,7 +42,7 @@ export const inputPrincipal = () => {
                 console.log('on cache la liste')
                 errorSearchMessage.classList.replace('error-message--hidden', 'error-message--displayed')
                 console.log('on affiche le message la liste')
-            if (searchedString.length < 2) {
+            if (searchedString.length < 3) {
                 recipesList.classList.remove("thumbnails__card--hidden")
                 errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden')
 
