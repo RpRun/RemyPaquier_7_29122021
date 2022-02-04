@@ -100,7 +100,7 @@ export const onClickApplianceLi = (DATA) => {
         li.addEventListener("click", () => {
 
             const content = li.innerHTML.toLowerCase()
-            createTag(content, 'appliance')
+            createTag(content, 'appliance', DATA)
 
             // ON FILTRE LES DATA
             const newData = filteringDataAppliance(DATA, content)

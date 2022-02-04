@@ -102,7 +102,7 @@ export const onClickIngredientLi = (DATA) => {
         li.addEventListener("click", () => {
 
             const content = li.innerHTML.toLowerCase()
-            createTag(content, 'ingredient')
+            createTag(content, 'ingredient', DATA)
 
             // ON FILTRE LES DATA
             const newData = filteringDataIngredients(DATA, content)

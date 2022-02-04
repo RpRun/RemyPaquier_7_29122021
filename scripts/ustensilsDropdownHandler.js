@@ -97,7 +97,7 @@ export const onClickUstensilLi = (DATA) => {
         li.addEventListener("click", () => {
 
             const content = li.innerHTML.toLowerCase()
-            createTag(content, 'ustensils')
+            createTag(content, 'ustensils', DATA)
 
             // ON FILTRE LES DATA
             const newData = filteringDataUstensils(DATA, content)

@@ -9,7 +9,7 @@ DATA.forEach(recipe => { recipe.display = true });
 
 displayRecipes(DATA)
 
-deleteTag(DATA)
+
 
  
 // ingredients
