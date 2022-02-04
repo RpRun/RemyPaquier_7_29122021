@@ -93,7 +93,9 @@
             &.selected-ingredient {
                 background: lighten($color: #3282F7, $amount: 10);
             }
+       
         }
+      
     }
 
     // devrait fonctionner pour les autres dropdowns
@@ -106,6 +108,7 @@
 
 .arrow {
     position: absolute;
+    z-index: 100;
     right: 5px;
     transition: 0.3s;
     cursor: pointer;

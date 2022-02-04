@@ -100,7 +100,7 @@ export const onClickIngredientLi = (DATA) => {
     const lis = document.querySelectorAll(".dropdown__ingredient li")
     lis.forEach(li => {
         li.addEventListener("click", () => {
-
+            console.log('click li')
             const content = li.innerHTML.toLowerCase()
             createTag(content, 'ingredient', DATA)
 
@@ -127,8 +127,8 @@ const createFilterList = (elementToShow) => {
         li.innerHTML = element
 
         list.append(li)
-        list.setAttribute(`tab-index`, 0)
-        li.setAttribute(`tab-index`, 0)
+        list.setAttribute(`tabindex`, -1)
+        li.setAttribute(`tabindex`, 0)
 
     }
     // Insertion du "bloc liste" au niveau de la liste ustensiles
