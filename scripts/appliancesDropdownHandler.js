@@ -7,14 +7,19 @@ import {
 const dropdownAppliance = document.querySelector('.dropdown__appliance')
 const arrow = dropdownAppliance.querySelector('.arrow')
 const InputAppliance = document.querySelector('.dropdown__appliance input')
-
+const dropdownButton = document.querySelector('.dropdown__appliance button')
 
 export const onclickAppliancesDropDown = (DATA) => {
     dropdownAppliance.addEventListener('click', () => {
+        
         if (arrow.classList.contains('arrow__reverse')) {
             hideList()
+            dropdownButton.ariaExpanded = "false";
+            
         } else {
+            
             displayList()
+            dropdownButton.ariaExpanded = "true";
             displayFilteredDropdownAppliance(DATA)
             onClickApplianceLi(DATA)
             onInputAppliance(DATA)
@@ -23,22 +28,29 @@ export const onclickAppliancesDropDown = (DATA) => {
 }
 
 const displayList = () => {
+    const dropdownButton = document.querySelector('.dropdown__appliance button')
     const dropdownOpened = document.querySelector('.display')
     const reversedArrows = document.querySelectorAll('.arrow__reverse')
     reversedArrows.forEach(el => el.classList.remove('arrow__reverse'))
 
     if (dropdownOpened) {
         dropdownOpened.classList.remove('display')
+        dropdownButton.ariaExpanded = "false";
     }
-
+    dropdownButton.ariaExpanded = "true";
     dropdownAppliance.classList.add('display')
     arrow.classList.add('arrow__reverse')
     InputAppliance.focus()
 }
 
 const hideList = () => {
+    const dropdownButton = document.querySelector('.dropdown__appliance button')
+    dropdownButton.ariaExpanded = "false";
     dropdownAppliance.classList.remove('display')
     arrow.classList.remove('arrow__reverse')
+    console.log(dropdownButton)
+    
+   
 }
 
 const onInputAppliance = (DATA) => {

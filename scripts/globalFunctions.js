@@ -1,6 +1,5 @@
 import {
-    filteringDataIngredients,
-    displayFilteredDropdownIngredient
+    filteringDataIngredients
 } from "./ingredientDropdownHandler.js"
 import {
     filteringDataAppliance
