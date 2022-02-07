@@ -85,8 +85,8 @@ export const displayRecipes = (DATA) => {
             }
 
             const card = `
-                <li class="thumbnails__card">
-                    <img class="thumbnails__card--img" src="" alt="">
+                <li tabindex="0" class="thumbnails__card">
+                    <img class="thumbnails__card--img" src="https://picsum.photos/200/300?random=1" alt="random picture to simulate recipe's illustration">
                     <h2 class="thumbnails__heading"><span class="thumbnails__heading--recipeTitle"> ${recipe.name}</span>
                         <span class="thumbnails__heading--timeToCook">
                             <img src="./assets/icones/clock.png" alt="Temps de préparation">

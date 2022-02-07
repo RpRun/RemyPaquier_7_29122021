@@ -125,8 +125,8 @@ const createFilterList = (elementToShow) => {
         li.innerHTML = element
 
         list.append(li)
-        list.setAttribute(`tab-index`, 0)
-        li.setAttribute(`tab-index`, 0)
+        list.setAttribute(`tabindex`, -1)
+        li.setAttribute(`tabindex`, 0)
 
     }
     // Insertion du "bloc liste" au niveau de la liste ustensiles

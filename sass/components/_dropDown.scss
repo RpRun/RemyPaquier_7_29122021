@@ -106,10 +106,26 @@
     }
 }
 
-.arrow {
+.dropdown button {
+    display: flex;
+    align-items: center;
+    border: none;
     position: absolute;
     z-index: 100;
-    right: 5px;
+    right: 6px;
+    height: 65%;
+    padding: 0;
+    border-radius: 5px;
+    background-color: initial;
+    
+}
+
+.dropdown button:focus {
+    border-color: pink;
+}
+
+
+.arrow {
     transition: 0.3s;
     cursor: pointer;
     height: 100%;

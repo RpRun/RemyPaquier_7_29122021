@@ -269,10 +269,24 @@ main {
   display: block;
 }
 
-.arrow {
+.dropdown button {
+  display: flex;
+  align-items: center;
+  border: none;
   position: absolute;
   z-index: 100;
-  right: 5px;
+  right: 6px;
+  height: 65%;
+  padding: 0;
+  border-radius: 5px;
+  background-color: initial;
+}
+
+.dropdown button:focus {
+  border-color: pink;
+}
+
+.arrow {
   transition: 0.3s;
   cursor: pointer;
   height: 100%;
@@ -318,12 +332,11 @@ main {
   height: 69px;
   padding: 2rem;
 }
-.search-bar__btn {
+.search-bar svg {
   position: absolute;
   right: 10px;
   top: 0px;
   bottom: 0px;
-  cursor: pointer;
   margin: 1rem;
   border: none;
   background-color: #E7E7E7;
@@ -351,6 +364,7 @@ main {
 .thumbnails__card--img {
   height: 178px;
   width: 380px;
+  object-fit: cover;
   left: 0px;
   top: 0px;
   border-radius: 5px 5px 0px 0px;
