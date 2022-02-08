@@ -15,9 +15,7 @@ export const onclickIngredientDropDown = (DATA) => {
         if (arrow.classList.contains('arrow__reverse')) {
             hideList()
             dropdownButton.ariaExpanded = "false";
-
         } else {
-            
             displayList()
             dropdownButton.ariaExpanded = "true";
             displayFilteredDropdownIngredient(DATA)
@@ -31,7 +29,11 @@ const displayList = () => {
     const dropdownButton = document.querySelector('.dropdown__ingredient button')
     const dropdownOpened = document.querySelector('.display')
     const reversedArrows = document.querySelectorAll('.arrow__reverse')
-    reversedArrows.forEach(el => el.classList.remove('arrow__reverse'))
+    // reversedArrows.forEach(el => el.classList.remove('arrow__reverse'))
+    for (let i = 0; i < reversedArrows.length; i++) {
+        const el = reversedArrows[i];
+        el.classList.remove('arrow__reverse')
+    }
 
     if (dropdownOpened) {
         dropdownOpened.classList.remove('display')
@@ -48,8 +50,6 @@ const hideList = () => {
     dropdownButton.ariaExpanded = "false";
     dropdownIngredient.classList.remove('display')
     arrow.classList.remove('arrow__reverse')
-    
-   
 }
 
 const onInputIngredient = (DATA) => {
@@ -64,11 +64,13 @@ const searchIngredients = (DATA, inputValue) => {
     // chercher dans tous les ingredients
     // on va récupérer tous les ingredients qui sont dans les recettes en display == true
     const myIngredients = []
-    DATA.forEach((recipe) => {
+    for (let i = 0; i < DATA.length; i++) {
+        const recipe = DATA[i];
         if (recipe.display) {
             recipe.ingredients.map((ingredientName) => myIngredients.push(ingredientName.ingredient))
         }
-    })
+    }
+
     // Conserve une seule apparition de l'ingredient:
     const filteredIngredients = myIngredients.filter((item, index) => {
         return myIngredients.indexOf(item) == index
@@ -77,11 +79,12 @@ const searchIngredients = (DATA, inputValue) => {
     let ingredientToShow = []
 
     if (inputValue.length >= 3) {
-        filteredIngredients.forEach(ing => {
+        for (let i = 0; i < filteredIngredients.length; i++) {
+            const ing = filteredAppliances[i];
             if (ing.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0) {
                 ingredientToShow.push(ing)
             }
-        });
+        }
     } else {
         ingredientToShow = filteredIngredients
     }
@@ -92,9 +95,9 @@ const searchIngredients = (DATA, inputValue) => {
 
 
 export const filteringDataIngredients = (DATA, ingredients) => {
-    DATA.forEach(recipe => {
+    for (let i = 0; i < DATA.length; i++) {
+        const recipe = DATA[i];
         if (recipe.display) {
-
             const goodRecipe = recipe.ingredients.find((ingredient) => ingredient.ingredient.toLowerCase() == ingredients)
 
             if (!goodRecipe) {
@@ -102,14 +105,16 @@ export const filteringDataIngredients = (DATA, ingredients) => {
             }
 
         }
-    });
+    }
+
     return DATA
 }
 
 
 export const onClickIngredientLi = (DATA) => {
     const lis = document.querySelectorAll(".dropdown__ingredient li")
-    lis.forEach(li => {
+    for (let i = 0; i < lis.length; i++) {
+        const li = lis[i];
         li.addEventListener("click", () => {
             console.log('click li')
             const content = li.innerHTML.toLowerCase()
@@ -122,7 +127,7 @@ export const onClickIngredientLi = (DATA) => {
             displayRecipes(newData)
             displayFilteredDropdownIngredient(DATA)
         })
-    })
+    }
 }
 
 
@@ -152,12 +157,12 @@ const createFilterList = (elementToShow) => {
 export const displayFilteredDropdownIngredient = (DATA) => {
     // on va récupérer tous les ingredients qui sont dans les recettes en display == true
     const myIngredients = []
-
-    DATA.forEach((recipe) => {
+    for (let i = 0; i < DATA.length; i++) {
+        const recipe = DATA[i];
         if (recipe.display) {
             recipe.ingredients.map((ingredientName) => myIngredients.push(ingredientName.ingredient))
         }
-    })
+    }
 
     // Conserve une seule apparition de l'ingredient:
     const filteredIngredients = myIngredients.filter((item, index) => {

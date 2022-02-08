@@ -11,13 +11,12 @@ const dropdownButton = document.querySelector('.dropdown__appliance button')
 
 export const onclickAppliancesDropDown = (DATA) => {
     dropdownAppliance.addEventListener('click', () => {
-        
+
         if (arrow.classList.contains('arrow__reverse')) {
             hideList()
             dropdownButton.ariaExpanded = "false";
-            
+
         } else {
-            
             displayList()
             dropdownButton.ariaExpanded = "true";
             displayFilteredDropdownAppliance(DATA)
@@ -31,8 +30,12 @@ const displayList = () => {
     const dropdownButton = document.querySelector('.dropdown__appliance button')
     const dropdownOpened = document.querySelector('.display')
     const reversedArrows = document.querySelectorAll('.arrow__reverse')
-    reversedArrows.forEach(el => el.classList.remove('arrow__reverse'))
 
+    // reversedArrows.forEach(el => el.classList.remove('arrow__reverse'))
+    for (let i = 0; i < reversedArrows.length; i++) {
+        const el = reversedArrows[i];
+        el.classList.remove('arrow__reverse')
+    }
     if (dropdownOpened) {
         dropdownOpened.classList.remove('display')
         dropdownButton.ariaExpanded = "false";
@@ -48,9 +51,7 @@ const hideList = () => {
     dropdownButton.ariaExpanded = "false";
     dropdownAppliance.classList.remove('display')
     arrow.classList.remove('arrow__reverse')
-    console.log(dropdownButton)
-    
-   
+
 }
 
 const onInputAppliance = (DATA) => {
@@ -65,11 +66,13 @@ const searchAppliance = (DATA, inputValue) => {
     // chercher dans tous les ustensiles
     // on va récupérer tous les ustensiles qui sont dans les recettes en display == true
     const myAppliance = []
-    DATA.forEach((recipe) => {
+    for (let i = 0; i < DATA.length; i++) {
+        const recipe = DATA[i];
         if (recipe.display) {
             myAppliance.push(recipe.appliance)
         }
-    })
+    }
+
     // Conserve une seule apparition de l'ustensile:
     const filteredAppliances = myAppliance.filter((item, index) => {
         return myAppliance.indexOf(item) == index
@@ -78,11 +81,13 @@ const searchAppliance = (DATA, inputValue) => {
     let applianceToShow = []
 
     if (inputValue.length >= 3) {
-        filteredAppliances.forEach(appl => {
+        for (let i = 0; i < filteredAppliances.length; i++) {
+            const appl = filteredAppliances[i];
             if (appl.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0) {
                 applianceToShow.push(appl)
             }
-        });
+        }
+
     } else {
         applianceToShow = filteredAppliances
     }
@@ -94,21 +99,23 @@ const searchAppliance = (DATA, inputValue) => {
 
 
 export const filteringDataAppliance = (DATA, appliance) => {
-    DATA.forEach(recipe => {
+    for (let i = 0; i < DATA.length; i++) {
+        const recipe = DATA[i];
         if (recipe.display) {
             if (recipe.appliance.toLowerCase() !== appliance) {
                 recipe.display = false
             }
         }
 
-    });
+    }
+
     return DATA
 }
 
 export const onClickApplianceLi = (DATA) => {
     const lis = document.querySelectorAll(".dropdown__appliance li")
-
-    lis.forEach(li => {
+    for (let i = 0; i < lis.length; i++) {
+        const li = lis[i];
         li.addEventListener("click", () => {
 
             const content = li.innerHTML.toLowerCase()
@@ -121,7 +128,9 @@ export const onClickApplianceLi = (DATA) => {
             displayRecipes(newData)
             displayFilteredDropdownAppliance(DATA)
         })
-    })
+
+    }
+
 }
 
 
@@ -152,12 +161,13 @@ const createFilterList = (elementToShow) => {
 const displayFilteredDropdownAppliance = (DATA) => {
     // on va récupérer tous les ustensiles qui sont dans les recettes en display == true
     const myAppliance = []
-
-    DATA.forEach((recipe) => {
+    for (let i = 0; i < DATA.length; i++) {
+        const recipe = DATA[i];
         if (recipe.display) {
             myAppliance.push(recipe.appliance)
         }
-    })
+    }
+
     // Conserve une seule apparition de l'ustensile:
     const filteredAppliance = myAppliance.filter((item, index) => {
         return myAppliance.indexOf(item) == index
@@ -166,5 +176,5 @@ const displayFilteredDropdownAppliance = (DATA) => {
 
     // Creation de la liste du dropdown
     createFilterList(filteredAppliance)
-  
+
 }

@@ -1,4 +1,8 @@
-import { displayRecipes, createTag, orderList } from "./globalFunctions.js"
+import {
+    displayRecipes,
+    createTag,
+    orderList
+} from "./globalFunctions.js"
 
 const dropdownUstensils = document.querySelector('.dropdown__ustensils')
 const arrow = dropdownUstensils.querySelector('.arrow')
@@ -8,8 +12,10 @@ export const onclickUstensilsDropDown = (DATA) => {
     dropdownUstensils.addEventListener('click', () => {
         if (arrow.classList.contains('arrow__reverse')) {
             hideList()
+            dropdownButton.ariaExpanded = "false";
         } else {
             displayList()
+            dropdownButton.ariaExpanded = "true";
             displayFilteredDropdownUstensils(DATA)
             onClickUstensilLi(DATA)
             onInputUstensils(DATA)
@@ -20,24 +26,30 @@ export const onclickUstensilsDropDown = (DATA) => {
 const displayList = () => {
     const dropdownOpened = document.querySelector('.display')
     const reversedArrows = document.querySelectorAll('.arrow__reverse')
-    reversedArrows.forEach(el => el.classList.remove('arrow__reverse'))
-
+    // reversedArrows.forEach(el => el.classList.remove('arrow__reverse'))
+    for (let i = 0; i < reversedArrows.length; i++) {
+        const el = reversedArrows[i];
+        el.classList.remove('arrow__reverse')
+    }
     if (dropdownOpened) {
         dropdownOpened.classList.remove('display')
+        dropdownButton.ariaExpanded = "false";
     }
-
+    dropdownButton.ariaExpanded = "true";
     dropdownUstensils.classList.add('display')
     arrow.classList.add('arrow__reverse')
     inputUstensils.focus()
 }
 
 const hideList = () => {
+    const dropdownButton = document.querySelector('.dropdown button')
     dropdownUstensils.classList.remove('display')
+    dropdownButton.ariaExpanded = "false";
     arrow.classList.remove('arrow__reverse')
 }
 
 const onInputUstensils = (DATA) => {
-   
+
     inputUstensils.addEventListener('input', () => {
         searchUstensils(DATA, inputUstensils.value)
         onClickUstensilLi(DATA)
@@ -48,11 +60,12 @@ const searchUstensils = (DATA, inputValue) => {
     // chercher dans tous les ingredients
     // on va récupérer tous les ingredients qui sont dans les recettes en display == true
     const myUstensils = []
-    DATA.forEach((recipe) => {
+    for (let i = 0; i < DATA.length; i++) {
+        const recipe = DATA[i];
         if (recipe.display) {
             recipe.ustensils.map((ustensilsName) => myUstensils.push(ustensilsName))
         }
-    })
+    }
     // Conserve une seule apparition de l'ingredient:
     const filteredUstensils = myUstensils.filter((item, index) => {
         return myUstensils.indexOf(item) == index
@@ -60,12 +73,13 @@ const searchUstensils = (DATA, inputValue) => {
 
     let UstensilsToShow = []
 
-    if(inputValue.length >= 3) {
-        filteredUstensils.forEach(ust => {
-            if(ust.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0) {
+    if (inputValue.length >= 3) {
+        for (let i = 0; i < filteredUstensils.length; i++) {
+            const ust = filteredUstensils[i];
+            if (ust.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0) {
                 UstensilsToShow.push(ust)
             }
-        });
+        }
     } else {
         UstensilsToShow = filteredUstensils
     }
@@ -75,25 +89,28 @@ const searchUstensils = (DATA, inputValue) => {
 }
 
 
-export const filteringDataUstensils = (DATA, ustensils) => {    
-    DATA.forEach(recipe => {
+export const filteringDataUstensils = (DATA, ustensils) => {
+    for (let i = 0; i < DATA.length; i++) {
+        const recipe = DATA[i];
         if (recipe.display) {
 
             const goodRecipe = recipe.ustensils.find((el) => el.toLowerCase() == ustensils)
-            
+
             if (!goodRecipe) {
                 recipe.display = false
             }
         }
-    });
+    }
     return DATA
 }
 
 
 export const onClickUstensilLi = (DATA) => {
     const lis = document.querySelectorAll(".dropdown__ustensils li")
-    
-    lis.forEach(li => {
+
+    // lis.forEach(li => {
+        for (let i = 0; i < lis.length; i++) {
+            const li = lis[i];
         li.addEventListener("click", () => {
 
             const content = li.innerHTML.toLowerCase()
@@ -106,7 +123,7 @@ export const onClickUstensilLi = (DATA) => {
             displayRecipes(newData)
             displayFilteredDropdownUstensils(DATA)
         })
-    })
+    }
 }
 
 const createFilterList = (elementToShow) => {
@@ -119,7 +136,7 @@ const createFilterList = (elementToShow) => {
         const element = elementToShow[i];
         const li = document.createElement("li")
         li.innerHTML = element
-    
+
         list.append(li)
         list.setAttribute(`tabindex`, -1)
         li.setAttribute(`tabindex`, 0)
@@ -137,17 +154,18 @@ const displayFilteredDropdownUstensils = (DATA) => {
     // on va récupérer tous les ustensiles qui sont dans les recettes en display == true
     const myUstensils = []
 
-    DATA.forEach((recipe) => {
+    for (let i = 0; i < DATA.length; i++) {
+        const recipe = DATA[i];
         if (recipe.display) {
             recipe.ustensils.map((ustensilsName) => myUstensils.push(ustensilsName))
         }
 
-    })
+    }
     // Conserve une seule apparition de l'ustensile:
     const filteredUstensils = myUstensils.filter((item, index) => {
         return myUstensils.indexOf(item) == index
-        
-        
+
+
     })
 
     // Creation de la liste du dropdown

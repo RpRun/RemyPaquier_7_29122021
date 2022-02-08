@@ -110,9 +110,10 @@ export const displayRecipes = (DATA) => {
 
 export const deleteTag = (cross, DATA) => {
 
-    DATA.forEach(recipe => {
+    for (let i = 0; i < DATA.length; i++) {
+        const recipe = DATA[i];
         recipe.display = true
-    });
+    }
     let newData = []
 
     // supprime le tag
@@ -124,30 +125,35 @@ export const deleteTag = (cross, DATA) => {
     const ingredientsContent = tagIngredients.map(tag => tag.querySelector('span').innerHTML.toLowerCase())
 
     // // en bouclant sur chaque ingrédient
-    ingredientsContent.forEach(content => {
+    for (let i = 0; i < ingredientsContent.length; i++) {
+        const content = ingredientsContent[i];
         newData = filteringDataIngredients(DATA, content)
+    }
+    // ingredientsContent.forEach(content => {
+    //     newData = filteringDataIngredients(DATA, content)
 
-    })
+    // })
     // console.log(newData)
 
     const tagUstensils = Array.from(document.querySelectorAll('.tag--ustensils'))
     const ustensilsContent = tagUstensils.map(tag => tag.querySelector('span').innerHTML.toLowerCase())
 
     // // en bouclant sur chaque ustensile
-    ustensilsContent.forEach(content => {
+    for (let i = 0; i < ustensilsContent.length; i++) {
+        const content = ustensilsContent[i];
         newData = filteringDataUstensils(DATA, content)
 
-    })
+    }
 
     const tagAppliance = Array.from(document.querySelectorAll('.tag--appliance'))
     const applianceContent = tagAppliance.map(tag => tag.querySelector('span').innerHTML.toLowerCase())
 
     // // en bouclant sur chaque ustensile
-    applianceContent.forEach(content => {
+
+    for (let i = 0; i < applianceContent.length; i++) {
+        const content = applianceContent[i];
         newData = filteringDataAppliance(DATA, content)
-
-    })
-
+    }
 
     if (newData.length == 0) {
         newData = DATA
