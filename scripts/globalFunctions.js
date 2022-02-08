@@ -7,7 +7,6 @@ import {
 import {
     filteringDataUstensils
 } from "./ustensilsDropdownHandler.js"
-// import { recipes } from '../data/recipes.js';
 
 export const createTag = (content, type, DATA) => {
 
