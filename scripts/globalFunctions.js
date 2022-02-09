@@ -64,9 +64,7 @@ export const displayRecipes = (DATA) => {
     // on enlève toutes les recettes
     recipesList.innerHTML = ''
 
-    for (let i = 0; i < DATA.length; i++) {
-        const recipe = DATA[i];
-
+    DATA.forEach(recipe => {
         // Si il y a le paramètre display == true
         if (recipe.display) {
             let ingredientsList = ''
@@ -103,8 +101,9 @@ export const displayRecipes = (DATA) => {
             recipesList.innerHTML += card
 
         }
+        
+    })
 
-    }
 }
 
 export const deleteTag = (cross, DATA) => {

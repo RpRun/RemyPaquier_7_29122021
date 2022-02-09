@@ -48,8 +48,6 @@ const hideList = () => {
     dropdownButton.ariaExpanded = "false";
     dropdownIngredient.classList.remove('display')
     arrow.classList.remove('arrow__reverse')
-    
-   
 }
 
 const onInputIngredient = (DATA) => {
@@ -132,16 +130,16 @@ const createFilterList = (elementToShow) => {
 
     // Classement des elements par ordre alphabetique
     orderList(elementToShow)
-    for (let i = 0; i < elementToShow.length; i++) {
-        const element = elementToShow[i];
+
+    elementToShow.forEach(element => {
         const li = document.createElement("li")
         li.innerHTML = element
-
+    
         list.append(li)
         list.setAttribute(`tabindex`, -1)
         li.setAttribute(`tabindex`, 0)
+    })
 
-    }
     // Insertion du "bloc liste" au niveau de la liste ustensiles
     const blocList = document.querySelector('.ingredients-list')
     blocList.innerHTML = ''

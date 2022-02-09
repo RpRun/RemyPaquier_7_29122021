@@ -1,7 +1,6 @@
 export const inputPrincipal = () => {
     const searchInput = document.querySelector("#search-bar-Field")
 
-
     searchInput.addEventListener('input', (e) => {
         const searchedString = e.target.value.toLowerCase();
         const allRecipesThumbs = document.querySelectorAll(".thumbnails__card")
@@ -10,10 +9,7 @@ export const inputPrincipal = () => {
         const splittedSearchString = searchedString.split(' ');
         const recipesTextContent = recipesList.innerHTML.toLowerCase()
 
-
-        for (let i = 0; i < splittedSearchString.length; i++) {
-            const searchedWord = splittedSearchString[i];
-
+        splittedSearchString.forEach(searchedWord => {
             // A partir de 3 lettres dans le champ de recherche, si la liste des recettes comporte les 3 lettres
             if (searchedString.length > 2 && searchedWord.length > 2 && recipesTextContent.includes(searchedWord)) {
 
@@ -23,20 +19,19 @@ export const inputPrincipal = () => {
                 console.log(searchedWord)
 
                 // On boucle sur la liste des recettes
-                for (let i = 0; i < allRecipesThumbs.length; i++) {
-                    const recipesListItem = allRecipesThumbs[i];
-                    // on cache toutes les cartes de la liste de recettes
-                    recipesListItem.classList.add("thumbnails__card--hidden")
-                    // on fait reapparaitre la liste de recettes
-                    recipesList.classList.remove("thumbnails__card--hidden")
+                allRecipesThumbs.forEach( recipesListItem => {
+                     // on cache toutes les cartes de la liste de recettes
+                     recipesListItem.classList.add("thumbnails__card--hidden")
+                     // on fait reapparaitre la liste de recettes
+                     recipesList.classList.remove("thumbnails__card--hidden")
+                     // Si une des recettes comporte la chaine de charactere renseignée dans le champ de recherche
+                     if (recipesListItem.innerHTML.toLowerCase().includes(searchedWord)) {
+                         // on fait reapparaitre cette recette   
+                         recipesListItem.classList.remove("thumbnails__card--hidden")
+                     }
 
-                    // Si une des recettes comporte la chaine de charactere renseignée dans le champ de recherche
-                    if (recipesListItem.innerHTML.toLowerCase().includes(searchedWord)) {
-                        // on fait reapparaitre cette recette   
-                        recipesListItem.classList.remove("thumbnails__card--hidden")
-                    }
+                })
 
-                }
 
             } else {
 
@@ -47,21 +42,22 @@ export const inputPrincipal = () => {
                 errorSearchMessage.classList.replace('error-message--hidden', 'error-message--displayed')
 
                 if (searchedString.length < 3) {
-                    // On boucle sur la liste des recettes
-                    for (let i = 0; i < allRecipesThumbs.length; i++) {
-                        const recipesListItem = allRecipesThumbs[i];
+
+                   // On boucle sur la liste des recettes
+                allRecipesThumbs.forEach(recipesListItem => {
+                        
                         // on fait reapparaitre toutes les cartes de la liste de recettes
                         recipesListItem.classList.remove("thumbnails__card--hidden")
                         // on fait reapparaitre la liste de recettes
                         recipesList.classList.remove("thumbnails__card--hidden")
                         // on cache le message d' erreur
                         errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden')
-                    }
+                    })
 
                 }
 
             }
-        }
+        })
 
     })
 }

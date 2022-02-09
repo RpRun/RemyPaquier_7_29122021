@@ -3,13 +3,16 @@ import { displayRecipes, createTag, orderList } from "./globalFunctions.js"
 const dropdownUstensils = document.querySelector('.dropdown__ustensils')
 const arrow = dropdownUstensils.querySelector('.arrow')
 const inputUstensils = dropdownUstensils.querySelector('input')
+const dropdownButton = document.querySelector('.dropdown__ustensils button')
 
 export const onclickUstensilsDropDown = (DATA) => {
     dropdownUstensils.addEventListener('click', () => {
         if (arrow.classList.contains('arrow__reverse')) {
             hideList()
+            dropdownButton.ariaExpanded = "false";
         } else {
             displayList()
+            dropdownButton.ariaExpanded = "true";
             displayFilteredDropdownUstensils(DATA)
             onClickUstensilLi(DATA)
             onInputUstensils(DATA)
@@ -24,8 +27,9 @@ const displayList = () => {
 
     if (dropdownOpened) {
         dropdownOpened.classList.remove('display')
+        dropdownButton.ariaExpanded = "false";
     }
-
+    dropdownButton.ariaExpanded = "true";
     dropdownUstensils.classList.add('display')
     arrow.classList.add('arrow__reverse')
     inputUstensils.focus()
@@ -33,6 +37,7 @@ const displayList = () => {
 
 const hideList = () => {
     dropdownUstensils.classList.remove('display')
+    dropdownButton.ariaExpanded = "false";
     arrow.classList.remove('arrow__reverse')
 }
 
@@ -115,16 +120,16 @@ const createFilterList = (elementToShow) => {
 
     // Classement des elements par ordre alphabetique
     orderList(elementToShow)
-    for (let i = 0; i < elementToShow.length; i++) {
-        const element = elementToShow[i];
+
+    elementToShow.forEach(element => {
         const li = document.createElement("li")
         li.innerHTML = element
     
         list.append(li)
         list.setAttribute(`tabindex`, -1)
         li.setAttribute(`tabindex`, 0)
-
-    }
+    })
+   
     // Insertion du "bloc liste" au niveau de la liste ustensiles
     const blocList = document.querySelector('.ustensils-list')
     blocList.innerHTML = ''
