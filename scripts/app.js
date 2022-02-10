@@ -1,6 +1,6 @@
 import { recipes } from '../data/recipes.js';
 import { inputPrincipal } from './inputPrincipalHandler.js';
-import { displayRecipes } from './globalFunctions.js';
+import { displayRecipes, closeDropdown } from './globalFunctions.js';
 import { onclickIngredientDropDown, onKeyboardIngredientLi, onKeyboardIngredientsFilters } from './ingredientDropdownHandler.js';
 import { onclickUstensilsDropDown, onKeyboardUstensilsLi, onKeyboardUstensilsFilters } from './ustensilsDropdownHandler.js';
 import { onclickAppliancesDropDown, onKeyboardAppliancesLi, onKeyboardAppliancesFilters } from './appliancesDropdownHandler.js';
@@ -28,4 +28,7 @@ onKeyboardAppliancesFilters(DATA)
 
 
 // Global search
-inputPrincipal()
+inputPrincipal(DATA)
+
+// window event
+closeDropdown()
