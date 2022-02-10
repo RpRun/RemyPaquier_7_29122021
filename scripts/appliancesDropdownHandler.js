@@ -1,8 +1,4 @@
-import {
-    displayRecipes,
-    createTag,
-    orderList
-} from "./globalFunctions.js"
+import { displayRecipes, createTag, orderList } from "./globalFunctions.js"
 
 const dropdownAppliance = document.querySelector('.dropdown__appliance')
 const arrow = dropdownAppliance.querySelector('.arrow')
@@ -22,9 +18,32 @@ export const onclickAppliancesDropDown = (DATA) => {
             dropdownButton.ariaExpanded = "true";
             displayFilteredDropdownAppliance(DATA)
             onClickApplianceLi(DATA)
+            onKeyboardAppliancesLi(DATA)
             onInputAppliance(DATA)
         }
     })
+}
+
+// Gestion du dropdown au clavier
+export const onKeyboardAppliancesFilters = (DATA) => {
+
+    dropdownAppliance.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            hideList()
+            dropdownButton.ariaExpanded = "false";
+
+        }
+         if (e.key === 'Enter') {
+            
+            displayList()
+            dropdownButton.ariaExpanded = "true";
+            displayFilteredDropdownAppliance(DATA)
+            onClickApplianceLi(DATA)
+            onKeyboardAppliancesLi(DATA)
+            onInputAppliance(DATA)
+        }
+    })
+    
 }
 
 const displayList = () => {
@@ -44,13 +63,9 @@ const displayList = () => {
 }
 
 const hideList = () => {
-    const dropdownButton = document.querySelector('.dropdown__appliance button')
     dropdownButton.ariaExpanded = "false";
     dropdownAppliance.classList.remove('display')
     arrow.classList.remove('arrow__reverse')
-    console.log(dropdownButton)
-    
-   
 }
 
 const onInputAppliance = (DATA) => {
@@ -58,6 +73,7 @@ const onInputAppliance = (DATA) => {
     InputAppliance.addEventListener('input', () => {
         searchAppliance(DATA, InputAppliance.value)
         onClickApplianceLi(DATA)
+        onKeyboardAppliancesLi(DATA)
     })
 }
 
@@ -120,6 +136,27 @@ export const onClickApplianceLi = (DATA) => {
             // ON RÉUTILISE LES DATA FILTRÉES
             displayRecipes(newData)
             displayFilteredDropdownAppliance(DATA)
+        })
+    })
+}
+// gestion des tags au clavier
+export const onKeyboardAppliancesLi = (DATA) => {
+    const lis = document.querySelectorAll(".dropdown__appliance li")
+    lis.forEach(li => {
+        li.addEventListener("keydown", (e) => {
+            if (e.key === 'Enter') {
+
+                const content = li.innerHTML.toLowerCase()
+                createTag(content, 'appliance', DATA)
+    
+                // ON FILTRE LES DATA
+                const newData = filteringDataAppliance(DATA, content)
+    
+                // ON RÉUTILISE LES DATA FILTRÉES
+                displayRecipes(newData)
+                displayFilteredDropdownAppliance(DATA)
+            }
+           
         })
     })
 }

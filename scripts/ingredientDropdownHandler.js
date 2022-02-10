@@ -1,17 +1,13 @@
-import {
-    displayRecipes,
-    createTag,
-    orderList
-} from "./globalFunctions.js"
+import { displayRecipes, createTag, orderList } from "./globalFunctions.js"
 
 const dropdownIngredient = document.querySelector('.dropdown__ingredient')
 const arrow = dropdownIngredient.querySelector('.dropdown__ingredient .arrow')
 const inputIngredient = document.querySelector('.dropdown__ingredient input')
 const dropdownButton = document.querySelector('.dropdown__ingredient button')
 
-
 export const onclickIngredientDropDown = (DATA) => {
     dropdownIngredient.addEventListener('click', () => {
+
         if (arrow.classList.contains('arrow__reverse')) {
             hideList()
             dropdownButton.ariaExpanded = "false";
@@ -22,10 +18,34 @@ export const onclickIngredientDropDown = (DATA) => {
             dropdownButton.ariaExpanded = "true";
             displayFilteredDropdownIngredient(DATA)
             onClickIngredientLi(DATA)
+            onKeyboardIngredientLi(DATA)
             onInputIngredient(DATA)
         }
     })
 }
+
+// Gestion du dropdown au clavier
+export const onKeyboardIngredientsFilters = (DATA) => {
+
+    dropdownIngredient.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            hideList()
+            dropdownButton.ariaExpanded = "false";
+
+        }
+         if (e.key === 'Enter') {
+            
+            displayList()
+            dropdownButton.ariaExpanded = "true";
+            displayFilteredDropdownIngredient(DATA)
+            onClickIngredientLi(DATA)
+            onKeyboardIngredientLi(DATA)
+            onInputIngredient(DATA)
+        }
+    })
+    
+}
+
 
 const displayList = () => {
     const dropdownButton = document.querySelector('.dropdown__ingredient button')
@@ -48,8 +68,7 @@ const hideList = () => {
     dropdownButton.ariaExpanded = "false";
     dropdownIngredient.classList.remove('display')
     arrow.classList.remove('arrow__reverse')
-    
-   
+
 }
 
 const onInputIngredient = (DATA) => {
@@ -57,6 +76,7 @@ const onInputIngredient = (DATA) => {
     inputIngredient.addEventListener('input', () => {
         searchIngredients(DATA, inputIngredient.value)
         onClickIngredientLi(DATA)
+        onKeyboardIngredientLi(DATA)
     })
 }
 
@@ -111,7 +131,7 @@ export const onClickIngredientLi = (DATA) => {
     const lis = document.querySelectorAll(".dropdown__ingredient li")
     lis.forEach(li => {
         li.addEventListener("click", () => {
-            console.log('click li')
+
             const content = li.innerHTML.toLowerCase()
             createTag(content, 'ingredient', DATA)
 
@@ -121,6 +141,29 @@ export const onClickIngredientLi = (DATA) => {
             // ON RÉUTILISE LES DATA FILTRÉES
             displayRecipes(newData)
             displayFilteredDropdownIngredient(DATA)
+        })
+    })
+}
+
+
+// gestion des tags au clavier
+export const onKeyboardIngredientLi = (DATA) => {
+    const lis = document.querySelectorAll(".dropdown__ingredient li")
+    lis.forEach(li => {
+        li.addEventListener("keydown", (e) => {
+            if (e.key === 'Enter') {
+
+                const content = li.innerHTML.toLowerCase()
+                createTag(content, 'ingredient', DATA)
+    
+                // ON FILTRE LES DATA
+                const newData = filteringDataIngredients(DATA, content)
+    
+                // ON RÉUTILISE LES DATA FILTRÉES
+                displayRecipes(newData)
+                displayFilteredDropdownIngredient(DATA)
+            }
+           
         })
     })
 }

@@ -1,20 +1,23 @@
-import {
-    filteringDataIngredients
-} from "./ingredientDropdownHandler.js"
-import {
-    filteringDataAppliance
-} from "./appliancesDropdownHandler.js"
-import {
-    filteringDataUstensils
-} from "./ustensilsDropdownHandler.js"
+import { filteringDataIngredients } from "./ingredientDropdownHandler.js"
+import { filteringDataAppliance } from "./appliancesDropdownHandler.js"
+import { filteringDataUstensils } from "./ustensilsDropdownHandler.js"
+
 
 export const createTag = (content, type, DATA) => {
-
     const cross = document.createElement('div')
     cross.classList.add('cross')
+    cross.setAttribute('tabindex','0')
+    // cross.setAttribute('aria-label','cliquer pour enlever le filtre')
     cross.onclick = () => {
         deleteTag(cross, DATA)
     }
+    // Gestion des tags au clavier
+    cross.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+           deleteTag(cross, DATA)
+       }
+   })   	
+
     cross.innerHTML = '<img src="./assets/icones/crossSVG.svg" alt="clicker pour supprimer le tag">'
 
     const tagsList = document.querySelector('.tagsList')
@@ -127,7 +130,6 @@ export const deleteTag = (cross, DATA) => {
         newData = filteringDataIngredients(DATA, content)
 
     })
-    // console.log(newData)
 
     const tagUstensils = Array.from(document.querySelectorAll('.tag--ustensils'))
     const ustensilsContent = tagUstensils.map(tag => tag.querySelector('span').innerHTML.toLowerCase())
