@@ -165,12 +165,18 @@ export const deleteTag = (cross, DATA) => {
 // fermeture du dropdown quand on clic en dehors
 export const closeDropdown = () => {
     const dropdownOpened = document.querySelector('.dropdown .display')
+    const dropdownSection = document.querySelector('.dropdown-container')
 
     window.addEventListener('click', (e) => {
         console.log('window click')
-
-        if (dropdownOpened && e.target != dropdownOpened) {
+        // dropdownOpened && 
+        if (dropdownOpened && e.target != dropdownSection) {
+            //import hideList?
+            const dropdownButton = document.querySelector('.dropdown button')
+            const arrow = dropdownOpened.querySelector('.arrow')
             dropdownOpened.classList.remove('display')
+            arrow.classList.remove('arrow__reverse')
+            dropdownButton.ariaExpanded = "false";
             console.log('ferme le dropdown')
             
         }
