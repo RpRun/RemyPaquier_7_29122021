@@ -1,4 +1,8 @@
-export const inputPrincipal = () => {
+import { displayFilteredDropdownIngredient } from "./ingredientDropdownHandler.js";
+import { displayFilteredDropdownUstensils } from "./ustensilsDropdownHandler.js";
+import { displayFilteredDropdownAppliance } from "./appliancesDropdownHandler.js";
+
+export const inputPrincipal = (DATA) => {
     const searchInput = document.querySelector("#search-bar-Field")
 
 
@@ -16,6 +20,10 @@ export const inputPrincipal = () => {
 
             // A partir de 3 lettres dans le champ de recherche, si la liste des recettes comporte les 3 lettres
             if (searchedString.length > 2 && searchedWord.length > 2 && recipesTextContent.includes(searchedWord)) {
+                // on efface toutes les recettes
+                DATA.forEach(recipe => {
+                    recipe.display = false
+                });
 
                 errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden')
                 // on cache toute la liste
@@ -32,10 +40,15 @@ export const inputPrincipal = () => {
 
                     // Si une des recettes comporte la chaine de charactere renseignée dans le champ de recherche
                     if (recipesListItem.innerHTML.toLowerCase().includes(searchedWord)) {
+                        const id = recipesListItem.id.replace('iid-', '')
+
+                        const recipe = DATA.findIndex((oneRecipe) => oneRecipe.id.toString() === id)
+
+                        DATA[recipe].display = true
+
                         // on fait reapparaitre cette recette   
                         recipesListItem.classList.remove("thumbnails__card--hidden")
                     }
-
                 }
 
             } else {
@@ -57,11 +70,12 @@ export const inputPrincipal = () => {
                         // on cache le message d' erreur
                         errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden')
                     }
-
                 }
-
             }
-        }
 
+        }
+        displayFilteredDropdownIngredient(DATA)
+        displayFilteredDropdownUstensils(DATA)
+        displayFilteredDropdownAppliance(DATA)
     })
 }

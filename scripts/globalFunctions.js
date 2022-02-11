@@ -92,7 +92,7 @@ export const displayRecipes = (DATA) => {
             }
 
             const card = `
-                <li tabindex="0" class="thumbnails__card">
+                <li id="iid-${recipe.id}" tabindex="0" class="thumbnails__card">
                     <img class="thumbnails__card--img" src="https://picsum.photos/200/300?random=1" alt="random picture to simulate recipe's illustration">
                     <h2 class="thumbnails__heading"><span class="thumbnails__heading--recipeTitle"> ${recipe.name}</span>
                         <span class="thumbnails__heading--timeToCook">

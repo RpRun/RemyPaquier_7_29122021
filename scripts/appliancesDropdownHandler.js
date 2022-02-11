@@ -186,7 +186,7 @@ const createFilterList = (elementToShow) => {
 }
 
 
-const displayFilteredDropdownAppliance = (DATA) => {
+export const displayFilteredDropdownAppliance = (DATA) => {
     // on va récupérer tous les ustensiles qui sont dans les recettes en display == true
     const myAppliance = []
 
