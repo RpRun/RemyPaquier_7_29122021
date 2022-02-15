@@ -1,19 +1,13 @@
-import {
-    filteringDataIngredients
-} from "./ingredientDropdownHandler.js"
-import {
-    filteringDataAppliance
-} from "./appliancesDropdownHandler.js"
-import {
-    filteringDataUstensils
-} from "./ustensilsDropdownHandler.js"
+import { filteringDataIngredients } from "./ingredientDropdownHandler.js"
+import { filteringDataAppliance } from "./appliancesDropdownHandler.js"
+import { filteringDataUstensils } from "./ustensilsDropdownHandler.js"
 
 
 export const createTag = (content, type, DATA) => {
     const cross = document.createElement('div')
     cross.classList.add('cross')
     cross.setAttribute('tabindex', '0')
-    // cross.setAttribute('aria-label','cliquer pour enlever le filtre')
+    cross.setAttribute('aria-label','cliquer pour enlever le filtre')
     cross.onclick = () => {
         deleteTag(cross, DATA)
     }
@@ -24,7 +18,7 @@ export const createTag = (content, type, DATA) => {
         }
     })
 
-    cross.innerHTML = '<img src="./assets/icones/crossSVG.svg" alt="clicker pour supprimer le tag">'
+    cross.innerHTML = '<img aria-hidden="true" src="./assets/icones/crossSVG.svg" alt="">'
 
     const tagsList = document.querySelector('.tagsList')
     const div = document.createElement('div')
@@ -165,41 +159,19 @@ export const deleteTag = (cross, DATA) => {
 // fermeture du dropdown quand on clic en dehors
 export const closeDropdown = () => {
     const dropdowns = document.querySelectorAll('.dropdown')
-    const dropdownSection = document.querySelectorAll('.dropdown-container')
-    
-        window.addEventListener('click', (e) => {
-            dropdowns.forEach(dropdown => {
-                let isClickInside = dropdown.contains(e.target);
-                
-                if (!isClickInside) {               
-                    console.log('click en dehors')    
-                    dropdown.classList.remove('display')
 
-                    const dropdownButton = dropdown.querySelector('.dropdown button')
-                    dropdownButton.ariaExpanded = "false";
-                    const arrow = dropdown.querySelector('.arrow')
-                    arrow.classList.remove('arrow__reverse')
+    window.addEventListener('click', (e) => {
+        dropdowns.forEach(dropdown => {
+            let isClickInside = dropdown.contains(e.target);
 
-                    }
-                        
-                    
+            if (!isClickInside) {
+                dropdown.classList.remove('display')
+                dropdown.querySelector('.dropdown button').ariaExpanded = "false";
+                dropdown.querySelector('.arrow').classList.remove('arrow__reverse')
+            }
 
-            })
-           
-        
+        })
 
     })
 
-    
-
 }
-// var specifiedElement = document.getElementById('a');
-
-// //I'm using "click" but it works with any event
-// document.addEventListener('click', function(event) {
-//   var isClickInside = specifiedElement.contains(event.target);
-
-//   if (!isClickInside) {
-//     //the click was outside the specifiedElement, do something
-//   }
-// });
