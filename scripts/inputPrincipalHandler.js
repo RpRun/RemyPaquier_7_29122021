@@ -17,9 +17,9 @@ export const inputPrincipal = (DATA) => {
 
         for (let i = 0; i < splittedSearchString.length; i++) {
             const searchedWord = splittedSearchString[i];
-
+            // && searchedWord.length > 2
             // A partir de 3 lettres dans le champ de recherche, si la liste des recettes comporte les 3 lettres
-            if (searchedString.length > 2 && searchedWord.length > 2 && recipesTextContent.includes(searchedWord)) {
+            if (searchedString.length > 2  && recipesTextContent.includes(searchedWord)) {
                 // on efface toutes les recettes
                 DATA.forEach(recipe => {
                     recipe.display = false
@@ -39,7 +39,7 @@ export const inputPrincipal = (DATA) => {
                     recipesList.classList.remove("thumbnails__card--hidden")
 
                     // Si une des recettes comporte la chaine de charactere renseignée dans le champ de recherche
-                    if (recipesListItem.innerHTML.toLowerCase().includes(searchedWord)) {
+                    if (recipesListItem.innerHTML.toLowerCase().includes(searchedString.split())) {
                         const id = recipesListItem.id.replace('iid-', '')
 
                         const recipe = DATA.findIndex((oneRecipe) => oneRecipe.id.toString() === id)

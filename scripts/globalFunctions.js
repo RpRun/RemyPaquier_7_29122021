@@ -143,7 +143,7 @@ export const deleteTag = (cross, DATA) => {
     const tagAppliance = Array.from(document.querySelectorAll('.tag--appliance'))
     const applianceContent = tagAppliance.map(tag => tag.querySelector('span').innerHTML.toLowerCase())
 
-    // // en bouclant sur chaque ustensile
+    // // en bouclant sur chaque appareil
     applianceContent.forEach(content => {
         newData = filteringDataAppliance(DATA, content)
 
