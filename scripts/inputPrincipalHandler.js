@@ -28,7 +28,7 @@ export const inputPrincipal = (DATA) => {
                 errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden')
                 // on cache toute la liste
                 recipesList.classList.add("thumbnails__card--hidden")
-                console.log(searchedWord)
+                console.log(DATA)
 
                 // On boucle sur la liste des recettes
                 for (let i = 0; i < allRecipesThumbs.length; i++) {

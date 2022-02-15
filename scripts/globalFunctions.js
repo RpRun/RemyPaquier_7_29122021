@@ -164,23 +164,42 @@ export const deleteTag = (cross, DATA) => {
 
 // fermeture du dropdown quand on clic en dehors
 export const closeDropdown = () => {
-    const dropdownOpened = document.querySelector('.dropdown .display')
-    const dropdownSection = document.querySelector('.dropdown-container')
+    const dropdowns = document.querySelectorAll('.dropdown')
+    const dropdownSection = document.querySelectorAll('.dropdown-container')
+    
+        window.addEventListener('click', (e) => {
+            dropdowns.forEach(dropdown => {
+                let isClickInside = dropdown.contains(e.target);
+                
+                if (!isClickInside) {               
+                    console.log('click en dehors')    
+                    dropdown.classList.remove('display')
 
-    window.addEventListener('click', (e) => {
-        console.log('window click')
-        // dropdownOpened && 
-        if (dropdownOpened && e.target != dropdownSection) {
-            //import hideList?
-            const dropdownButton = document.querySelector('.dropdown button')
-            const arrow = dropdownOpened.querySelector('.arrow')
-            dropdownOpened.classList.remove('display')
-            arrow.classList.remove('arrow__reverse')
-            dropdownButton.ariaExpanded = "false";
-            console.log('ferme le dropdown')
-            
-        }
+                    const dropdownButton = dropdown.querySelector('.dropdown button')
+                    dropdownButton.ariaExpanded = "false";
+                    const arrow = dropdown.querySelector('.arrow')
+                    arrow.classList.remove('arrow__reverse')
+
+                    }
+                        
+                    
+
+            })
+           
+        
 
     })
 
+    
+
 }
+// var specifiedElement = document.getElementById('a');
+
+// //I'm using "click" but it works with any event
+// document.addEventListener('click', function(event) {
+//   var isClickInside = specifiedElement.contains(event.target);
+
+//   if (!isClickInside) {
+//     //the click was outside the specifiedElement, do something
+//   }
+// });

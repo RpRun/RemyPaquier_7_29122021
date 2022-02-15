@@ -7,13 +7,10 @@ const dropdownButton = document.querySelector('.dropdown__ustensils button')
 
 export const onclickUstensilsDropDown = (DATA) => {
     dropdownUstensils.addEventListener('click', () => {
-
         if (arrow.classList.contains('arrow__reverse')) {
             hideList()
             dropdownButton.ariaExpanded = "false";
-
         } else {
-
             displayList()
             dropdownButton.ariaExpanded = "true";
             displayFilteredDropdownUstensils(DATA)
@@ -26,12 +23,10 @@ export const onclickUstensilsDropDown = (DATA) => {
 
 // Gestion du dropdown au clavier
 export const onKeyboardUstensilsFilters = (DATA) => {
-
     dropdownUstensils.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             hideList()
             dropdownButton.ariaExpanded = "false";
-
         }
          if (e.key === 'Enter') {
             
@@ -55,7 +50,6 @@ const displayList = () => {
         dropdownOpened.classList.remove('display')
         dropdownButton.ariaExpanded = "false";
     }
-
     dropdownButton.ariaExpanded = "true";
     dropdownUstensils.classList.add('display')
     arrow.classList.add('arrow__reverse')

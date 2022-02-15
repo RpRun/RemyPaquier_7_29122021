@@ -7,11 +7,9 @@ const dropdownButton = document.querySelector('.dropdown__ingredient button')
 
 export const onclickIngredientDropDown = (DATA) => {
     dropdownIngredient.addEventListener('click', () => {
-
         if (arrow.classList.contains('arrow__reverse')) {
             hideList()
             dropdownButton.ariaExpanded = "false";
-
         } else {
             
             displayList()
