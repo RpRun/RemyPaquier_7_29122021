@@ -5,7 +5,6 @@ import { displayFilteredDropdownAppliance } from "./appliancesDropdownHandler.js
 export const inputPrincipal = (DATA) => {
     const searchInput = document.querySelector("#search-bar-Field")
 
-
     searchInput.addEventListener('input', (e) => {
         const searchedString = e.target.value.toLowerCase();
         const allRecipesThumbs = document.querySelectorAll(".thumbnails__card")
@@ -13,7 +12,6 @@ export const inputPrincipal = (DATA) => {
         const errorSearchMessage = document.querySelector('.error-message')
         const splittedSearchString = searchedString.split(' ');
         const recipesTextContent = recipesList.innerHTML.toLowerCase()
-
 
         for (let i = 0; i < splittedSearchString.length; i++) {
             const searchedWord = splittedSearchString[i];
@@ -38,7 +36,7 @@ export const inputPrincipal = (DATA) => {
                     // on fait reapparaitre la liste de recettes
                     recipesList.classList.remove("thumbnails__card--hidden")
 
-                    // Si une des recettes comporte la chaine de charactere renseignée dans le champ de recherche
+                    // Si une des recettes comporte la ou les chaines de characteres renseignées dans le champ de recherche
                     if (recipesListItem.innerHTML.toLowerCase().includes(searchedString.split())) {
                         const id = recipesListItem.id.replace('iid-', '')
 

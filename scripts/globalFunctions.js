@@ -158,16 +158,16 @@ export const deleteTag = (cross, DATA) => {
 
 // fermeture du dropdown quand on clic en dehors
 export const closeDropdown = () => {
-    const dropdowns = document.querySelectorAll('.dropdown')
+    const dropdowns = document.querySelectorAll('.dropdown');
 
     window.addEventListener('click', (e) => {
         dropdowns.forEach(dropdown => {
             let isClickInside = dropdown.contains(e.target);
 
             if (!isClickInside) {
-                dropdown.classList.remove('display')
+                dropdown.classList.remove('display');
                 dropdown.querySelector('.dropdown button').ariaExpanded = "false";
-                dropdown.querySelector('.arrow').classList.remove('arrow__reverse')
+                dropdown.querySelector('.arrow').classList.remove('arrow__reverse');
             }
 
         })

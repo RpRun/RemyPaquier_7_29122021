@@ -28,8 +28,7 @@ export const onKeyboardUstensilsFilters = (DATA) => {
             hideList()
             dropdownButton.ariaExpanded = "false";
         }
-         if (e.key === 'Enter') {
-            
+         if (e.key === 'Enter') {            
             displayList()
             dropdownButton.ariaExpanded = "true";
             displayFilteredDropdownUstensils(DATA)
@@ -86,7 +85,6 @@ const searchUstensils = (DATA, inputValue) => {
     })
 
     let UstensilsToShow = []
-
     if(inputValue.length >= 3) {
         filteredUstensils.forEach(ust => {
             if(ust.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0) {
@@ -96,9 +94,7 @@ const searchUstensils = (DATA, inputValue) => {
     } else {
         UstensilsToShow = filteredUstensils
     }
-
     createFilterList(UstensilsToShow)
-
 }
 
 

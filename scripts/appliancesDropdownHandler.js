@@ -1,25 +1,25 @@
 import { displayRecipes, createTag, orderList } from "./globalFunctions.js"
 
-const dropdownAppliance = document.querySelector('.dropdown__appliance')
-const arrow = dropdownAppliance.querySelector('.arrow')
-const InputAppliance = document.querySelector('.dropdown__appliance input')
-const dropdownButton = document.querySelector('.dropdown__appliance button')
+const dropdownAppliance = document.querySelector('.dropdown__appliance');
+const arrow = dropdownAppliance.querySelector('.arrow');
+const InputAppliance = document.querySelector('.dropdown__appliance input');
+const dropdownButton = document.querySelector('.dropdown__appliance button');
 
 export const onclickAppliancesDropDown = (DATA) => {
     dropdownAppliance.addEventListener('click', () => {
         
         if (arrow.classList.contains('arrow__reverse')) {
-            hideList()
+            hideList();
             dropdownButton.ariaExpanded = "false";
             
         } else {
             
-            displayList()
+            displayList();
             dropdownButton.ariaExpanded = "true";
-            displayFilteredDropdownAppliance(DATA)
-            onClickApplianceLi(DATA)
-            onKeyboardAppliancesLi(DATA)
-            onInputAppliance(DATA)
+            displayFilteredDropdownAppliance(DATA);
+            onClickApplianceLi(DATA);
+            onKeyboardAppliancesLi(DATA);
+            onInputAppliance(DATA);
         }
     })
 }
@@ -29,7 +29,7 @@ export const onKeyboardAppliancesFilters = (DATA) => {
 
     dropdownAppliance.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            hideList()
+            hideList();
             dropdownButton.ariaExpanded = "false";
 
         }
@@ -37,43 +37,43 @@ export const onKeyboardAppliancesFilters = (DATA) => {
             
             displayList()
             dropdownButton.ariaExpanded = "true";
-            displayFilteredDropdownAppliance(DATA)
-            onClickApplianceLi(DATA)
-            onKeyboardAppliancesLi(DATA)
-            onInputAppliance(DATA)
+            displayFilteredDropdownAppliance(DATA);
+            onClickApplianceLi(DATA);
+            onKeyboardAppliancesLi(DATA);
+            onInputAppliance(DATA);
         }
     })
     
 }
 
 const displayList = () => {
-    const dropdownButton = document.querySelector('.dropdown__appliance button')
-    const dropdownOpened = document.querySelector('.display')
-    const reversedArrows = document.querySelectorAll('.arrow__reverse')
-    reversedArrows.forEach(el => el.classList.remove('arrow__reverse'))
+    const dropdownButton = document.querySelector('.dropdown__appliance button');
+    const dropdownOpened = document.querySelector('.display');
+    const reversedArrows = document.querySelectorAll('.arrow__reverse');
+    reversedArrows.forEach(el => el.classList.remove('arrow__reverse'));
 
     if (dropdownOpened) {
         dropdownOpened.classList.remove('display')
         dropdownButton.ariaExpanded = "false";
     }
     dropdownButton.ariaExpanded = "true";
-    dropdownAppliance.classList.add('display')
-    arrow.classList.add('arrow__reverse')
-    InputAppliance.focus()
+    dropdownAppliance.classList.add('display');
+    arrow.classList.add('arrow__reverse');
+    InputAppliance.focus();
 }
 
 const hideList = () => {
     dropdownButton.ariaExpanded = "false";
-    dropdownAppliance.classList.remove('display')
-    arrow.classList.remove('arrow__reverse')
+    dropdownAppliance.classList.remove('display');
+    arrow.classList.remove('arrow__reverse');
 }
 
 const onInputAppliance = (DATA) => {
 
     InputAppliance.addEventListener('input', () => {
-        searchAppliance(DATA, InputAppliance.value)
-        onClickApplianceLi(DATA)
-        onKeyboardAppliancesLi(DATA)
+        searchAppliance(DATA, InputAppliance.value);
+        onClickApplianceLi(DATA);
+        onKeyboardAppliancesLi(DATA);
     })
 }
 
@@ -83,12 +83,12 @@ const searchAppliance = (DATA, inputValue) => {
     const myAppliance = []
     DATA.forEach((recipe) => {
         if (recipe.display) {
-            myAppliance.push(recipe.appliance)
+            myAppliance.push(recipe.appliance);
         }
     })
     // Conserve une seule apparition de l'ustensile:
     const filteredAppliances = myAppliance.filter((item, index) => {
-        return myAppliance.indexOf(item) == index
+        return myAppliance.indexOf(item) == index;
     })
 
     let applianceToShow = []
@@ -96,15 +96,15 @@ const searchAppliance = (DATA, inputValue) => {
     if (inputValue.length >= 3) {
         filteredAppliances.forEach(appl => {
             if (appl.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0) {
-                applianceToShow.push(appl)
+                applianceToShow.push(appl);
             }
         });
     } else {
-        applianceToShow = filteredAppliances
+        applianceToShow = filteredAppliances;
     }
 
     // Creation de la liste du dropdown
-    createFilterList(applianceToShow)
+    createFilterList(applianceToShow);
 
 }
 
@@ -113,7 +113,7 @@ export const filteringDataAppliance = (DATA, appliance) => {
     DATA.forEach(recipe => {
         if (recipe.display) {
             if (recipe.appliance.toLowerCase() !== appliance) {
-                recipe.display = false
+                recipe.display = false;
             }
         }
 
@@ -122,20 +122,20 @@ export const filteringDataAppliance = (DATA, appliance) => {
 }
 
 export const onClickApplianceLi = (DATA) => {
-    const lis = document.querySelectorAll(".dropdown__appliance li")
+    const lis = document.querySelectorAll(".dropdown__appliance li");
 
     lis.forEach(li => {
         li.addEventListener("click", () => {
 
-            const content = li.innerHTML.toLowerCase()
-            createTag(content, 'appliance', DATA)
+            const content = li.innerHTML.toLowerCase();
+            createTag(content, 'appliance', DATA);
 
             // ON FILTRE LES DATA
-            const newData = filteringDataAppliance(DATA, content)
+            const newData = filteringDataAppliance(DATA, content);
 
             // ON RÉUTILISE LES DATA FILTRÉES
-            displayRecipes(newData)
-            displayFilteredDropdownAppliance(DATA)
+            displayRecipes(newData);
+            displayFilteredDropdownAppliance(DATA);
         })
     })
 }
@@ -146,15 +146,15 @@ export const onKeyboardAppliancesLi = (DATA) => {
         li.addEventListener("keydown", (e) => {
             if (e.key === 'Enter') {
 
-                const content = li.innerHTML.toLowerCase()
-                createTag(content, 'appliance', DATA)
+                const content = li.innerHTML.toLowerCase();
+                createTag(content, 'appliance', DATA);
     
                 // ON FILTRE LES DATA
-                const newData = filteringDataAppliance(DATA, content)
+                const newData = filteringDataAppliance(DATA, content);
     
                 // ON RÉUTILISE LES DATA FILTRÉES
-                displayRecipes(newData)
-                displayFilteredDropdownAppliance(DATA)
+                displayRecipes(newData);
+                displayFilteredDropdownAppliance(DATA);
             }
            
         })
@@ -164,24 +164,24 @@ export const onKeyboardAppliancesLi = (DATA) => {
 
 const createFilterList = (elementToShow) => {
     // Creation de la liste du dropdown
-    const list = document.createElement(`ul`)
+    const list = document.createElement(`ul`);
 
     // Classement des elements par ordre alphabetique
-    orderList(elementToShow)
+    orderList(elementToShow);
+
     for (let i = 0; i < elementToShow.length; i++) {
         const element = elementToShow[i];
-        const li = document.createElement("li")
-        li.innerHTML = element
-
-        list.append(li)
-        list.setAttribute(`tabindex`, -1)
-        li.setAttribute(`tabindex`, 0)
+        const li = document.createElement("li");
+        li.innerHTML = element;
+        list.append(li);
+        list.setAttribute(`tabindex`, -1);
+        li.setAttribute(`tabindex`, 0);
 
     }
     // Insertion du "bloc liste" au niveau de la liste ustensiles
-    const blocList = document.querySelector('.appliance-list')
+    const blocList = document.querySelector('.appliance-list');
     blocList.innerHTML = ''
-    blocList.append(list)
+    blocList.append(list);
 
 }
 
@@ -192,7 +192,7 @@ export const displayFilteredDropdownAppliance = (DATA) => {
 
     DATA.forEach((recipe) => {
         if (recipe.display) {
-            myAppliance.push(recipe.appliance)
+            myAppliance.push(recipe.appliance);
         }
     })
     // Conserve une seule apparition de l'ustensile:
@@ -202,6 +202,6 @@ export const displayFilteredDropdownAppliance = (DATA) => {
     })
 
     // Creation de la liste du dropdown
-    createFilterList(filteredAppliance)
+    createFilterList(filteredAppliance);
   
 }

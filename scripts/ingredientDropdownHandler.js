@@ -46,35 +46,33 @@ export const onKeyboardIngredientsFilters = (DATA) => {
 
 
 const displayList = () => {
-    const dropdownButton = document.querySelector('.dropdown__ingredient button')
-    const dropdownOpened = document.querySelector('.display')
-    const reversedArrows = document.querySelectorAll('.arrow__reverse')
-    reversedArrows.forEach(el => el.classList.remove('arrow__reverse'))
+    const dropdownButton = document.querySelector('.dropdown__ingredient button');
+    const dropdownOpened = document.querySelector('.display');
+    const reversedArrows = document.querySelectorAll('.arrow__reverse');
+    reversedArrows.forEach(el => el.classList.remove('arrow__reverse'));
 
     if (dropdownOpened) {
-        dropdownOpened.classList.remove('display')
+        dropdownOpened.classList.remove('display');
         dropdownButton.ariaExpanded = "false";
     }
     dropdownButton.ariaExpanded = "true";
-    dropdownIngredient.classList.add('display')
-    arrow.classList.add('arrow__reverse')
-    inputIngredient.focus()
+    dropdownIngredient.classList.add('display');
+    arrow.classList.add('arrow__reverse');
+    inputIngredient.focus();
 }
 
 const hideList = () => {
-    const dropdownButton = document.querySelector('.dropdown button')
+    const dropdownButton = document.querySelector('.dropdown button');
     dropdownButton.ariaExpanded = "false";
-    dropdownIngredient.classList.remove('display')
-    arrow.classList.remove('arrow__reverse')
-
+    dropdownIngredient.classList.remove('display');
+    arrow.classList.remove('arrow__reverse');
 }
 
 const onInputIngredient = (DATA) => {
-
     inputIngredient.addEventListener('input', () => {
-        searchIngredients(DATA, inputIngredient.value)
-        onClickIngredientLi(DATA)
-        onKeyboardIngredientLi(DATA)
+        searchIngredients(DATA, inputIngredient.value);
+        onClickIngredientLi(DATA);
+        onKeyboardIngredientLi(DATA);
     })
 }
 
@@ -104,7 +102,7 @@ const searchIngredients = (DATA, inputValue) => {
         ingredientToShow = filteredIngredients
     }
 
-    createFilterList(ingredientToShow)
+    createFilterList(ingredientToShow);
 
 }
 
@@ -175,18 +173,17 @@ const createFilterList = (elementToShow) => {
     orderList(elementToShow)
     for (let i = 0; i < elementToShow.length; i++) {
         const element = elementToShow[i];
-        const li = document.createElement("li")
+        const li = document.createElement("li");
         li.innerHTML = element
-
-        list.append(li)
-        list.setAttribute(`tabindex`, -1)
-        li.setAttribute(`tabindex`, 0)
+        list.append(li);
+        list.setAttribute(`tabindex`, -1);
+        li.setAttribute(`tabindex`, 0);
 
     }
     // Insertion du "bloc liste" au niveau de la liste ustensiles
-    const blocList = document.querySelector('.ingredients-list')
+    const blocList = document.querySelector('.ingredients-list');
     blocList.innerHTML = ''
-    blocList.append(list)
+    blocList.append(list);
 
 }
 
