@@ -57,7 +57,6 @@
         margin-left: 1rem;
         margin-right: 3rem;
 
-
         &::placeholder {
             color: #fff;
         }
@@ -98,7 +97,6 @@
       
     }
 
-    // devrait fonctionner pour les autres dropdowns
     &.display {
         .dropdown__list {
             display: block;
@@ -121,7 +119,6 @@
 .dropdown button:focus {
     border-color: pink;
 }
-
 
 .arrow {
     transition: 0.3s;
