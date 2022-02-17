@@ -18,7 +18,7 @@ export const inputPrincipal = (DATA) => {
             if (searchedString.length > 2  && recipesTextContent.includes(searchedWord)) {
                 // on efface toutes les recettes
                 DATA.forEach(recipe => {
-                    recipe.display = false
+                    recipe.display = false;
                 });
 
                 errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden');
@@ -37,12 +37,12 @@ export const inputPrincipal = (DATA) => {
 
                         const recipe = DATA.findIndex((oneRecipe) => oneRecipe.id.toString() === id);
 
-                        DATA[recipe].display = true
+                        DATA[recipe].display = true;
 
                         // on fait reapparaitre cette recette   
                         recipesListItem.classList.remove("thumbnails__card--hidden");
                     }
-                })
+                });
 
             } else {
 
@@ -61,13 +61,13 @@ export const inputPrincipal = (DATA) => {
                         recipesList.classList.remove("thumbnails__card--hidden");
                         // on cache le message d' erreur
                         errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden');
-                    })
+                    });
                 }
             }
 
-        })
+        });
         displayFilteredDropdownIngredient(DATA);
         displayFilteredDropdownUstensils(DATA);
         displayFilteredDropdownAppliance(DATA);
-    })
-}
+    });
+};
