@@ -1,60 +1,80 @@
-import {
-    displayRecipes,
-    createTag,
-    orderList
-} from "./globalFunctions.js"
+import { displayRecipes, createTag, orderList } from "./globalFunctions.js";
 
-const dropdownIngredient = document.querySelector('.dropdown__ingredient')
-const arrow = dropdownIngredient.querySelector('.dropdown__ingredient .arrow')
-const inputIngredient = document.querySelector('.dropdown__ingredient input')
-const dropdownButton = document.querySelector('.dropdown__ingredient button')
-
+const dropdownIngredient = document.querySelector('.dropdown__ingredient');
+const arrow = dropdownIngredient.querySelector('.dropdown__ingredient .arrow');
+const inputIngredient = document.querySelector('.dropdown__ingredient input');
+const dropdownButton = document.querySelector('.dropdown__ingredient button');
 
 export const onclickIngredientDropDown = (DATA) => {
     dropdownIngredient.addEventListener('click', () => {
         if (arrow.classList.contains('arrow__reverse')) {
             hideList()
             dropdownButton.ariaExpanded = "false";
-
         } else {
             
             displayList()
             dropdownButton.ariaExpanded = "true";
-            displayFilteredDropdownIngredient(DATA)
-            onClickIngredientLi(DATA)
-            onInputIngredient(DATA)
+            displayFilteredDropdownIngredient(DATA);
+            onClickIngredientLi(DATA);
+            onKeyboardIngredientLi(DATA);
+            onInputIngredient(DATA);
         }
     })
 }
 
+// Gestion du dropdown au clavier
+export const onKeyboardIngredientsFilters = (DATA) => {
+
+    dropdownIngredient.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            hideList()
+            dropdownButton.ariaExpanded = "false";
+
+        }
+        if (e.key === 'Enter') {
+            
+            displayList()
+            dropdownButton.ariaExpanded = "true";
+            displayFilteredDropdownIngredient(DATA);
+            onClickIngredientLi(DATA);
+            onKeyboardIngredientLi(DATA);
+            onInputIngredient(DATA);
+        }
+        
+    })
+    
+}
+
+
 const displayList = () => {
-    const dropdownButton = document.querySelector('.dropdown__ingredient button')
-    const dropdownOpened = document.querySelector('.display')
-    const reversedArrows = document.querySelectorAll('.arrow__reverse')
-    reversedArrows.forEach(el => el.classList.remove('arrow__reverse'))
+    const dropdownButton = document.querySelector('.dropdown__ingredient button');
+    const dropdownOpened = document.querySelector('.display');
+    const reversedArrows = document.querySelectorAll('.arrow__reverse');
+
+    reversedArrows.forEach(el => el.classList.remove('arrow__reverse'));
 
     if (dropdownOpened) {
-        dropdownOpened.classList.remove('display')
+        dropdownOpened.classList.remove('display');
         dropdownButton.ariaExpanded = "false";
     }
     dropdownButton.ariaExpanded = "true";
-    dropdownIngredient.classList.add('display')
-    arrow.classList.add('arrow__reverse')
-    inputIngredient.focus()
+    dropdownIngredient.classList.add('display');
+    arrow.classList.add('arrow__reverse');
+    inputIngredient.focus();
 }
 
 const hideList = () => {
-    const dropdownButton = document.querySelector('.dropdown button')
+    const dropdownButton = document.querySelector('.dropdown button');
     dropdownButton.ariaExpanded = "false";
-    dropdownIngredient.classList.remove('display')
-    arrow.classList.remove('arrow__reverse')
+    dropdownIngredient.classList.remove('display');
+    arrow.classList.remove('arrow__reverse');
 }
 
 const onInputIngredient = (DATA) => {
-
     inputIngredient.addEventListener('input', () => {
-        searchIngredients(DATA, inputIngredient.value)
-        onClickIngredientLi(DATA)
+        searchIngredients(DATA, inputIngredient.value);
+        onClickIngredientLi(DATA);
+        onKeyboardIngredientLi(DATA);
     })
 }
 
@@ -84,7 +104,7 @@ const searchIngredients = (DATA, inputValue) => {
         ingredientToShow = filteredIngredients
     }
 
-    createFilterList(ingredientToShow)
+    createFilterList(ingredientToShow);
 
 }
 
@@ -109,16 +129,39 @@ export const onClickIngredientLi = (DATA) => {
     const lis = document.querySelectorAll(".dropdown__ingredient li")
     lis.forEach(li => {
         li.addEventListener("click", () => {
-            console.log('click li')
-            const content = li.innerHTML.toLowerCase()
-            createTag(content, 'ingredient', DATA)
+
+            const content = li.innerHTML.toLowerCase();
+            createTag(content, 'ingredient', DATA);
 
             // ON FILTRE LES DATA
-            const newData = filteringDataIngredients(DATA, content)
+            const newData = filteringDataIngredients(DATA, content);
 
             // ON RÉUTILISE LES DATA FILTRÉES
-            displayRecipes(newData)
-            displayFilteredDropdownIngredient(DATA)
+            displayRecipes(newData);
+            displayFilteredDropdownIngredient(DATA);
+        })
+    })
+}
+
+
+// gestion des tags au clavier
+export const onKeyboardIngredientLi = (DATA) => {
+    const lis = document.querySelectorAll(".dropdown__ingredient li");
+    lis.forEach(li => {
+        li.addEventListener("keydown", (e) => {
+            if (e.key === 'Enter') {
+
+                const content = li.innerHTML.toLowerCase();
+                createTag(content, 'ingredient', DATA);
+    
+                // ON FILTRE LES DATA
+                const newData = filteringDataIngredients(DATA, content);
+    
+                // ON RÉUTILISE LES DATA FILTRÉES
+                displayRecipes(newData);
+                displayFilteredDropdownIngredient(DATA);
+            }
+           
         })
     })
 }
@@ -126,24 +169,22 @@ export const onClickIngredientLi = (DATA) => {
 
 const createFilterList = (elementToShow) => {
     // Creation de la liste du dropdown
-    const list = document.createElement(`ul`)
+    const list = document.createElement(`ul`);
 
     // Classement des elements par ordre alphabetique
     orderList(elementToShow)
-
     elementToShow.forEach(element => {
-        const li = document.createElement("li")
+        const li = document.createElement("li");
         li.innerHTML = element
-    
-        list.append(li)
-        list.setAttribute(`tabindex`, -1)
-        li.setAttribute(`tabindex`, 0)
-    })
+        list.append(li);
+        list.setAttribute(`tabindex`, -1);
+        li.setAttribute(`tabindex`, 0);
 
+    })
     // Insertion du "bloc liste" au niveau de la liste ustensiles
-    const blocList = document.querySelector('.ingredients-list')
+    const blocList = document.querySelector('.ingredients-list');
     blocList.innerHTML = ''
-    blocList.append(list)
+    blocList.append(list);
 
 }
 
@@ -163,6 +204,6 @@ export const displayFilteredDropdownIngredient = (DATA) => {
     })
 
     // Creation de la liste du dropdown
-    createFilterList(filteredIngredients)
+    createFilterList(filteredIngredients);
 
 }
