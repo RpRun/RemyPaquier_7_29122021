@@ -1,26 +1,28 @@
-import {
-    filteringDataIngredients
-} from "./ingredientDropdownHandler.js"
-import {
-    filteringDataAppliance
-} from "./appliancesDropdownHandler.js"
-import {
-    filteringDataUstensils
-} from "./ustensilsDropdownHandler.js"
-// import { recipes } from '../data/recipes.js';
+import { filteringDataIngredients } from "./ingredientDropdownHandler.js";
+import { filteringDataAppliance } from "./appliancesDropdownHandler.js";
+import { filteringDataUstensils } from "./ustensilsDropdownHandler.js";
+
 
 export const createTag = (content, type, DATA) => {
-
-    const cross = document.createElement('div')
-    cross.classList.add('cross')
+    const cross = document.createElement('div');
+    cross.classList.add('cross');
+    cross.setAttribute('tabindex', '0');
+    cross.setAttribute('aria-label','cliquer pour enlever le filtre');
     cross.onclick = () => {
-        deleteTag(cross, DATA)
+        deleteTag(cross, DATA);
     }
-    cross.innerHTML = '<img src="./assets/icones/crossSVG.svg" alt="clicker pour supprimer le tag">'
+    // Gestion des tags au clavier
+    cross.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            deleteTag(cross, DATA);
+        }
+    })
 
-    const tagsList = document.querySelector('.tagsList')
-    const div = document.createElement('div')
-    div.classList.add('tag')
+    cross.innerHTML = '<img aria-hidden="true" src="./assets/icones/crossSVG.svg" alt="">'
+
+    const tagsList = document.querySelector('.tagsList');
+    const div = document.createElement('div');
+    div.classList.add('tag');
 
     switch (type) {
         case 'ingredient':
@@ -61,7 +63,7 @@ export const orderList = (element) => {
 
 
 export const displayRecipes = (DATA) => {
-    const recipesList = document.querySelector('.thumbnails-list')
+    const recipesList = document.querySelector('.thumbnails-list');
     // on enlève toutes les recettes
     recipesList.innerHTML = ''
 
@@ -84,7 +86,7 @@ export const displayRecipes = (DATA) => {
             }
 
             const card = `
-                <li tabindex="0" class="thumbnails__card">
+                <li id="iid-${recipe.id}" tabindex="0" class="thumbnails__card">
                     <img class="thumbnails__card--img" src="https://picsum.photos/200/300?random=1" alt="random picture to simulate recipe's illustration">
                     <h2 class="thumbnails__heading"><span class="thumbnails__heading--recipeTitle"> ${recipe.name}</span>
                         <span class="thumbnails__heading--timeToCook">
@@ -111,52 +113,69 @@ export const displayRecipes = (DATA) => {
 export const deleteTag = (cross, DATA) => {
 
     for (let i = 0; i < DATA.length; i++) {
-        const recipe = DATA[i];
+        const recipe = DATA[i];  
         recipe.display = true
-    }
+    };
     let newData = []
 
     // supprime le tag
     const clickedTag = cross.parentElement
-    clickedTag.remove()
+    clickedTag.remove();
 
     // // on recupere tous les tags restants
-    const tagIngredients = Array.from(document.querySelectorAll('.tag--ingredients'))
-    const ingredientsContent = tagIngredients.map(tag => tag.querySelector('span').innerHTML.toLowerCase())
+    const tagIngredients = Array.from(document.querySelectorAll('.tag--ingredients'));
+    const ingredientsContent = tagIngredients.map(tag => tag.querySelector('span').innerHTML.toLowerCase());
 
     // // en bouclant sur chaque ingrédient
     for (let i = 0; i < ingredientsContent.length; i++) {
         const content = ingredientsContent[i];
-        newData = filteringDataIngredients(DATA, content)
+        newData = filteringDataIngredients(DATA, content);
+
     }
-    // ingredientsContent.forEach(content => {
-    //     newData = filteringDataIngredients(DATA, content)
 
-    // })
-    // console.log(newData)
-
-    const tagUstensils = Array.from(document.querySelectorAll('.tag--ustensils'))
-    const ustensilsContent = tagUstensils.map(tag => tag.querySelector('span').innerHTML.toLowerCase())
+    const tagUstensils = Array.from(document.querySelectorAll('.tag--ustensils'));
+    const ustensilsContent = tagUstensils.map(tag => tag.querySelector('span').innerHTML.toLowerCase());
 
     // // en bouclant sur chaque ustensile
     for (let i = 0; i < ustensilsContent.length; i++) {
         const content = ustensilsContent[i];
-        newData = filteringDataUstensils(DATA, content)
+        newData = filteringDataUstensils(DATA, content);
 
     }
 
-    const tagAppliance = Array.from(document.querySelectorAll('.tag--appliance'))
-    const applianceContent = tagAppliance.map(tag => tag.querySelector('span').innerHTML.toLowerCase())
+    const tagAppliance = Array.from(document.querySelectorAll('.tag--appliance'));
+    const applianceContent = tagAppliance.map(tag => tag.querySelector('span').innerHTML.toLowerCase());
 
-    // // en bouclant sur chaque ustensile
-
+    // // en bouclant sur chaque appareil
     for (let i = 0; i < applianceContent.length; i++) {
         const content = applianceContent[i];
         newData = filteringDataAppliance(DATA, content)
+
     }
+
 
     if (newData.length == 0) {
         newData = DATA
     }
-    displayRecipes(newData)
+    displayRecipes(newData);
+}
+
+// fermeture du dropdown quand on clic en dehors
+export const closeDropdown = () => {
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    window.addEventListener('click', (e) => {
+        dropdowns.forEach(dropdown => {
+            let isClickInside = dropdown.contains(e.target);
+
+            if (!isClickInside) {
+                dropdown.classList.remove('display');
+                dropdown.querySelector('.dropdown button').ariaExpanded = "false";
+                dropdown.querySelector('.arrow').classList.remove('arrow__reverse');
+            }
+
+        })
+
+    })
+
 }
