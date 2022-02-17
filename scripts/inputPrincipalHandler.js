@@ -1,67 +1,78 @@
-export const inputPrincipal = () => {
-    const searchInput = document.querySelector("#search-bar-Field")
+import { displayFilteredDropdownIngredient } from "./ingredientDropdownHandler.js";
+import { displayFilteredDropdownUstensils } from "./ustensilsDropdownHandler.js";
+import { displayFilteredDropdownAppliance } from "./appliancesDropdownHandler.js";
 
+export const inputPrincipal = (DATA) => {
+    const searchInput = document.querySelector("#search-bar-Field");
 
     searchInput.addEventListener('input', (e) => {
         const searchedString = e.target.value.toLowerCase();
-        const allRecipesThumbs = document.querySelectorAll(".thumbnails__card")
-        const recipesList = document.querySelector(".thumbnails-list")
-        const errorSearchMessage = document.querySelector('.error-message')
+        const allRecipesThumbs = document.querySelectorAll(".thumbnails__card");
+        const recipesList = document.querySelector(".thumbnails-list");
+        const errorSearchMessage = document.querySelector('.error-message');
         const splittedSearchString = searchedString.split(' ');
-        const recipesTextContent = recipesList.innerHTML.toLowerCase()
-
+        const recipesTextContent = recipesList.innerHTML.toLowerCase();
 
         for (let i = 0; i < splittedSearchString.length; i++) {
             const searchedWord = splittedSearchString[i];
-
             // A partir de 3 lettres dans le champ de recherche, si la liste des recettes comporte les 3 lettres
-            if (searchedString.length > 2 && searchedWord.length > 2 && recipesTextContent.includes(searchedWord)) {
+            if (searchedString.length > 2  && recipesTextContent.includes(searchedWord)) {
 
-                errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden')
+                // on efface toutes les recettes
+                for (let i = 0; i < DATA.length; i++) {
+                    const recipe = DATA[i];
+                    recipe.display = false
+                }
+
+                errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden');
                 // on cache toute la liste
-                recipesList.classList.add("thumbnails__card--hidden")
-                console.log(searchedWord)
-
+                recipesList.classList.add("thumbnails__card--hidden");
                 // On boucle sur la liste des recettes
                 for (let i = 0; i < allRecipesThumbs.length; i++) {
                     const recipesListItem = allRecipesThumbs[i];
                     // on cache toutes les cartes de la liste de recettes
-                    recipesListItem.classList.add("thumbnails__card--hidden")
+                    recipesListItem.classList.add("thumbnails__card--hidden");
                     // on fait reapparaitre la liste de recettes
-                    recipesList.classList.remove("thumbnails__card--hidden")
+                    recipesList.classList.remove("thumbnails__card--hidden");
 
-                    // Si une des recettes comporte la chaine de charactere renseignée dans le champ de recherche
-                    if (recipesListItem.innerHTML.toLowerCase().includes(searchedWord)) {
+                    // Si une des recettes comporte la ou les chaines de characteres renseignées dans le champ de recherche
+                    if (recipesListItem.innerHTML.toLowerCase().includes(searchedString.split())) {
+                        const id = recipesListItem.id.replace('iid-', '');
+
+                        const recipe = DATA.findIndex((oneRecipe) => oneRecipe.id.toString() === id);
+
+                        DATA[recipe].display = true
+
                         // on fait reapparaitre cette recette   
-                        recipesListItem.classList.remove("thumbnails__card--hidden")
+                        recipesListItem.classList.remove("thumbnails__card--hidden");
                     }
-
                 }
 
             } else {
 
                 // on cache tout le monde
-                recipesList.classList.add("thumbnails__card--hidden")
+                recipesList.classList.add("thumbnails__card--hidden");
 
                 // on affiche le message d'erreur
-                errorSearchMessage.classList.replace('error-message--hidden', 'error-message--displayed')
+                errorSearchMessage.classList.replace('error-message--hidden', 'error-message--displayed');
 
                 if (searchedString.length < 3) {
                     // On boucle sur la liste des recettes
                     for (let i = 0; i < allRecipesThumbs.length; i++) {
                         const recipesListItem = allRecipesThumbs[i];
                         // on fait reapparaitre toutes les cartes de la liste de recettes
-                        recipesListItem.classList.remove("thumbnails__card--hidden")
+                        recipesListItem.classList.remove("thumbnails__card--hidden");
                         // on fait reapparaitre la liste de recettes
-                        recipesList.classList.remove("thumbnails__card--hidden")
+                        recipesList.classList.remove("thumbnails__card--hidden");
                         // on cache le message d' erreur
-                        errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden')
+                        errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden');
                     }
-
                 }
-
             }
-        }
 
+        }
+        displayFilteredDropdownIngredient(DATA);
+        displayFilteredDropdownUstensils(DATA);
+        displayFilteredDropdownAppliance(DATA);
     })
 }

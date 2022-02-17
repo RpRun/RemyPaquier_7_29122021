@@ -9,6 +9,7 @@ const arrow = dropdownUstensils.querySelector('.arrow')
 const inputUstensils = dropdownUstensils.querySelector('input')
 
 export const onclickUstensilsDropDown = (DATA) => {
+    const dropdownButton = document.querySelector('.dropdown button')
     dropdownUstensils.addEventListener('click', () => {
         if (arrow.classList.contains('arrow__reverse')) {
             hideList()
@@ -26,6 +27,7 @@ export const onclickUstensilsDropDown = (DATA) => {
 const displayList = () => {
     const dropdownOpened = document.querySelector('.display')
     const reversedArrows = document.querySelectorAll('.arrow__reverse')
+    const dropdownButton = document.querySelector('.dropdown button')
     // reversedArrows.forEach(el => el.classList.remove('arrow__reverse'))
     for (let i = 0; i < reversedArrows.length; i++) {
         const el = reversedArrows[i];
@@ -150,7 +152,7 @@ const createFilterList = (elementToShow) => {
 }
 
 
-const displayFilteredDropdownUstensils = (DATA) => {
+export const displayFilteredDropdownUstensils = (DATA) => {
     // on va récupérer tous les ustensiles qui sont dans les recettes en display == true
     const myUstensils = []
 
