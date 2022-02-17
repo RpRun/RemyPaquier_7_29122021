@@ -21,7 +21,7 @@ export const inputPrincipal = (DATA) => {
                 // on efface toutes les recettes
                 for (let i = 0; i < DATA.length; i++) {
                     const recipe = DATA[i];
-                    recipe.display = false
+                    recipe.display = false;
                 }
 
                 errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden');
@@ -41,7 +41,7 @@ export const inputPrincipal = (DATA) => {
 
                         const recipe = DATA.findIndex((oneRecipe) => oneRecipe.id.toString() === id);
 
-                        DATA[recipe].display = true
+                        DATA[recipe].display = true;
 
                         // on fait reapparaitre cette recette   
                         recipesListItem.classList.remove("thumbnails__card--hidden");
@@ -74,5 +74,5 @@ export const inputPrincipal = (DATA) => {
         displayFilteredDropdownIngredient(DATA);
         displayFilteredDropdownUstensils(DATA);
         displayFilteredDropdownAppliance(DATA);
-    })
-}
+    });
+};
