@@ -147,12 +147,13 @@ export const onClickIngredientLi = (DATA) => {
             displayRecipes(newData);
             displayFilteredDropdownIngredient(DATA);
         })
-    })
+    }
 }
 
 
 // gestion des tags au clavier
 export const onKeyboardIngredientLi = (DATA) => {
+    const lis = document.querySelectorAll(".dropdown__ingredient li")
     for (let i = 0; i < lis.length; i++) {
         const li = lis[i];
         li.addEventListener("keydown", (e) => {
