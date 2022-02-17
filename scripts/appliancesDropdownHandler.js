@@ -53,7 +53,7 @@ const displayList = () => {
     reversedArrows.forEach(el => el.classList.remove('arrow__reverse'));
 
     if (dropdownOpened) {
-        dropdownOpened.classList.remove('display')
+        dropdownOpened.classList.remove('display');
         dropdownButton.ariaExpanded = "false";
     }
     dropdownButton.ariaExpanded = "true";

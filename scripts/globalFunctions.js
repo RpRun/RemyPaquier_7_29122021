@@ -1,28 +1,28 @@
-import { filteringDataIngredients } from "./ingredientDropdownHandler.js"
-import { filteringDataAppliance } from "./appliancesDropdownHandler.js"
-import { filteringDataUstensils } from "./ustensilsDropdownHandler.js"
+import { filteringDataIngredients } from "./ingredientDropdownHandler.js";
+import { filteringDataAppliance } from "./appliancesDropdownHandler.js";
+import { filteringDataUstensils } from "./ustensilsDropdownHandler.js";
 
 
 export const createTag = (content, type, DATA) => {
-    const cross = document.createElement('div')
-    cross.classList.add('cross')
-    cross.setAttribute('tabindex', '0')
-    cross.setAttribute('aria-label','cliquer pour enlever le filtre')
+    const cross = document.createElement('div');
+    cross.classList.add('cross');
+    cross.setAttribute('tabindex', '0');
+    cross.setAttribute('aria-label','cliquer pour enlever le filtre');
     cross.onclick = () => {
-        deleteTag(cross, DATA)
+        deleteTag(cross, DATA);
     }
     // Gestion des tags au clavier
     cross.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-            deleteTag(cross, DATA)
+            deleteTag(cross, DATA);
         }
     })
 
     cross.innerHTML = '<img aria-hidden="true" src="./assets/icones/crossSVG.svg" alt="">'
 
-    const tagsList = document.querySelector('.tagsList')
-    const div = document.createElement('div')
-    div.classList.add('tag')
+    const tagsList = document.querySelector('.tagsList');
+    const div = document.createElement('div');
+    div.classList.add('tag');
 
     switch (type) {
         case 'ingredient':
@@ -63,7 +63,7 @@ export const orderList = (element) => {
 
 
 export const displayRecipes = (DATA) => {
-    const recipesList = document.querySelector('.thumbnails-list')
+    const recipesList = document.querySelector('.thumbnails-list');
     // on enlève toutes les recettes
     recipesList.innerHTML = ''
 
@@ -119,29 +119,29 @@ export const deleteTag = (cross, DATA) => {
 
     // supprime le tag
     const clickedTag = cross.parentElement
-    clickedTag.remove()
+    clickedTag.remove();
 
     // // on recupere tous les tags restants
-    const tagIngredients = Array.from(document.querySelectorAll('.tag--ingredients'))
-    const ingredientsContent = tagIngredients.map(tag => tag.querySelector('span').innerHTML.toLowerCase())
+    const tagIngredients = Array.from(document.querySelectorAll('.tag--ingredients'));
+    const ingredientsContent = tagIngredients.map(tag => tag.querySelector('span').innerHTML.toLowerCase());
 
     // // en bouclant sur chaque ingrédient
     ingredientsContent.forEach(content => {
-        newData = filteringDataIngredients(DATA, content)
+        newData = filteringDataIngredients(DATA, content);
 
     })
 
-    const tagUstensils = Array.from(document.querySelectorAll('.tag--ustensils'))
-    const ustensilsContent = tagUstensils.map(tag => tag.querySelector('span').innerHTML.toLowerCase())
+    const tagUstensils = Array.from(document.querySelectorAll('.tag--ustensils'));
+    const ustensilsContent = tagUstensils.map(tag => tag.querySelector('span').innerHTML.toLowerCase());
 
     // // en bouclant sur chaque ustensile
     ustensilsContent.forEach(content => {
-        newData = filteringDataUstensils(DATA, content)
+        newData = filteringDataUstensils(DATA, content);
 
     })
 
-    const tagAppliance = Array.from(document.querySelectorAll('.tag--appliance'))
-    const applianceContent = tagAppliance.map(tag => tag.querySelector('span').innerHTML.toLowerCase())
+    const tagAppliance = Array.from(document.querySelectorAll('.tag--appliance'));
+    const applianceContent = tagAppliance.map(tag => tag.querySelector('span').innerHTML.toLowerCase());
 
     // // en bouclant sur chaque appareil
     applianceContent.forEach(content => {
@@ -153,7 +153,7 @@ export const deleteTag = (cross, DATA) => {
     if (newData.length == 0) {
         newData = DATA
     }
-    displayRecipes(newData)
+    displayRecipes(newData);
 }
 
 // fermeture du dropdown quand on clic en dehors
