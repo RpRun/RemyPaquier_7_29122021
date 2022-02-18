@@ -178,7 +178,6 @@ const createFilterList = (elementToShow) => {
         const li = document.createElement("li");
         li.innerHTML = element
         list.append(li);
-        list.setAttribute(`tabindex`, -1);
         li.setAttribute(`tabindex`, 0);
 
     }
