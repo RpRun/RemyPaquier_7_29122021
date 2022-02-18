@@ -1,4 +1,4 @@
-import { displayRecipes, createTag, orderList } from "./globalFunctions.js"
+import { displayRecipes, createTag, orderList } from './globalFunctions.js';
 
 const dropdownAppliance = document.querySelector('.dropdown__appliance');
 const arrow = dropdownAppliance.querySelector('.arrow');
@@ -10,19 +10,19 @@ export const onclickAppliancesDropDown = (DATA) => {
         
         if (arrow.classList.contains('arrow__reverse')) {
             hideList();
-            dropdownButton.ariaExpanded = "false";
+            dropdownButton.ariaExpanded = 'false';
             
         } else {
             
             displayList();
-            dropdownButton.ariaExpanded = "true";
+            dropdownButton.ariaExpanded = 'true';
             displayFilteredDropdownAppliance(DATA);
             onClickApplianceLi(DATA);
             onKeyboardAppliancesLi(DATA);
             onInputAppliance(DATA);
         }
-    })
-}
+    });
+};
 
 // Gestion du dropdown au clavier
 export const onKeyboardAppliancesFilters = (DATA) => {
@@ -30,21 +30,21 @@ export const onKeyboardAppliancesFilters = (DATA) => {
     dropdownAppliance.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             hideList();
-            dropdownButton.ariaExpanded = "false";
+            dropdownButton.ariaExpanded = 'false';
 
         }
          if (e.key === 'Enter') {
             
-            displayList()
-            dropdownButton.ariaExpanded = "true";
+            displayList();
+            dropdownButton.ariaExpanded = 'true';
             displayFilteredDropdownAppliance(DATA);
             onClickApplianceLi(DATA);
             onKeyboardAppliancesLi(DATA);
             onInputAppliance(DATA);
         }
-    })
+    });
     
-}
+};
 
 const displayList = () => {
     const dropdownButton = document.querySelector('.dropdown__appliance button');
@@ -54,19 +54,19 @@ const displayList = () => {
 
     if (dropdownOpened) {
         dropdownOpened.classList.remove('display');
-        dropdownButton.ariaExpanded = "false";
+        dropdownButton.ariaExpanded = 'false';
     }
-    dropdownButton.ariaExpanded = "true";
+    dropdownButton.ariaExpanded = 'true';
     dropdownAppliance.classList.add('display');
     arrow.classList.add('arrow__reverse');
     InputAppliance.focus();
-}
+};
 
 const hideList = () => {
-    dropdownButton.ariaExpanded = "false";
+    dropdownButton.ariaExpanded = 'false';
     dropdownAppliance.classList.remove('display');
     arrow.classList.remove('arrow__reverse');
-}
+};
 
 const onInputAppliance = (DATA) => {
 
@@ -74,24 +74,24 @@ const onInputAppliance = (DATA) => {
         searchAppliance(DATA, InputAppliance.value);
         onClickApplianceLi(DATA);
         onKeyboardAppliancesLi(DATA);
-    })
-}
+    });
+};
 
 const searchAppliance = (DATA, inputValue) => {
     // chercher dans tous les ustensiles
     // on va récupérer tous les ustensiles qui sont dans les recettes en display == true
-    const myAppliance = []
+    const myAppliance = [];
     DATA.forEach((recipe) => {
         if (recipe.display) {
             myAppliance.push(recipe.appliance);
         }
-    })
+    });
     // Conserve une seule apparition de l'ustensile:
     const filteredAppliances = myAppliance.filter((item, index) => {
         return myAppliance.indexOf(item) == index;
-    })
+    });
 
-    let applianceToShow = []
+    let applianceToShow = [];
 
     if (inputValue.length >= 3) {
         filteredAppliances.forEach(appl => {
@@ -106,7 +106,7 @@ const searchAppliance = (DATA, inputValue) => {
     // Creation de la liste du dropdown
     createFilterList(applianceToShow);
 
-}
+};
 
 
 export const filteringDataAppliance = (DATA, appliance) => {
@@ -118,14 +118,14 @@ export const filteringDataAppliance = (DATA, appliance) => {
         }
 
     });
-    return DATA
-}
+    return DATA;
+};
 
 export const onClickApplianceLi = (DATA) => {
-    const lis = document.querySelectorAll(".dropdown__appliance li");
+    const lis = document.querySelectorAll('.dropdown__appliance li');
 
     lis.forEach(li => {
-        li.addEventListener("click", () => {
+        li.addEventListener('click', () => {
 
             const content = li.innerHTML.toLowerCase();
             createTag(content, 'appliance', DATA);
@@ -136,14 +136,14 @@ export const onClickApplianceLi = (DATA) => {
             // ON RÉUTILISE LES DATA FILTRÉES
             displayRecipes(newData);
             displayFilteredDropdownAppliance(DATA);
-        })
-    })
-}
+        });
+    });
+};
 // gestion des tags au clavier
 export const onKeyboardAppliancesLi = (DATA) => {
-    const lis = document.querySelectorAll(".dropdown__appliance li")
+    const lis = document.querySelectorAll('.dropdown__appliance li');
     lis.forEach(li => {
-        li.addEventListener("keydown", (e) => {
+        li.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
 
                 const content = li.innerHTML.toLowerCase();
@@ -157,9 +157,9 @@ export const onKeyboardAppliancesLi = (DATA) => {
                 displayFilteredDropdownAppliance(DATA);
             }
            
-        })
-    })
-}
+        });
+    });
+};
 
 
 const createFilterList = (elementToShow) => {
@@ -171,7 +171,7 @@ const createFilterList = (elementToShow) => {
 
     for (let i = 0; i < elementToShow.length; i++) {
         const element = elementToShow[i];
-        const li = document.createElement("li");
+        const li = document.createElement('li');
         li.innerHTML = element;
         list.append(li);
         li.setAttribute(`tabindex`, 0);
@@ -179,28 +179,28 @@ const createFilterList = (elementToShow) => {
     }
     // Insertion du "bloc liste" au niveau de la liste ustensiles
     const blocList = document.querySelector('.appliance-list');
-    blocList.innerHTML = ''
+    blocList.innerHTML = '';
     blocList.append(list);
 
-}
+};
 
 
 export const displayFilteredDropdownAppliance = (DATA) => {
     // on va récupérer tous les ustensiles qui sont dans les recettes en display == true
-    const myAppliance = []
+    const myAppliance = [];
 
     DATA.forEach((recipe) => {
         if (recipe.display) {
             myAppliance.push(recipe.appliance);
         }
-    })
+    });
     // Conserve une seule apparition de l'ustensile:
     const filteredAppliance = myAppliance.filter((item, index) => {
-        return myAppliance.indexOf(item) == index
+        return myAppliance.indexOf(item) == index;
 
-    })
+    });
 
     // Creation de la liste du dropdown
     createFilterList(filteredAppliance);
   
-}
+};

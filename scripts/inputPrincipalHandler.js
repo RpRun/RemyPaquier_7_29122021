@@ -1,14 +1,14 @@
-import { displayFilteredDropdownIngredient } from "./ingredientDropdownHandler.js";
-import { displayFilteredDropdownUstensils } from "./ustensilsDropdownHandler.js";
-import { displayFilteredDropdownAppliance } from "./appliancesDropdownHandler.js";
+import { displayFilteredDropdownIngredient } from './ingredientDropdownHandler.js';
+import { displayFilteredDropdownUstensils } from './ustensilsDropdownHandler.js';
+import { displayFilteredDropdownAppliance } from './appliancesDropdownHandler.js';
 
 export const inputPrincipal = (DATA) => {
-    const searchInput = document.querySelector("#search-bar-Field");
+    const searchInput = document.querySelector('#search-bar-Field');
 
     searchInput.addEventListener('input', (e) => {
         const searchedString = e.target.value.toLowerCase();
-        const allRecipesThumbs = document.querySelectorAll(".thumbnails__card");
-        const recipesList = document.querySelector(".thumbnails-list");
+        const allRecipesThumbs = document.querySelectorAll('.thumbnails__card');
+        const recipesList = document.querySelector('.thumbnails-list');
         const errorSearchMessage = document.querySelector('.error-message');
         const splittedSearchString = searchedString.split(' ');
         const recipesTextContent = recipesList.innerHTML.toLowerCase();
@@ -19,19 +19,19 @@ export const inputPrincipal = (DATA) => {
             if (searchedString.length > 2  && recipesTextContent.includes(searchedWord)) {
                 // on efface toutes les recettes
                 DATA.forEach(recipe => {
-                    recipe.display = false
+                    recipe.display = false;
                 });
 
                 errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden');
                 // on cache toute la liste
-                recipesList.classList.add("thumbnails__card--hidden");
+                recipesList.classList.add('thumbnails__card--hidden');
                 // On boucle sur la liste des recettes
                 for (let i = 0; i < allRecipesThumbs.length; i++) {
                     const recipesListItem = allRecipesThumbs[i];
                     // on cache toutes les cartes de la liste de recettes
-                    recipesListItem.classList.add("thumbnails__card--hidden");
+                    recipesListItem.classList.add('thumbnails__card--hidden');
                     // on fait reapparaitre la liste de recettes
-                    recipesList.classList.remove("thumbnails__card--hidden");
+                    recipesList.classList.remove('thumbnails__card--hidden');
 
                     // Si une des recettes comporte la ou les chaines de characteres renseignées dans le champ de recherche
                     if (recipesListItem.innerHTML.toLowerCase().includes(searchedString.split())) {
@@ -39,17 +39,17 @@ export const inputPrincipal = (DATA) => {
 
                         const recipe = DATA.findIndex((oneRecipe) => oneRecipe.id.toString() === id);
 
-                        DATA[recipe].display = true
+                        DATA[recipe].display = true;
 
                         // on fait reapparaitre cette recette   
-                        recipesListItem.classList.remove("thumbnails__card--hidden");
+                        recipesListItem.classList.remove('thumbnails__card--hidden');
                     }
                 }
 
             } else {
 
                 // on cache tout le monde
-                recipesList.classList.add("thumbnails__card--hidden");
+                recipesList.classList.add('thumbnails__card--hidden');
 
                 // on affiche le message d'erreur
                 errorSearchMessage.classList.replace('error-message--hidden', 'error-message--displayed');
@@ -59,9 +59,9 @@ export const inputPrincipal = (DATA) => {
                     for (let i = 0; i < allRecipesThumbs.length; i++) {
                         const recipesListItem = allRecipesThumbs[i];
                         // on fait reapparaitre toutes les cartes de la liste de recettes
-                        recipesListItem.classList.remove("thumbnails__card--hidden");
+                        recipesListItem.classList.remove('thumbnails__card--hidden');
                         // on fait reapparaitre la liste de recettes
-                        recipesList.classList.remove("thumbnails__card--hidden");
+                        recipesList.classList.remove('thumbnails__card--hidden');
                         // on cache le message d' erreur
                         errorSearchMessage.classList.replace('error-message--displayed', 'error-message--hidden');
                     }
@@ -72,5 +72,5 @@ export const inputPrincipal = (DATA) => {
         displayFilteredDropdownIngredient(DATA);
         displayFilteredDropdownUstensils(DATA);
         displayFilteredDropdownAppliance(DATA);
-    })
-}
+    });
+};
